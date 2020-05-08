@@ -3,7 +3,7 @@
   "private": true,
   "description": "A starter for a blog powered by Gatsby and Markdown, made editable with TinaCMS",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Anthony Campolo",
   "bugs": {
     "url": "https://github.com/tinacms/gatsby-starter-tinacms/issues"
   },
