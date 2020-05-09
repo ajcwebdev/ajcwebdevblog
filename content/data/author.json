@@ -3,6 +3,7 @@
   "title": "ajcwebdev",
   "author": "Anthony Campolo",
   "description": "A blog about web development",
+  "siteUrl": "https://gatsby-starter-tinacms-demo.netlify.com/",
   "social": {
     "twitter": "ajcwebdev"
   }
