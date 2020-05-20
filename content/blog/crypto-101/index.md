@@ -56,8 +56,8 @@ The first bombe was produced in 1939 at the **[Government Code and Cypher Schoo
 
 To decrypt the messages they needed to discover the set of [rotors](https://en.wikipedia.org/wiki/Enigma_machine#Rotors "Enigma machine") in use and their positions in the machine, which included two parts:  
 
-    The rotor core start positions for the message (the decryption key)
-    One of the wirings of the [plugboard](https://en.wikipedia.org/wiki/Steckerbrett "Steckerbrett").
+-The rotor core start positions for the message (the decryption key)
+-One of the wirings of the [plugboard](https://en.wikipedia.org/wiki/Steckerbrett "Steckerbrett").
 
 ### Classic Cryptography
 
@@ -73,10 +73,10 @@ Succeeding WWII, encryption with electronic, programmable computers created comp
 
 ![Diffie-Hellman-key-exchange.jpg](Diffie-Hellman-key-exchange.jpg)  
 
-    Alice broadcasts an **encrypted message** to Bob
-    It is broadcast over a **channel** that Eve can listen to without Alice or Bob’s control
-    If Eve intercepts the message it will contain random gibberish
-    The gibberish can be transformed back into the message by Bob with an algorithm (**cyphertext**) that only Alice and Bob have access to
+*Alice broadcasts an **encrypted message** to Bob
+*It is broadcast over a **channel** that Eve can listen to without Alice or Bob’s control
+*If Eve intercepts the message it will contain random gibberish
+*The gibberish can be transformed back into the message by Bob with an algorithm (**cyphertext**) that only Alice and Bob have access to
 
 This allows us to construct a (very, very) basic description of the mechanism of bitcoin.  
 
