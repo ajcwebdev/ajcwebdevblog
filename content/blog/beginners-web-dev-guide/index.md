@@ -4,7 +4,7 @@ date: "2020-05-20"
 description: A free one month introductory course to web development
 ---
 
-There's a lot of great resources online to learn any kind of programming. But there's such an abundance it can be hard for a beginner to even know where to start. It's easy to fall into tutorial hell, hoping from one video to another. At this point I think I've watched videos from almost every major programming Youtuber, and this is a structured compilation of the best videos and playlists to learn the basics of web development. I've watched every video on this list, and this is the guide that I wish I would have had when I first started to learn to program.
+There's a lot of great resources online to learn any kind of programming. But there's such an abundance it can be hard for a beginner to even know where to start. It's easy to fall into tutorial hell, hopping from one video to another. At this point I think I've watched videos from almost every major programming Youtuber, and this is a structured compilation of the best videos and playlists to learn the basics of web development. I've watched every video on this list, and this is the guide that I wish I would have had when I first started to learn to program.
 
 I've picked 20 videos with the idea that you'll watch 1 video a day, Monday through Friday, over the course of a month. Week one is HTML, week two is CSS, week three is JavaScript, and week four is React. You won't be a professional grade web developer after a month of watching these videos. But you will have a strong grasp on the fundamentals and hopefully you'll have a better idea of what to learn next to expand your skills and which creators you should be following.
 
