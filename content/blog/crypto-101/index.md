@@ -24,7 +24,7 @@ The use of codes and cyphers for protecting secrets **Code**: A system of rules 
 
 A message is encrypted with an algorithm called a **cyphertext**. It can only be read if decrypted with an **encryption key**. The **cyphertext** transforms the message into random digital gibberish and is returned to its original form by the **encryption key**.  
 
-![Encryption](..../crypto-101/Encryption.png)  
+![Encryption](./Encryption.png)  
 
 In principle it's possible to decrypt the message without the key, but it's very difficult in practice. There will be a finite number of possible answers which a computer could try to brute-force guess, one by one, until eventually arriving at the correct answer. But a well-designed encryption scheme has so many possible key values that guessing every possible answer with a computer would take millions of years, even with billions of calculations per second. This results in codes that are for all practical purposes unbreakable when correctly implemented (until **[quantum computers](https://en.wikipedia.org/wiki/Quantum_cryptography)** come around and ruin everything).  
 
