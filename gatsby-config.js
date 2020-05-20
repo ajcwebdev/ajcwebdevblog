@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `ajcwebdev`,
     author: `Anthony Campolo`,
-    description: `A blog about web development`,
+    description: `a blog about web development, AI, cryptography, and other computer stuff`,
     siteUrl: `https://gatsby-starter-tinacms-demo.netlify.com/`,
     social: {
       twitter: `ajcwebdev`,
