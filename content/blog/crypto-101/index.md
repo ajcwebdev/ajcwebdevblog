@@ -4,6 +4,8 @@ date: "2018-02-01"
 description: A history of cryptography and its development
 ---
 
+![crypto-101-cover](crypto-101-cover.jpeg) 
+
 ## Crypto (Greek, _Kruptós_)
 
 ### Concealed, private, hidden, secret
@@ -24,7 +26,6 @@ The use of codes and cyphers for protecting secrets **Code**: A system of rules 
 
 A message is encrypted with an algorithm called a **cyphertext**. It can only be read if decrypted with an **encryption key**. The **cyphertext** transforms the message into random digital gibberish and is returned to its original form by the **encryption key**.  
 
-![Encryption](./Encryption.png)  
 ![Encryption](Encryption.png)  
 
 In principle it's possible to decrypt the message without the key, but it's very difficult in practice. There will be a finite number of possible answers which a computer could try to brute-force guess, one by one, until eventually arriving at the correct answer. But a well-designed encryption scheme has so many possible key values that guessing every possible answer with a computer would take millions of years, even with billions of calculations per second. This results in codes that are for all practical purposes unbreakable when correctly implemented (until **[quantum computers](https://en.wikipedia.org/wiki/Quantum_cryptography)** come around and ruin everything).  
@@ -39,11 +40,11 @@ Breaking codes and cyphers to expose secrets.
 
 A series of electro-mechanical** [rotor cypher machines](https://en.wikipedia.org/wiki/Rotor_machine "Rotor machine") **developed and used in the early- to mid-20th century to encrypt commercial, diplomatic and military communication.  
 
-![Enigma I](http://blockbrains.info/wp-content/uploads/2018/02/Enigma-I.png)  
+![Enigma I](Enigma-I.png)  
 
 Several different Enigma models were produced, but the **[Nazi Wehrmacht](https://en.wikipedia.org/wiki/Wehrmacht "Wehrmacht")** models were the most complex due to the addition of a plugboard. Its wikipedia page is over **[10,000 words](https://en.wikipedia.org/wiki/Enigma_machine)** long.  
 
-![Enigma](http://blockbrains.info/wp-content/uploads/2018/02/Enigma.png)  
+![Enigma](Enigma.png)  
 
 ## Bombe
 
@@ -51,7 +52,7 @@ An electro-mechanical device used by British cryptographers to decypher German 
 
 The first bombe was produced in 1939 at the **[Government Code and Cypher School](https://en.wikipedia.org/wiki/Government_Communications_Headquarters#Government_Code_and_Cypher_School_(GC&CS) "Government Communications Headquarters")** at **[Bletchley Park](https://en.wikipedia.org/wiki/Bletchley_Park "Bletchley Park")** by **[Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing "Alan Turing")**. The bombe was designed to discover some of the daily settings of the Enigma machines on the various German military networks.  
 
-![Bombe](http://blockbrains.info/wp-content/uploads/2018/02/Bombe.jpg)  
+![Bombe](Bombe.jpg)  
 
 To decrypt the messages they needed to discover the set of [rotors](https://en.wikipedia.org/wiki/Enigma_machine#Rotors "Enigma machine") in use and their positions in the machine, which included two parts:  
 
@@ -70,7 +71,7 @@ Succeeding WWII, encryption with electronic, programmable computers created comp
 
 **[Two keys](https://en.wikipedia.org/wiki/Key_exchange)** that are mathematically connected. This allows two individuals to communicate **securely** through an **insecure** channel as long as they are both in possession of their **[keys](https://en.wikipedia.org/wiki/Key_(cryptography))**.  
 
-![Diffie-Hellman-key-exchange.jpg](http://blockbrains.info/wp-content/uploads/2018/02/Diffie-Hellman-key-exchange-2908776777-1519448017481.jpg)  
+![Diffie-Hellman-key-exchange.jpg](Diffie-Hellman-key-exchange.jpg)  
 
 1.  Alice broadcasts an **encrypted message** to Bob
 2.  It is broadcast over a **channel** that Eve can listen to without Alice or Bob’s control
@@ -104,7 +105,7 @@ The aging DES was officially replaced by the **[Advanced Encryption Standard](ht
 
 The DES and other encryption techniques at the time were **[symmetric-key algorithms](https://en.wikipedia.org/wiki/Symmetric-key_algorithm)**, meaning the same key is used by both the sender and the recipient. They must both keep the key secret. Like the Enigma machine, the key for a code is the **[codebook](https://en.wikipedia.org/wiki/Codebook)** which must be **[distributed and kept secret](https://en.wikipedia.org/wiki/Key_distribution_center)**. The key had to be exchanged between Alice and Bob through a secure channel prior to any interaction through an unsecure channel.
 
-![Symmetric Encryption](http://blockbrains.info/wp-content/uploads/2018/02/Symmetric-Encryption.png)
+![Symmetric Encryption](Symmetric-Encryption.png)
 
 This type of exchange becomes unmanageable in the real world with large groups of people who are unable to communicate over a secure channel. A separate key was needed for every pair of users wishing to communicate securely, known as the **[key exchange problem](https://en.wikipedia.org/wiki/Key_exchange#The_key_exchange_problem)**. In 1976 Whitfield Diffie and Martin Hellman implemented a new method for distributing cryptographic keys that was originally conceived by Ralph Merkel, known as the **[Diffie–Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)**.
 
@@ -112,7 +113,7 @@ This type of exchange becomes unmanageable in the real world with large groups o
 
 Any cryptographic system that uses pairs of keys, **public keys**which may be disseminated widely, and **private keys** which are known only to the owner. An algorithm of this kind is known as an **[asymmetric key algorithm](https://en.wikipedia.org/wiki/Asymmetric_key_cryptography)**. Using such an algorithm, only one key pair is needed per user. By designating one key as private (always secret) and the other as public (often widely available), no secure channel is needed for key exchange.
 
-![Public key cryptography.gif](http://blockbrains.info/wp-content/uploads/2018/02/Public-key-cryptography-1.gif)
+![Public key cryptography.gif](Public-key-cryptography-1.gif)
 
 Some (though not all) of these algorithms have the characteristic that one of the paired keys can't be deduced from the other through any known method except for simple trial and error. Asymmetric keys with a sufficient **[key size](https://en.wikipedia.org/wiki/Key_size) **enable 100% secure communication, but only in theory.
 
@@ -126,7 +127,7 @@ If this sequence results in a coherent message Bob assumes the message came from
 
 A math problem that is very simple to execute one way, but requires vast amounts of computational power to do in reverse. The archetypal one way function is **[RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem))**, invented in 1977. RSA multiples two large prime numbers and spits out a new number.
 
-![One Way Function](http://blockbrains.info/wp-content/uploads/2018/02/One-Way-Function.jpg)
+![One Way Function](One-Way-Function.jpg)
 
 A computer could quickly and easily multiple 2^77232917 and 2^74207281. But if you were to take the resulting answer with its 23,249,425 digits, and fed it into a different computer asking it to figure out what those first two prime numbers were, it would have to guess every possible combination of primes up to that number.
 
@@ -138,7 +139,7 @@ Asymmetric algorithms require very long keys to be to reach the same **[level o
 
 Encodes information quickly using typical algorithms, and can be used reduce large bits of data into data of a fixed size. A **[cryptographic hash function](https://en.wikipedia.org/wiki/Cryptographic_hash_function)** transforms a large string of text (**key**) into a different, smaller string of text (**hash value**). This creates a "digital fingerprint" of the message, and that specific hash value must be used to identify that specific message. This allows hash functions to verify [**digital signatures**](https://en.wikipedia.org/wiki/Digital_signature).
 
-![Hash Function](http://blockbrains.info/wp-content/uploads/2018/02/Hash-Function.png) [Rohit Bhaskar](http://www.sra.vjti.info/blog/blog-posts/hash-functions-explained-in-2-minutes)
+![Hash Function](Hash-Function.png) [Rohit Bhaskar](http://www.sra.vjti.info/blog/blog-posts/hash-functions-explained-in-2-minutes)
 
 Much like a hand-written signature, these signatures are verified by assigning their exact hash code to a person. Modern operating systems and many web applications store passwords this way. A user on the system creates a password that is first hashed by using a key and then stored in a password file (for the love of god **[salt your hashes](https://en.wikipedia.org/wiki/Salt_(cryptography))**). This allows all of us to store various encrypted messages.
 
