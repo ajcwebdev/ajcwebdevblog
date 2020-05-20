@@ -1,6 +1,6 @@
 ---
 title: a short history of nodejs
-date: "2020-05-08"
+date: "2020-04-18"
 description: A summary of the NodeJS project, npm, and the ecosystem of libraries they enabled.
 ---
 
