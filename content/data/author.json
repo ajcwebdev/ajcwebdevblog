@@ -1,8 +1,8 @@
 {
   "pk": "author",
   "title": "ajcwebdev",
-  "author": "Anthony Campolo",
-  "description": "A blog about web development",
+  "author": "anthonyCampolo",
+  "description": "a blog about web development",
   "siteUrl": "https://gatsby-starter-tinacms-demo.netlify.com/",
   "social": {
     "twitter": "ajcwebdev"
