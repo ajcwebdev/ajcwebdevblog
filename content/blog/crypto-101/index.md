@@ -56,8 +56,8 @@ The first bombe was produced in 1939 at the **[Government Code and Cypher Schoo
 
 To decrypt the messages they needed to discover the set of [rotors](https://en.wikipedia.org/wiki/Enigma_machine#Rotors "Enigma machine") in use and their positions in the machine, which included two parts:  
 
-  1. The rotor core start positions for the message (the decryption key)
-  2. One of the wirings of the [plugboard](https://en.wikipedia.org/wiki/Steckerbrett "Steckerbrett").
+    The rotor core start positions for the message (the decryption key)
+    One of the wirings of the [plugboard](https://en.wikipedia.org/wiki/Steckerbrett "Steckerbrett").
 
 ### Classic Cryptography
 
@@ -73,23 +73,23 @@ Succeeding WWII, encryption with electronic, programmable computers created comp
 
 ![Diffie-Hellman-key-exchange.jpg](Diffie-Hellman-key-exchange.jpg)  
 
-  1.  Alice broadcasts an **encrypted message** to Bob
-  2.  It is broadcast over a **channel** that Eve can listen to without Alice or Bob’s control
-  3.  If Eve intercepts the message it will contain random gibberish
-  4.  The gibberish can be transformed back into the message by Bob with an algorithm (**cyphertext**) that only Alice and Bob have access to
+    Alice broadcasts an **encrypted message** to Bob
+    It is broadcast over a **channel** that Eve can listen to without Alice or Bob’s control
+    If Eve intercepts the message it will contain random gibberish
+    The gibberish can be transformed back into the message by Bob with an algorithm (**cyphertext**) that only Alice and Bob have access to
 
 This allows us to construct a (very, very) basic description of the mechanism of bitcoin.  
 
-  1.  **Bitcoin** is the encrypted message that Alice wants to send to Bob
-  2.  We need to broadcast bitcoin through the **Internet** (the least secure channel in human history)
-  3.  A **bitcoin wallet** is the cyphertext that allows Bob to receive the money and verify it while also keeping the money secure from all adversaries
+    **Bitcoin** is the encrypted message that Alice wants to send to Bob
+    We need to broadcast bitcoin through the **Internet** (the least secure channel in human history)
+    A **bitcoin wallet** is the cyphertext that allows Bob to receive the money and verify it while also keeping the money secure from all adversaries
 
 However we must be careful not to take this simplification too literally. There are many significantly more complicated cryptographic innovations that lead to Bitcoin's creation in its current form. This does not include any description of a **[shared ledger](https://en.wikipedia.org/wiki/Distributed_ledger)**, but lets not try to run before we can walk. Nonetheless, this metaphor still gives us a mental model for conceptualizing the process of buying, storing, and transferring bitcoins between two individuals.  
 
 Cryptographers framed the pursuit of secrecy in two different models:  
 
-  1. **Perfect secrecy**: Systems made to protect against attackers with **infinite resources** to decode a message
-  2. **Practical secrecy**: Systems made to protect against attackers with **finite resources** with which to decode a message
+    **Perfect secrecy**: Systems made to protect against attackers with **infinite resources** to decode a message
+    **Practical secrecy**: Systems made to protect against attackers with **finite resources** with which to decode a message
 
 Practical secrecy was an essential consideration when our computers were working with kilobytes of data. But to make a cypher on the World Wide Web **unbreakable** it must have perfect secrecy, since it must be secure from everyone on the planet.
 
@@ -153,17 +153,17 @@ For the first time individuals gained access to public, standardized cryptograph
 
 PGP and similar cryptographic systems remain unbreakable to this day, leaving hackers to exploit other weaknesses including:
 
-  * Poor implementation
-  * Human error
-  * Insistence on symmetric key systems (so as to make sure the government has a copy)
-  * An overwhelming preference for convenience over security
+    Poor implementation
+    Human error
+    Insistence on symmetric key systems (so as to make sure the government has a copy)
+    An overwhelming preference for convenience over security
 
 These reoccurring patterns have lead to widespread systemic failures including:
 
-  * The first Wi-Fi encryption scheme **[WEP](https://en.wikipedia.org/wiki/Wired_Equivalent_Privacy)**
-  * Content Scrambling System used for encrypting and controlling DVD use
-  * [**A5/1**](https://en.wikipedia.org/wiki/A5/1) and **[A5/2](https://en.wikipedia.org/wiki/A5/2)** cyphers used in GSM cell phones
-  * CRYPTO1 cypher used in the widely deployed **[MIFARE](https://en.wikipedia.org/wiki/MIFARE)** Classic **[smart cards](https://en.wikipedia.org/wiki/Smart_card)**
+    The first Wi-Fi encryption scheme **[WEP](https://en.wikipedia.org/wiki/Wired_Equivalent_Privacy)**
+    Content Scrambling System used for encrypting and controlling DVD use
+    [**A5/1**](https://en.wikipedia.org/wiki/A5/1) and **[A5/2](https://en.wikipedia.org/wiki/A5/2)** cyphers used in GSM cell phones
+    CRYPTO1 cypher used in the widely deployed **[MIFARE](https://en.wikipedia.org/wiki/MIFARE)** Classic **[smart cards](https://en.wikipedia.org/wiki/Smart_card)**
 
 ## VIII. Cryptoanarchy
 
@@ -178,13 +178,13 @@ Cryptographic software used by citizens wishing to evade political prosecution a
 In a 1994 cypherpunks email titled “**[The Cyphernomicon](https://www.cypherpunks.to/faq/cyphernomicron/cyphernomicon.html)**,” Tim May summarized what he saw as “The Basic Issues” discussed over the first two years of the mailing list. These issues centered on the inherent tension in a free society between the right to privacy and the need to uphold the rule of law. He argued that cryptographic technology would reify these issues in a way never seen before.
 
 > **The Great Divide: Privacy vs. compliance with laws**
->   * Free speech and privacy, even if means some criminals cannot be caught (a stand the U.S. Constitution was strongly in favor of, at one time)
->   * A man's home is his castle (the essence of the Magna Carta systems)
->   * Rights of the individual are secure from random searches and other invasive tactics to catch criminals, regulate behavior, and control the population
->   * Self-protection vs. protection by law and police
->   * We are already past the point of no return.
->   * Strong cryptography as building material for a new age
->   * Transnationalism and increased degrees of freedom leads to borders becoming largely symbolic as governments lose control over movements and communications of citizens.
+>    Free speech and privacy, even if means some criminals cannot be caught (a stand the U.S. Constitution was strongly in favor of, at one time)
+>    A man's home is his castle (the essence of the Magna Carta systems)
+>    Rights of the individual are secure from random searches and other invasive tactics to catch criminals, regulate behavior, and control the population
+>    Self-protection vs. protection by law and police
+>    We are already past the point of no return.
+>    Strong cryptography as building material for a new age
+>    Transnationalism and increased degrees of freedom leads to borders becoming largely symbolic as governments lose control over movements and communications of citizens.
 
 ### Cypherpunk
 
