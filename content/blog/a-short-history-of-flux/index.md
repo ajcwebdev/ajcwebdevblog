@@ -1,7 +1,7 @@
 ---
 title: a short history of flux
 date: "2020-05-16"
-description: 
+description: Flux, Redux, and one way data flow
 ---
 
 *Flux and React are both all about keeping a simple mental model.  

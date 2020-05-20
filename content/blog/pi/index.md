@@ -1,7 +1,7 @@
 ---
 title: pi
 date: "2019-03-14"
-description: 
+description: "3.14159265358979323846"
 ---
 
 12:45, state my assumptions.

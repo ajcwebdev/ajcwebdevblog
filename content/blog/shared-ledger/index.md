@@ -1,7 +1,7 @@
 ---
 title: shared ledger
 date: "2018-06-05"
-description: 
+description: Stop calling it a decentralized database
 ---
 
 If you are trying to explain a blockchain to someone totally new to crypto and you use either the words “distributed” or “decentralized” you have already failed.

@@ -1,7 +1,7 @@
 ---
 title: a short history of nodejs
 date: "2020-04-18"
-description: A summary of the NodeJS project, npm, and the ecosystem of libraries they enabled.
+description: A summary of the project, npm, and the ecosystem of libraries they enabled
 ---
 
 Node.js is a JavaScript runtime environment for executing JavaScript code on a server instead of a web browser. It was created in 2009 by Ryan Dahl out of his frustration with Apache Server's inability to scale concurrent connections into the hundreds of thousands. Many attempts at putting JavaScript on the server had been attempted, starting in the mid-90s with Netscape's LiveWire Pro Web. Node's power and success comes from two key features, it is *event driven* with *asynchronous input-output*.

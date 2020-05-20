@@ -1,7 +1,7 @@
 ---
 title: rules
 date: "2019-02-22"
-description: 
+description: A man must have a code
 ---
 
 0) Have a rule zero

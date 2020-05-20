@@ -1,7 +1,7 @@
 ---
 title: depressed former internet optimist
 date: "2018-08-26"
-description: 
+description: The dream shall never die
 ---
 
 Like any technology conceived of and built by humans, [the internet] is shaped by human struggles, by the push and pull of a multitude of interests and schools of thought. What’s needed is a coalition around a New Optimism—one that celebrates what’s working, is honest about what isn’t, and articulates a path forward grounded not so much in technological fixes as in a richer understanding of trust, identity, and community.

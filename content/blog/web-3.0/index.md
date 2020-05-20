@@ -1,7 +1,7 @@
 ---
 title: web 3.0
 date: "2018-02-08"
-description: 
+description: Cause web 2.0 wasn't enough of a buzzword
 ---
 
 2017 was finally the year crypto went mainstream. I’ve seen a lot of musicians transition from semi-indie famous to full blown celebrities, and when I’m trying to gauge how much exposure a musician truly has, my litmus test has always been, “Do my parents know who this is, and do teenagers know who this is?” 2017 is the year that crypto passed that litmus test.

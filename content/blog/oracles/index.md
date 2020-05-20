@@ -1,7 +1,7 @@
 ---
 title: oracles
 date: "2019-05-30"
-description: 
+description: Question answering and answering questions
 ---
 
 Sophocles is wise, Euripides is wiser, but of all men Socrates is wisest.

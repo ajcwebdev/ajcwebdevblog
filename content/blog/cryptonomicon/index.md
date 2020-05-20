@@ -1,10 +1,9 @@
 ---
 title: cryptonomicon
 date: "2018-02-06"
-description: 
+description: In 1999 Neal Stephenson explained Bitcoin to the world a decade before it was invented
 ---
 
-In 1999 Neal Stephenson explained Bitcoin to the world a decade before it was invented
 Cryptonomicon is set in two time periods
 One group of characters include World War II Allied codebreakers and tactical-deception operatives affiliated with the Government Code and Cypher School at Bletchley Park, and disillusioned Axis military and intelligence figures.
 

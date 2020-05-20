@@ -1,12 +1,8 @@
 ---
 title: public opinion
 date: "2019-07-11"
-description: 
+description: The possibility of constructing unambiguous statements of opinion on controversial topics seems to approach zero as a limit.
 ---
-
-The possibility of constructing unambiguous statements of opinion on controversial topics seems to approach zero as a limit.
--Ross Stagner (1940)
-
 
 Straw Poll
 In 1824, the Harrisburg Pennsylvanian newspaper conducted the first presidential preference poll in the nation's history in Wilmington, Delaware. The results were said to be reported without discrimination of findings, which is to say reported accurately.

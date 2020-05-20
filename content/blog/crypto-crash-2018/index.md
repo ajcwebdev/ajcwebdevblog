@@ -1,7 +1,7 @@
 ---
 title: crypto crash 2018
 date: "2018-09-24"
-description: 
+description: Dot com all over again
 ---
 
 You may not have been paying much attention to the crypto news churn over the last 6 months and I totally don’t blame you. Since the crash in January the important developments have mostly been technical and legal in nature with all the fun and insanely dumb developments appearing to subside. Many are now wondering if the whole scene is on its way down the memory hole.

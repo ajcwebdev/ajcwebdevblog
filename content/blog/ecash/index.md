@@ -1,7 +1,7 @@
 ---
 title: ecash
 date: "2018-02-14"
-description: 
+description: The birth of cryptocurrencies
 ---
 
 In 1983, David Chaum designed ecash as an anonymous cryptographic electronic money.

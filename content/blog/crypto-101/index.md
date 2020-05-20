@@ -1,7 +1,7 @@
 ---
 title: crypto 101
 date: "2018-02-01"
-description: A history of cryptography and its development
+description: A history of keeping messages secret
 ---
 
 ![crypto-101-cover](crypto-101-cover.jpeg) 

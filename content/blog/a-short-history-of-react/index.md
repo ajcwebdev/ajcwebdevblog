@@ -1,7 +1,7 @@
 ---
 title: a short history of reactjs
 date: "2020-04-11"
-description: A summary of the first few years of React, the initial community reaction, and the development of React's core principles.
+description: Its first few years, the initial community reaction, and the development of its core principles
 ---
 
 React is a JavaScript library for building user interfaces. Jordan Walke created React in 2011 while working on internal tools for the Facebook Ads platform. It was first publicly deployed on Facebook's newsfeed. Pete Hunt learned of the framework in 2012 and began architecting Instagram as a single page web app built entirely with React and Backbone.Router. React was open sourced at JSConf in May 2013. Early adopters like Paul Seiffert and Clay Allsopp used it as a replacement for Backbone's view layer. The team began pitching React as the V in MVC, or the view layer of the model-view-controller pattern.

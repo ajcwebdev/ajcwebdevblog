@@ -1,7 +1,7 @@
 ---
 title: confusion of tongues
 date: "2019-05-09"
-description: 
+description: The eternal dream of a universal translator
 ---
 
 Beautiful words are untrue, true words are not beautiful.

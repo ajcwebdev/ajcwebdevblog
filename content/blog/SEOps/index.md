@@ -1,7 +1,7 @@
 ---
 title: SEOps
 date: "2018-03-22"
-description: 
+description: Search engine optimization psychological operations
 ---
 
 The conscious and intelligent manipulation of the organized habits and opinions of the masses is an important element in democratic society. Those who manipulate this unseen mechanism of society constitute an invisible government which is the true ruling power of our country. It is they who pull the wires which control the public mind.
