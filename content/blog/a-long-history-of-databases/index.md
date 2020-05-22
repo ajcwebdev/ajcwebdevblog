@@ -1,6 +1,6 @@
 ---
 title: a long history of databases
-date: "2020-05-30"
+date: "2020-05-21"
 description: Database Managament Systems, Data Models, and Query Languages.
 ---
 
