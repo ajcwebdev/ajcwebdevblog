@@ -1,0 +1,113 @@
+---
+title: an opinionated guide to sedaily's back catalog
+date: "2020-05-23"
+description: yes the entire back catalog
+---
+
+Software Engineering Daily is a podcast started by Jeff Meyerson in 2015. He has recorded and published over a thousand episodes at the time of this blog post making it likely the most prolofic software podcast of all time. I've been listening to SEDaily almost every day for a little over a year. It has been an incredible resource to someone like myself looking to enter the field of technology but coming from a non-CS/Engineering background (music education in my case).
+
+However SEDaily's back catalog presents unique challenges to new comers due to the significant volume of quality material. You can find yourself jumping around many episodes without a lot of information sticking, and leaving episodes with a vague sense that the topic was just a little above your head. This is no surprise since Jeff pushes himself to engage with such a wide variety of material, and engage with it at the level it requires.
+
+It is truly impossible to be an expert in every subject contained in this collection of podcast. I recommend honing in on the particular topic you are most engaged with yourself as a programmer or technologist. I initially explored every episode I could find about data engineering including sub-topics like databases and sub-sub-topics like NoSQL database. After a few months of that I started working through all the web development content, including sub-topics like JavaScript and sub-sub-topics like React. This guide is an attempt to create similar groupings that encompass all episodes of the show. It aims to be a kind of network knowledge graph representation of the podcast. I hope you find it useful.
+
+TABLE OF CONTENTS:
+
+# 1. Web Development
+## 1.1 JavaScript
+### 1.1.1 React
+### 1.1.2 Node
+
+# 2. Data Engineering
+## 2.1 Databases
+### 2.1.1 Data Warehouses
+## 2.2 Streaming
+### 2.2.1 Spark
+### 2.2.2 Kafka
+
+# 3. Financial Technology
+## 3.1 Blockchain
+### 3.1.1 Bitcoin
+### 3.1.2 Ethereum
+
+
+
+
+# Web Development
+
+
+## JavaScript
+
+[JavaScript Overview with Yad Faeq (July 15, 2015)](https://softwareengineeringdaily.com/2015/07/15/javascript-overview-with-yad-faeq/)
+
+[Meteor.js with Uri Goldshtein (July 28, 2015)](https://softwareengineeringdaily.com/2015/07/28/meteor-js-with-uri-goldshtein/)
+
+[TypeScript with Jon Turner (July 29, 2015)](https://softwareengineeringdaily.com/2015/07/29/typescript-with-jon-turner/)
+
+[JavaScript at Spotify with Mattias Petter Johansson (August 1, 2015)](https://softwareengineeringdaily.com/2015/08/01/javascript-at-spotify-with-mattias-petter-johansson/)
+
+### React
+
+[React.js with Sebastian Markbage and Christopher Chedeau (July 27, 2015)](https://softwareengineeringdaily.com/2015/07/27/react-js-with-sebastian-markbage-and-christopher-chedeau/)
+
+### Node
+
+[restify at Netflix with Yunong Xiao (July 31, 2015)](https://softwareengineeringdaily.com/2015/07/31/restify-and-flame-graphs-with-yunong-xiao/)
+
+[Node.js at Netflix with Yunong Xiao (August 1, 2015)](https://softwareengineeringdaily.com/2015/08/01/node-js-at-netflix-with-yunong-xiao/)
+
+
+
+# Data Engineering
+
+
+## Databases
+
+[MongoDB with Bryan Reinero (July 30, 2015)](https://softwareengineeringdaily.com/2015/07/30/mongodb-with-bryan-reinero/)
+
+### Data Warehouse
+
+[Facebook Presto with Christopher Berner (August 8, 2015)](https://softwareengineeringdaily.com/2015/08/08/facebook-presto-with-christopher-berner/)
+
+
+## Streaming/Batch
+
+[Cloudera Chief Technologist Eli Collins Discusses Streaming, Batch, Business, and Open-Source (August 2, 2015)](https://softwareengineeringdaily.com/2015/08/02/cloudera-chief-technologist-eli-collins-discusses-streaming-batch-business-and-open-source/)
+
+[Hadoop Ops: Rocana CTO Eric Sammer Interview (August 5, 2015)](https://softwareengineeringdaily.com/2015/08/05/hadoop-ops-rocana-cto-eric-sammer-interview/)
+
+[Apache ZooKeeper with Flavio Junqueira (August 7, 2015)](https://softwareengineeringdaily.com/2015/08/07/apache-zookeeper-with-flavio-junqueira/)
+
+[Hortonworks Data Platform with Venkatesh Seetharam (August 8, 2015)](https://softwareengineeringdaily.com/2015/08/08/hortonworks-data-platform-with-venkatesh-seetharam/)
+
+### Spark
+
+[Apache Spark Creator Matei Zaharia Interview (August 3, 2015)](https://softwareengineeringdaily.com/2015/08/03/apache-spark-creator-matei-zaharia-interview/)
+
+### Kafka
+
+[Apache Kafka with Guozhang Wang (August 6, 2015)](https://softwareengineeringdaily.com/2015/08/06/kafka-with-guozhang-wang/)
+
+
+
+# Financial Technology
+
+[Payments Engineering with Faisal Khan (August 11, 2015)](https://softwareengineeringdaily.com/2015/08/11/payments-engineering-with-faisal-khan/)
+
+
+## Blockchain
+
+[Blockchains with Melanie Swan (August 11, 2015)](https://softwareengineeringdaily.com/2015/08/11/blockchains-with-melanie-swan/)
+
+[Ripple with Greg Kidd (August 13, 2015](https://softwareengineeringdaily.com/2015/08/13/ripple-with-greg-kidd/)
+
+### Bitcoin
+
+[Bitcoin Introduction with Michael Miller (August 10, 2015)](https://softwareengineeringdaily.com/2015/08/10/bitcoin-introduction-with-michael-miller/)
+
+[Bitcoin with Andreas Antonopoulos (August 14, 2015)](https://softwareengineeringdaily.com/2015/08/14/bitcoin-with-andreas-antonopoulos/)
+
+[Bitcoin Meets Banks with Christian Ander (August 15, 2015)](https://softwareengineeringdaily.com/2015/08/15/bitcoin-meets-banks-with-christian-ander/)
+
+### Ethereum
+
+[Ethereum with Aaron Davis (August 16, 2015)](https://softwareengineeringdaily.com/2015/08/16/ethereum-with-aaron-davis/)
