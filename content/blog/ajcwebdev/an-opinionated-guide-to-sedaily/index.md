@@ -4,13 +4,13 @@ date: "2020-05-23"
 description: yes the entire back catalog
 ---
 
-Software Engineering Daily is a podcast started by Jeff Meyerson in 2015. He has recorded and published over a thousand episodes at the time of this blog post making it likely the most prolofic software podcast of all time. I've been listening to SEDaily almost every day for a little over a year. It has been an incredible resource to someone like myself looking to enter the field of technology but coming from a non-CS/Engineering background (music education in my case).
+Software Engineering Daily is a podcast started by Jeff Meyerson in 2015. He has recorded and published over a thousand episodes at the time of this blog post making him almost certainly the most prolific software podcaster of all time. I've been listening to SEDaily almost every day for a little over a year. It has been an incredible resource to someone like myself looking to enter the field of technology but coming from a non-CS/Engineering background (music education in my case).
 
 However SEDaily's back catalog presents unique challenges to new comers due to the significant volume of quality material. You can find yourself jumping around many episodes without a lot of information sticking, and leaving episodes with a vague sense that the topic was just a little above your head. This is no surprise since Jeff pushes himself to engage with such a wide variety of material, and engage with it at the level it requires.
 
-It is truly impossible to be an expert in every subject contained in this collection of podcast. I recommend honing in on the particular topic you are most engaged with yourself as a programmer or technologist. I initially explored every episode I could find about data engineering including sub-topics like databases and sub-sub-topics like NoSQL database. After a few months of that I started working through all the web development content, including sub-topics like JavaScript and sub-sub-topics like React.
+It is truly impossible to be an expert in every subject contained in this collection of podcasts. I recommend honing in on the particular topic you are most engaged with yourself as a programmer or technologist. I initially explored every episode I could find about data engineering including sub-topics like databases and sub-sub-topics like NoSQL databases. After a few months of that I started working through all the web development content, including sub-topics like JavaScript and sub-sub-topics like React.
 
-This guide is an attempt to create similar groupings that encompass all episodes of the show. It aims to be a kind of network knowledge graph representation of the podcast. Its structure is also influenced by Wittgenstein's hierarchical organization of Tractatus Logico-Philosophicus (seriously).
+This guide is an attempt to create similar groupings that encompass all episodes of the show. It aims to be a kind of network knowledge graph representation of the podcast. Its structure is partly influenced by Wittgenstein's hierarchical organization of Tractatus Logico-Philosophicus (seriously).
 
 ![An illustration of the structure of Tractatus Logico-Philosophicus](https://upload.wikimedia.org/wikipedia/commons/d/d5/Tractatus_Logico_Philosophicus_Text_Structure.png)
 
@@ -18,62 +18,49 @@ Creating it ended up being a fairly intuitive process, a testament to the foresi
 
 TABLE OF CONTENTS:
 
-# 0. Individuality
-
-# 1. Web Development
-## 1.1 JavaScript
-### 1.1.1 React
-#### 1.1.1.1 React Native
-### 1.1.2 Node
-### 1.1.3 JAMstack
-#### 1.1.3.1 GraphQL
-## 1.2 Browsers
-## 1.3 Accessibility
-
-# 2. Data Engineering
-## 2.1 Databases
-### 2.1.1 Streaming Databases
-### 2.1.2 Time-Series Databases
-### 2.1.3 Graph Databases
-## 2.2 Data Warehouses
-## 2.3 Streaming
-### 2.3.1 Hadoop
-### 2.3.2 Spark
-### 2.3.3 Kafka
-## 2.4 Data Science
-
-# 3. Financial Technology
-## 3.1 Blockchain
-### 3.1.1 Bitcoin
-### 3.1.2 Ethereum
-
-# 4. Cloud
-## 4.1 Containers
-## 4.2 DevOps
-
-# 5. Technology and Society
-## 5.1 Digital Security
-### 5.1.1 Digital Identity
-## 5.2 Digital Health
-## 5.3 Digital Education
-
-# 6. Technology and Society
-## 6.1 Security
-### 6.1.1 Identity
-## 6.2 Digital Health
-## 6.3 Digital Education
-
-# 7. Open Source
-## 7.1 Divesity
-
-# 8. Programming Languages
-
-# 9. Business Technology
-## 9.1 Venture Capital
-
-# 10. Robotics
-
-# 11. Gaming
+0. Individuality
+1. Web Development
+  1.1 JavaScript
+    1.1.1 React
+      1.1.1.1 React Native
+    1.1.2 Node
+    1.1.3 JAMstack
+      1.1.3.1 GraphQL
+  1.2 Browsers
+  1.3 Accessibility
+2. Data Engineering
+  2.1 Databases
+    2.1.1 Streaming Databases
+    2.1.2 Time-Series Databases
+    2.1.3 Graph Databases
+  2.2 Data Warehouses
+  2.3 Streaming
+    2.3.1 Hadoop
+    2.3.2 Spark
+    2.3.3 Kafka
+  2.4 Data Science
+3. Financial Technology
+  3.1 Blockchain
+    3.1.1 Bitcoin
+    3.1.2 Ethereum
+4. Cloud
+  4.1 Containers
+  4.2 DevOps
+5. Networking
+  5.1 Protocols
+  5.2 Distributed Architecture
+6. Technology and Society
+  6.1 Digital Security
+    6.1.1 Digital Identity
+  6.2 Digital Health
+  6.3 Digital Education
+7. Open Source
+  7.1 Divesity
+8. Programming Languages
+9. Business Technology
+  9.1 Venture Capital
+10. Robotics
+11. Gaming
 
 # 0. Individuality
 
