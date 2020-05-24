@@ -57,16 +57,23 @@ TABLE OF CONTENTS:
 ## 5.2 Digital Health
 ## 5.3 Digital Education
 
-# 6. Open Source
-## 6.1 Divesity
+# 6. Technology and Society
+## 6.1 Security
+### 6.1.1 Identity
+## 6.2 Digital Health
+## 6.3 Digital Education
 
-# 7. Programming Languages
+# 7. Open Source
+## 7.1 Divesity
 
-# 8. Business Technology
-## 8.1 Venture Capital
+# 8. Programming Languages
 
-# 9. Robotics
+# 9. Business Technology
+## 9.1 Venture Capital
 
+# 10. Robotics
+
+# 11. Gaming
 
 # 0. Individuality
 
@@ -267,7 +274,6 @@ TABLE OF CONTENTS:
 ## 5.2 Distributed Architecture
 
 [Taming Distributed Architecture with Caitie McCaffrey (September 10, 2015)](https://softwareengineeringdaily.com/2015/09/10/taming-distributed-architecture-with-caitie-mccaffrey/)
-
 
 
 # 6. Technology and Society
