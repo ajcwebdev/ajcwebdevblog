@@ -9,6 +9,8 @@ Node.js is a JavaScript runtime environment for executing JavaScript code on a s
 **Event Driven**: A programming paradigm in which the flow of the program is determined by events such as user actions (mouse clicks, key presses), sensor outputs, or messages from other programs or threads.
 **Asynchronous I/O**: A form of input/output processing that permits other processing to continue before the transmission has finished.
 
+[![Image](https://sedaily-topics.s3.amazonaws.com/topic_images/0_4129993339286535.jpg)](https://twitter.com/imneutralchaos/status/494959181871316992)
+
 *The thesis is that IO has to be done differently. We're doing it wrong... everything... the way that we're thinking about doing IO really makes things difficult. Writing servers and writing any soft of application is difficult because of how we're doing IO.
 -Ryan Dahl, [node.js (November 8, 2009)](https://www.youtube.com/watch?v=ztspvPYybIY)*
 
@@ -44,6 +46,8 @@ Npm was owned and maintained by a private company, npm inc, for most of Node's l
 *Success is a catastrophe for a lot of projects. It's a catastrophe that you need to survive and success for npm was a catastrophe, here's why. Npm's package registry is centralized. It's not just a CLI tool that grabs the code and puts it on your hard drive. The CLI is probably the least important part of the npm machinery despite how frequently you interact with it. Npm is most importantly a centralized package registry and repository.
 -C J Silverio, [The Economics of Open Source (June 3, 2019)](https://www.youtube.com/watch?v=MO8hZlgK5zc)*
 
+In contrast, Ryan Dahl in a retrospective talk about Node claimed "npm (AKA "Isaac") decoupled the core Node library and allowed the ecosystem to be distributed."
+
 ![Image](https://sedaily-topics.s3.amazonaws.com/topic_images/0_16581183117663367)
 
 Npm inc was acquired by GitHub in March 2020 (GitHub itself was acquired by Microsoft in 2018). The jury is still out whether this is better or worse.
@@ -64,6 +68,6 @@ In February 2015, the intent to form a neutral Node.js Foundation was announced.
  
 ### Node Today
 
-In a JS Party interview on April 2, 2020, Guillermo Rauch lamented the failure of Node to go further as an industry trend, believing that it would have been much bigger and have more enterprise success. Even the creator of Node believes that we need to move beyond it. Dahl gave a talk called "10 Things I Regret About Node.js" at JS Conf in 2018 which also annouced a Node competitor called Deno.
+In a JS Party interview on April 2, 2020, Guillermo Rauch lamented the failure of Node to go further as an industry trend, believing that it would have been much bigger and have more enterprise success. Even the creator of Node believes that we need to move beyond it. Dahl gave a talk called "10 Things I Regret About Node.js" at JS Conf in 2018 which also annouced a Node competitor called Deno which aims to address Node's shortcomings in security, project building, and modules. Deno 1.0 was released on May 13, 2020.
 
-Yet Node continues to be one of the most popular choices for bootcamps and online tutorials teaching the principles of full stack development. The advantages of building your front end and your back end in the same language has proved to be a force multiplier, especially for new programmers trained only in JavaScript. Companies deploying Node today include Netflix, PayPal, Trello, Capital One, LinkedIn, Yahoo, Mozilla, Uber, Groupon, Ebay, and Walmart.
+Despite these criticisms Node continues to be one of the most popular choices for bootcamps and online tutorials teaching the principles of full stack development. The advantages of building your front end and your back end in the same language has proved to be a force multiplier, especially for new programmers trained only in JavaScript. Companies deploying Node today include Netflix, PayPal, Trello, Capital One, LinkedIn, Yahoo, Mozilla, Uber, Groupon, Ebay, and Walmart.
