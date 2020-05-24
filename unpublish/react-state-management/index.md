@@ -10,6 +10,29 @@ description: A comparison of various state management solutions in the React eco
 
 Despite the large variety of 3rd party state management solutions, the React Core library has state management already built in. Before hooks, which we'll discuss later in this post, only class components were able to store state. 
 
+```javascript
+const todoData = [
+  {
+    task: "Organize Garage",
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: "Bake Cookies",
+    id: 1528817084358,
+    completed: false
+  }
+];
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todo: todoData
+    };
+  }
+```
+
 ## [useState hook](https://reactjs.org/docs/hooks-state.html) (2018)
 
 ## [Context API](https://reactjs.org/docs/context.html) (2018)
