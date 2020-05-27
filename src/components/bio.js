@@ -89,6 +89,7 @@ const Bio = () => {
       />
       <p>
         Written by <strong>{author}</strong>.
+        <iframe src="https://ajcwebdev.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
       </p>
     </div>
   )
