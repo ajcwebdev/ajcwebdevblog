@@ -4,10 +4,10 @@ date: "2019-05-09"
 description: The eternal dream of a universal translator
 ---
 
-Beautiful words are untrue, true words are not beautiful.
--Tao Te Ching, Section 81
+> *Beautiful words are untrue, true words are not beautiful.*
+> **Tao Te Ching, Section 81**
 
-
+![Bernard Vauquois' pyramid comparing depths of intermediary representations.](content/blog/ajcwebdev/confusion-of-tongues/Direct_translation_and_transfer_translation_pyramid.svg.png)
 Bernard Vauquois' pyramid comparing depths of intermediary representations.
 
 Linguistic software designed to translate text or speech from one language to another is referred to as machine translation.
@@ -16,44 +16,41 @@ The most basic type of translation is a literal, word-to-word translation, also 
 
 A successful machine translation system will:
 
-Recognize whole phrases and their closest counterparts in the target language.
+* Recognize whole phrases and their closest counterparts in the target language.
+* Parse the grammatical structures of each languages’ syntax.
+* Weigh conflicting interpretations stemming from the indeterminate nature of semantics and meaning.
+* Balance poetic embellishments with plain style explanation.
+* Strive to maximize fidelity, clarity, and elegance.
 
-Parse the grammatical structures of each languages’ syntax.
-
-Weigh conflicting interpretations stemming from the indeterminate nature of semantics and meaning.
-
-Balance poetic embellishments with plain style explanation.
-
-Strive to maximize fidelity, clarity, and elegance.
-
-Enmerkar and the Lord of Aratta
+## Enmerkar and the Lord of Aratta
 The Sumerian myth of Enmerkar and the Lord of Aratta is one of the earliest known examples of the confusion of tongues myth. It is estimated that the account was composed in the Neo-Sumerian period around the 21st century BC.
 
+![Sumerian writing](content/blog/ajcwebdev/confusion-of-tongues/Sumerian-writing.jpeg)
 
 Enmerkar demands a tribute of precious materials from Aratta to fund the construction of his ziggurat. He threatens to destroy Aratta and disperse its people if they do not send him the tribute. He recites “Incantation of Nudimmud“, a hymn imploring Enki to restore the linguistic unity of the inhabited regions.
 
-May the lands of Shubur
-and Hamazi, the many-tongued,
-and Sumer, the great mountain of the me of magnificence,
-and Akkad, the land possessing all that is befitting,
-and the Martu land, resting in security.
+> May the lands of Shubur
+> and Hamazi, the many-tongued,
+> and Sumer, the great mountain of the me of magnificence,
+> and Akkad, the land possessing all that is befitting,
+> and the Martu land, resting in security.
 
-The whole universe, the well-guarded people,
-may they all address Enlil together in a single language!
-For at that time,
-for the ambitious lords,
-for the ambitious princes,
-for the ambitious kings
+> The whole universe, the well-guarded people,
+> may they all address Enlil together in a single language!
+> For at that time,
+> for the ambitious lords,
+> for the ambitious princes,
+> for the ambitious kings
 
-Enki, the lord of abundance and of steadfast decisions,
-the wise and knowing lord of the Land,
-expert of the gods,
-chosen for wisdom.
+> Enki, the lord of abundance and of steadfast decisions,
+> the wise and knowing lord of the Land,
+> expert of the gods,
+> chosen for wisdom.
 
-The lord of Eridug
-shall change the speech in their mouths,
-as many as he had placed there,
-and so the speech of mankind is truly one.
+> The lord of Eridug
+> shall change the speech in their mouths,
+> as many as he had placed there,
+> and so the speech of mankind is truly one.
 
 
 Random sourceless image from wikipedia that I would have no idea how to fact check.
