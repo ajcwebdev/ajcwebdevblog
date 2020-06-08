@@ -7,7 +7,7 @@ description: The eternal dream of a universal translator
 > *Beautiful words are untrue, true words are not beautiful.*
 > **Tao Te Ching, Section 81**
 
-![Bernard Vauquois' pyramid comparing depths of intermediary representations.](content/blog/ajcwebdev/confusion-of-tongues/Direct_translation_and_transfer_translation_pyramid.svg.png)
+![Bernard Vauquois' pyramid comparing depths of intermediary representations.](Direct_translation_and_transfer_translation_pyramid.svg.png)
 Bernard Vauquois' pyramid comparing depths of intermediary representations.
 
 Linguistic software designed to translate text or speech from one language to another is referred to as machine translation.
@@ -25,7 +25,7 @@ A successful machine translation system will:
 ## Enmerkar and the Lord of Aratta
 The Sumerian myth of Enmerkar and the Lord of Aratta is one of the earliest known examples of the confusion of tongues myth. It is estimated that the account was composed in the Neo-Sumerian period around the 21st century BC.
 
-![Sumerian writing](content/blog/ajcwebdev/confusion-of-tongues/Sumerian-writing.jpeg)
+![Sumerian writing](Sumerian-writing.jpeg)
 
 Enmerkar demands a tribute of precious materials from Aratta to fund the construction of his ziggurat. He threatens to destroy Aratta and disperse its people if they do not send him the tribute. He recites “Incantation of Nudimmud“, a hymn imploring Enki to restore the linguistic unity of the inhabited regions.
 
