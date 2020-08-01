@@ -1,7 +1,7 @@
 ---
 title: graphql
 date: "2020-05-23"
-description: A history of competing API specifications.
+description: a history of competing API specifications
 ---
 
 *GraphQL is unapologetically driven by the requirements of views and the front-end engineers that write them. We start with their way of thinking and requirements and build the language and runtime necessary to enable that.  

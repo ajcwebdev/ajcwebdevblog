@@ -1,7 +1,7 @@
 ---
 title: javascript
 date: "2020-04-05"
-description: The language eating the world
+description: the language eating the world
 ---
 
 JavaScript is multi-paradigm, dynamically typed programming language that supports first-class functions and prototypical object-orientation. Along with HTML and CSS it is the underlying technology of the browser and the world wide web. Before JavaScript, web pages were static and lacked the capability for dynamic behavior after the page was loaded in the browser. In 1995, Netscape decided to add a scripting language to Navigator, the successor to the popular Mosaic browser. To hedge their bets they pursued two routes: collaborating with Sun Microsystems to embed Java and hiring Brendan Eich to embed Scheme.
