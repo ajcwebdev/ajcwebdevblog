@@ -1,7 +1,7 @@
 ---
-title: vue 3.0 and the dangers of migration
+title: vue 3.0
 date: "2020-07-15"
-description: making content editable
+description: the dangers of migration
 ---
 
 At a conference talk in early 2019, Evan You listed the design goals for Vue 3 and claimed it would be faster, smaller, more maintainable, easier to target native, and will make the developers life easier. Sounds like a delicious free lunch, so what's the catch? Compatibility.
