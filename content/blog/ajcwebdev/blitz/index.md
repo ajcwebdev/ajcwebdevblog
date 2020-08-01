@@ -4,11 +4,11 @@ date: "2020-06-16"
 description: full stack react framework built on next and inspired by rails
 ---
 
-> *Don't settle for hard to use, push for easy.
-Don't settle for complicated, push for simple.
-Don't settle for ugly, push for beautiful.
-Our tools should make us smile.
-They should be fun to use.
+> *Don't settle for hard to use, push for easy.  
+Don't settle for complicated, push for simple.  
+Don't settle for ugly, push for beautiful.  
+Our tools should make us smile.  
+They should be fun to use.  
 They should make us productive.*
 >
 >***Brandon Bayer - [Blitz.js & the Future of Fullstack](https://www.youtube.com/watch?v=ZSD5ifGTlag) (May 17, 2020)***
