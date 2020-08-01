@@ -1,6 +1,6 @@
 ---
 title: nexus
-date: "2020-07-24"
+date: "2020-06-20"
 description: declarative, code-first graphql schemas with type definitions
 ---
 
