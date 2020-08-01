@@ -1,5 +1,5 @@
 ---
-title: a short history of javascript
+title: javascript
 date: "2020-04-05"
 description: The language eating the world
 ---

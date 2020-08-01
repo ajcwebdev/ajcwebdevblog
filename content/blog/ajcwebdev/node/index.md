@@ -1,5 +1,5 @@
 ---
-title: a short history of node
+title: node
 date: "2020-04-18"
 description: A summary of the project, npm, and the ecosystem of libraries they enabled
 ---

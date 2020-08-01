@@ -1,5 +1,5 @@
 ---
-title: a short history of graphql
+title: graphql
 date: "2020-05-23"
 description: A history of competing API specifications.
 ---

@@ -1,5 +1,5 @@
 ---
-title: a short history of flux
+title: flux
 date: "2020-05-16"
 description: Flux, Redux, and one way data flow
 ---
