@@ -1,3 +1,9 @@
+---
+title: redwood
+date: "2020-05-31"
+description: opinionated, full-stack, serverless web application framework for the jamstack
+---
+
 Introduction
 * Redwood Philosophies
 * Full Stack React

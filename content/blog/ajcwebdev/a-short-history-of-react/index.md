@@ -1,5 +1,5 @@
 ---
-title: a short history of reactjs
+title: a short history of react
 date: "2020-04-11"
 description: Its first few years, the initial community reaction, and the development of its core principles
 ---
