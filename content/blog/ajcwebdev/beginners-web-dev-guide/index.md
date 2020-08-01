@@ -1,7 +1,7 @@
 ---
 title: beginners guide to web development
 date: "2020-05-20"
-description: A free one month introductory course to web development
+description: a free one month introductory course to web development
 ---
 
 There's a lot of great resources online to learn any kind of programming. But there's such an abundance it can be hard for a beginner to even know where to start. It's easy to fall into tutorial hell, hopping from one video to another. At this point I think I've watched videos from almost every major programming Youtuber, and this is a structured compilation of the best videos and playlists to learn the basics of web development. I've watched every video on this list, and this is the guide that I wish I would have had when I first started to learn to program.
