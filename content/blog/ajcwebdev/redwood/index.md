@@ -26,7 +26,7 @@ Reflection
 
 >*Full stack web application development is the next evolution of JAMstack. That becomes a primary place that you would deploy a full stack web application, and that’s what RedwoodJS is about.*
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Redwood brings full-stack to the JAMstack (March 12, 2020)](https://changelog.com/jsparty/119)***
 
 ![redwood-logo](https://dev-to-uploads.s3.amazonaws.com/i/zm6hfjusl47tlaooxqdu.png)
@@ -65,7 +65,7 @@ Redwood is an opinionated, full-stack, serverless web application framework for 
 
 >*My dream of a future is for something I call a universal deployment machine, which means I write my code. It's all text. I just write text. Then I commit to GitHub. Then it's picked up and it's deployed into reality. That's it. That's the whole thing. That's what I want. That's what I've been looking for.*
 >
->***Tom Preston Warner***
+>***Tom Preston Warner***  
 >***[RedwoodJS Shoptalk (May 11, 2020)](https://shoptalkshow.com/412/)***
 
 # Full Stack React
@@ -84,7 +84,7 @@ I became interested in this topic in March when I listened to their conversation
 
 >*Jekyll is a simple, blog aware, static site generator.*
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Blogging Like a Hacker (November 17, 2008)](https://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html)***
 
 In 2008, Tom Preston-Werner published a blog post titled “Blogging Like a Hacker,” which told his story of blogging, programming, and his eventual invention of Jekyll. Jekyll was a reaction against complicated blog engines like WordPress.
@@ -105,7 +105,7 @@ Jekyll works by:
 
 >*I was tired of having my blog posts end up in a database off on some remote server. That is backwards. I’ve lost valuable posts that way. I want to author my posts locally in Textile or Markdown. My blog should be easily stylable and customizable any way I please. It should take care of creating a feed for me. And most of all, my site should be stored on GitHub so that I never lose data again.*
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[tpw](https://github.com/mojombo/tpw)***
 
 Numerous projects influenced by Jekyll appeared in the following years.
@@ -122,8 +122,8 @@ Numerous projects influenced by Jekyll appeared in the following years.
 
 >*There are those who describe Netlify as “GitHub Pages on Steroids”. If that’s the case then Hugo on Netlify must be digging into Lance Armstrong’s stash.*
 >
->***Mathias Biilmann***
->***[Hosting Hugo on Netlify–Insanely Fast Deploys (July 30, 2015)](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)***
+>***Mathias Biilmann***  
+>***[Hosting Hugo on Netlify (July 30, 2015)](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)***
 
 In 2014, Mathias Biilmann Christensen created [staticgen.com](http://mathias-biilmann.net/posts/2014/07/01/staticgen), a leaderboard of top open-source static site generators. It uses a variety of metrics including GitHub stars, forks, and twitter followers to rank different static site generators.
 
@@ -151,7 +151,7 @@ This new paradigm started to be referred to as the [JAMstack](https://jamstack.o
 >
 > *We had to make the cloud as easy for someone who does applications and business logic as it is for someone with a PhD in distributed systems. And that's when we realized like there was some there, there. And so we got excited about that. We came up with this idea for event hookup and we were kind of off to the races.*
 >
-> ***Tim Wagner***
+> ***Tim Wagner***  
 >***[The Past, Present, and Future of Serverless (June 8, 2020)](https://www.serverlesschats.com/52/)***
 
 ![](https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F090fdbbd-e1a0-45bc-8ef9-d8833254e983_1600x800.png)
@@ -162,7 +162,7 @@ It was pioneered by Tim Wagner’s team at Amazon Web Services in 2012 and has b
 
 > *The computers would handle a number of problems concurrently. Organizations would have input-output equipment installed on their own premises and would buy time on the computer much the same way that the average household buys power and water from utility companies.*
 >
-> ***W. F. Bauer***
+> ***W. F. Bauer***  
 >***[Computer design from the programmer's viewpoint (1958)](https://dl.acm.org/doi/10.1145/1458043.1458055)***
 
 It has much in common philosophically with the Jamstack but is a more general paradigm building on work going back to [Multics](https://en.wikipedia.org/wiki/Multics) and other [time-sharing systems](https://en.wikipedia.org/wiki/Time-sharing) of the 1960s.
@@ -175,7 +175,7 @@ In 2015 the Serverless Framework open source project was released, and eventuall
 
 >*I like to think that most things can be achieved. Whatever you have in your head you can probably pull off with code as long as it's possible within the constraints of the universe. It's just a matter of time... and money... and attention.*  
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
 [Redwood](https://dev.to/ajcwebdev/redwood-1d46) is an opinionated, full-stack, serverless web application framework for building and deploying Jamstack applications.
@@ -209,12 +209,6 @@ This will create a folder called `ajcwebdev` that holds all the code that will b
 ![04-yarn-redwood-dev](https://dev-to-uploads.s3.amazonaws.com/i/y4mlr95xq35kbtn6vlu9.jpg)
 
 Don't worry about any of that for now but that'll be important in later articles.
-
-You may also get an error that says `Error: @prisma/client did not initialize yet. Please run "prisma generate" and try to import it again.`
-
-![05-prisma-error](https://dev-to-uploads.s3.amazonaws.com/i/mqsa1lez5v5vxqawfwv8.jpg)
-
-For the rest of the stuff I do in this article I did not have any trouble so I'm going to be ignoring that for now.
 
 Our server is now running on localhost:8910 (a mnemonic to help remember that is thinking of counting 8-9-10). Open a web browser and enter localhost:8910 into the address bar. If you've done everything correctly up to this point you'll see the Redwood starter page.
 
@@ -306,7 +300,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44
 
 > *We basically wrote the tutorial the way that we wanted the code to work and then we made the tutorial work by writing the code. As opposed to [Readme Driven Development](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html) which I've written about this is tutorial driven development.*  
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
 In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application. We used `yarn create redwood-app` to generate the initial app and `redwood generate page` to create a `HomePage` folder containing a `HomePage` file containing a `HomePage` component along with an `AboutPage` folder containing an `AboutPage` file containing an `AboutPage` component.
@@ -449,7 +443,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5a
 
 > *What I wanted was to codify and standardize the types of things that we were already doing and just remove choice and remove friction and just give people the ability to sit down and say, alright I know these technologies already, I have the prerequisite knowledge to do this.*  
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
 In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application and in [part 2](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we created links to our different page routes and a reusable layout for our site. In this part we'll get our database up and running and learn to create, retrieve, update, and destroy blog posts.
@@ -634,7 +628,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m
 
 > *What I’ve experienced and what I know many people have experienced learning React and getting into this is that path right now is very, very, very, very, very long. And hard. And horrible.*  
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
 In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application, in [part 2](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we created links to our different page routes and a reusable layout for our site, and in [part 3](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5ao5) we got our database up and running and learned to create, retrieve, update, and destroy blog posts.
@@ -888,7 +882,7 @@ Used in place of the HTML `<label>` tag and can respond to errors with different
 
 # `<TextField>`
 
-Renders an HTML <input type="text"> field, but is registered with react-hook-form to provide some validation and error handling.
+Renders an HTML `<input type="text">` field, but is registered with react-hook-form to provide some validation and error handling.
 
 ![39-src-components-PostForm-Title-TextField](https://dev-to-uploads.s3.amazonaws.com/i/yyiscrr4pk5zdtwl8ktw.jpg)
 
@@ -1067,7 +1061,7 @@ In the next part we'll create a contact form.
 
 > *We see it as a Rails replacement. Anything you would normally do with Rails we hope that you’ll be able to do with Redwood.*  
 >
->***Tom Preston-Werner***
+>***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
 If you've made it this far into my series of blog posts I commend you and hope you've found them useful.
