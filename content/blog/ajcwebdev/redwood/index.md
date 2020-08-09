@@ -180,7 +180,7 @@ In 2015 the Serverless Framework open source project was released, and eventuall
 
 [Redwood](https://dev.to/ajcwebdev/redwood-1d46) is an opinionated, full-stack, serverless web application framework for building and deploying Jamstack applications.
 
-I've structured the article to reflect the actual process I go through when experimenting with a new framework for the first time. I stick to the path laid out in the official docs tutorial, but as I go through each step I reference the documentation for each command or component. This helps me build a mental model of the framework instead of just copy-pasting commands and code snippets.
+I've structured the series to reflect the actual process I go through when experimenting with a new framework for the first time. I stick to the path laid out in the official docs tutorial, but as I go through each step I reference the documentation for each command or component. This helps me build a mental model of the framework instead of just copy-pasting commands and code snippets.
 
 I will start at the very beginning and assume no prior knowledge of Redwood although I do assume a basic knowledge of React. But I'm talking really basic, if you know what a component is, have written at least a dozen lines of JSX, and have generated at least one project with [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html) then you'll be fine.
 
@@ -294,7 +294,7 @@ We can also see these files have been added to our `src` folder.
 
 ![24-project-structure-web-new](https://dev-to-uploads.s3.amazonaws.com/i/w8nz5fcatytkyju9ty1d.jpg)
 
-In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we'll take a look at Redwood's router and create links for the pages we created.
+In the next part we'll take a look at Redwood's router and create links for the pages we created.
 
 # Part 2 - Routes
 
@@ -303,7 +303,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44
 >***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
-In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application. We used `yarn create redwood-app` to generate the initial app and `redwood generate page` to create a `HomePage` folder containing a `HomePage` file containing a `HomePage` component along with an `AboutPage` folder containing an `AboutPage` file containing an `AboutPage` component.
+In part 1 we installed and created our first RedwoodJS application. We used `yarn create redwood-app` to generate the initial app and `redwood generate page` to create a `HomePage` folder containing a `HomePage` file containing a `HomePage` component along with an `AboutPage` folder containing an `AboutPage` file containing an `AboutPage` component.
 
 We were able to navigate between the different pages in our browser by entering `/about` for the about page or a slash (`/`) for the home page. Depending on your experience with React this may have been surprising to you.
 
@@ -437,7 +437,7 @@ Our about page is the same except we have removed the link to return home since 
 
 ![20-about-page-with-BlogLayout](https://dev-to-uploads.s3.amazonaws.com/i/fqrddthwkdjhgiyuos02.jpg)
 
-In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5ao5) we'll start working with a database and learn to create, retrieve, update, and destroy blog posts.
+In the next part we'll start working with a database and learn to create, retrieve, update, and destroy blog posts.
 
 # Part 3 - Prisma
 
@@ -446,7 +446,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5a
 >***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
-In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application and in [part 2](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we created links to our different page routes and a reusable layout for our site. In this part we'll get our database up and running and learn to create, retrieve, update, and destroy blog posts.
+In this part we'll get our database up and running and learn to create, retrieve, update, and destroy blog posts.
 
 So far we've been working in the `web` folder. In our `api` folder there is a folder called `prisma` for our Prisma schema.
 
@@ -622,7 +622,7 @@ If we make more posts they will start on the id after the deleted item. We alrea
 
 ![30-most-posts](https://dev-to-uploads.s3.amazonaws.com/i/t99kca9pv79kp39bk6v6.jpg)
 
-In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m0g) we'll look at the code that powers this functionality and learn about [Cells](https://redwoodjs.com/tutorial/cells). We'll also set up our frontend to query data from our backend to render a list of our blog posts to the front page.
+In the next part we'll look at the code that powers this functionality and learn about [Cells](https://redwoodjs.com/tutorial/cells). We'll also set up our frontend to query data from our backend to render a list of our blog posts to the front page.
 
 # Part 4 - CRUD
 
@@ -631,11 +631,7 @@ In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m
 >***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
-In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we installed and created our first RedwoodJS application, in [part 2](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we created links to our different page routes and a reusable layout for our site, and in [part 3](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5ao5) we got our database up and running and learned to create, retrieve, update, and destroy blog posts.
-
 In this part we'll look at all the code that was generated that allowed us to perform our CRUD operations on the blog posts. We'll also set up our frontend to query data from our backend to render a list of our blog posts to the front page. If you've never worked with [GraphQL](https://www.howtographql.com/) or serverless functions like [Lambda](https://www.serverless.com/aws-lambda/) then some of the concepts in this part may be new.
-
-If you want to learn more I have a post about [the history of GraphQL, current projects, and resources](https://dev.to/ajcwebdev/a-short-history-of-graphql-20nb).
 
 # `api/src`
 
@@ -1064,10 +1060,6 @@ In the next part we'll create a contact form.
 >***Tom Preston-Werner***  
 >***[Full Stack Radio 138](https://www.fullstackradio.com/episodes/138)***
 
-If you've made it this far into my series of blog posts I commend you and hope you've found them useful.
-
-In [part 1](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017) we created our RedwoodJS app, in [part 2](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph) we created links between different pages and a reusable layout, in [part 3](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5ao5) we got the database up and running and learned CRUD operations for our blog posts, and in [part 4](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m0g) we set up the frontend to query data from the backend to render a list of blog posts to the front page.
-
 In this part we'll be combining everything we've learned up to this point to generate a contact page and take input from a user. We'll be using the same form tags that we learned about in part 4, which are wrappers around [react-hook-form](https://react-hook-form.com/get-started).
 
 This is the simplest way to create a form, but Redwood can be used with other popular React form libraries like Formik or you can use react-hook-form directly.
@@ -1272,12 +1264,12 @@ And for now that's our entire form. Here's a look at all the form code.
 
 ![48-entire-form](https://dev-to-uploads.s3.amazonaws.com/i/23faa5uxpnw0yftygxj6.jpg)
 
-In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-6-a25) we'll connect our contact form to our database so we can persistent the data entered into the form.
+In the next part we'll connect our contact form to our database so we can persistent the data entered into the form.
 
 
 # Part 6 - GraphQL
 
-In [part 5](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-5-2ol4) we generated a contact page and took input from the user. In this part we'll connect our contact form to our database so we can persistent the data entered into the form.
+In this part we'll connect our contact form to our database so we can persistent the data entered into the form.
 
 To modify our database we'll go to our `schema.prisma` file and add a `Contact` model.
 
@@ -1494,7 +1486,7 @@ Now we get an error from the server at the top of the page.
 
 ![44-cant-create-new-contact](https://dev-to-uploads.s3.amazonaws.com/i/5jgvz9g4h0yzu2524vkg.jpg)
 
-In the [next part](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-7-22b0) we'll finally deploy our project to the internet with Netlify and Heroku.
+In the next part we'll finally deploy our project to the internet with Netlify and Heroku.
 
 # Part 7 - Deploy
 
@@ -1715,6 +1707,176 @@ It looks like it's working. Lets check the front page to make sure it's really w
 In the next and final part we'll add authentication to our application, something that has never confused any developer ever.
 
 # Part 8 - Auth
+
+You made it to the last part!
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/jewl54ynr64v8hkfbugb.gif)
+
+We're going to implement role-based authentication so no one can edit our blog willy-nilly. But before we do that let's give ourselves a custom domain. We can do this in our Settings on Netlify.
+
+![01-netlify-settings](https://dev-to-uploads.s3.amazonaws.com/i/k8b0eggbgpnnhxivsugr.jpg)
+
+Go to Domain management and you should see a box for Custom domains.
+
+![02-custom-domains](https://dev-to-uploads.s3.amazonaws.com/i/7p33rzro0uvqp1vdxyyq.jpg)
+
+Netlify assigns a random domain name by default but gives the option to edit it.
+
+![03-change-site-name](https://dev-to-uploads.s3.amazonaws.com/i/pmiu3qoa77l36epvxnxp.jpg)
+
+I'll change my site name to `ajcwebdev-redwood`.
+
+![04-ajcwebdev-redwood-netlify-app](https://dev-to-uploads.s3.amazonaws.com/i/lyhldf9h1ugjwave5vx9.jpg)
+
+Click Save and it'll reflect your new site name.
+
+![05-default-subdomain](https://dev-to-uploads.s3.amazonaws.com/i/hdljrrgq5g7yre3a8wbd.jpg)
+
+Now lets go to the Identity tab.
+
+![06-netlify-identity](https://dev-to-uploads.s3.amazonaws.com/i/qgg3ny0rgl7wsdp6818c.jpg)
+
+Click `Enable Identity` to enable identity.
+
+![07-netlify-identity-level-0](https://dev-to-uploads.s3.amazonaws.com/i/fjgpii8n9mmvtsdp083n.jpg)
+
+Here we can invite users to give them permissions. We are going to lock down our site and only give ourselves permission to see or edit anything. Click `Invite user` to invite a user.
+
+![08-invite-users](https://dev-to-uploads.s3.amazonaws.com/i/md0mzxm5jw9zrrtak2nu.jpg)
+
+We'll come back to that, but first we're going to learn one more `redwood generate` command, this time for authentication. We have the option to use [Netlify Identity](https://docs.netlify.com/visitor-access/identity/), [Auth0](https://auth0.com/), and [Magic Link](https://docs.magic.link/welcome). I'm going to use Netlify.
+
+![09-redwood-generate-auth-netlify](https://dev-to-uploads.s3.amazonaws.com/i/9uarq75n1ef87oskjq44.jpg)
+
+This will create an `auth.js` file in `api/src/lib` and automatically modify our `index.js` file in `web/src` and our `graphql.js` file in `api/src/functions`.
+
+![10-redwood-genearte-auth-netlify-output](https://dev-to-uploads.s3.amazonaws.com/i/53iq4s8z1n13y167i6kl.jpg)
+
+If we check our `package.json` file in our `web` folder we'll see two new dependencies `@redwoodjs/auth` and `netlify-identity-widget`.
+
+![11-dependencies-redwood-auth-netlify-identity-widget](https://dev-to-uploads.s3.amazonaws.com/i/0lhp3g6agt8wkvpnrq3k.jpg)
+
+Lets look at our `api/src` folder.
+
+![12-lib-auth.js](https://dev-to-uploads.s3.amazonaws.com/i/y2ho6mvb8ijdwh6l6irp.jpg)
+
+Lets look at the `auth.js` file that was generated.
+
+![13-auth.js](https://dev-to-uploads.s3.amazonaws.com/i/5xnylp6avc3ve9ydtle0.jpg)
+
+
+
+![14-index.js-netlify-identity](https://dev-to-uploads.s3.amazonaws.com/i/7bguinfxurg6vyvobcu1.jpg)
+
+![15-graphql.js-getCurrentUser](https://dev-to-uploads.s3.amazonaws.com/i/608jer42ndraueuxo785.jpg)
+
+![16-posts.js-import-requireAuth](https://dev-to-uploads.s3.amazonaws.com/i/up1g48ccibsrt456oh04.jpg)
+
+![17-requireAuth()](https://dev-to-uploads.s3.amazonaws.com/i/4qnfha11ikd42z8nxee3.jpg)
+
+![18-test-new-post](https://dev-to-uploads.s3.amazonaws.com/i/j5jayhvnq8ksx7oir0ps.jpg)
+
+![19-don't-have-permission-to-make-new-post](https://dev-to-uploads.s3.amazonaws.com/i/0odsc2xc7ijj8xfumf3f.jpg)
+
+![20-import-Private-from-router](https://dev-to-uploads.s3.amazonaws.com/i/ued4vdeue1rq3uftukga.jpg)
+
+![21-Private-routes-posts](https://dev-to-uploads.s3.amazonaws.com/i/7i0ci5lvqk51fa102pii.jpg)
+
+If we go back to the `new` route we'll now get an error message.
+
+![22-something-went-wrong](https://dev-to-uploads.s3.amazonaws.com/i/5pcsziq7mn2875k4qam5.jpg)
+
+Instead of just showing an error message, we can redirect the user back to the home page by adding `unauthenticated="home"`.
+
+![23-Private-unauthenticated-home-redirect](https://dev-to-uploads.s3.amazonaws.com/i/xs6yvks02mdszx3hck29.jpg)
+
+Now we'll see a redirect in the URL and we'll be taken back to the home
+
+![25-redirect-to-home-page](https://dev-to-uploads.s3.amazonaws.com/i/1lkg2p4flr14rj7odq7p.jpg)
+
+To implement authentication we'll start by importing `useAuth` from the Redwood `auth` package.
+
+![26-BlogLayout.js-import-useAuth-from-auth](https://dev-to-uploads.s3.amazonaws.com/i/cetywo5g3k016i22pxnq.jpg)
+
+We'll use object destructuring to pull out the `logIn` object.
+
+![27-logIn-destructuring-useAuth()](https://dev-to-uploads.s3.amazonaws.com/i/3sy05ojscvheq11pd374.jpg)
+
+We'll then add a link to Log In and pass the `logIn` object to the `onClick` event handler.
+
+![28-a-href-onClick-logIn](https://dev-to-uploads.s3.amazonaws.com/i/5ahpwwnavbyzbexf9saz.jpg)
+
+If we return to our browser we'll now see a link to log in.
+
+![29-home-page-with-log-in-link](https://dev-to-uploads.s3.amazonaws.com/i/t9bnxguhqw4fynl3bioh.jpg)
+
+If we click the link we'll get this fancy looking message from Netlify asking for our site's url.
+
+![30-url-of-your-netlify-site](https://dev-to-uploads.s3.amazonaws.com/i/24kk3h89pbsjd4sgc4uf.jpg)
+
+Enter the domain that we created at the beginning of the article.
+
+![31-set-site's-url](https://dev-to-uploads.s3.amazonaws.com/i/3l2vn0vg40x4402vo6lm.jpg)
+
+![32-log-in-form](https://dev-to-uploads.s3.amazonaws.com/i/6inq8s5leaez9azgz3fa.jpg)
+
+![33-you've-been-invited-to-join](https://dev-to-uploads.s3.amazonaws.com/i/7dee7ylzvx3x8h5lygrl.jpg)
+
+![34-deployed-site-invite-token](https://dev-to-uploads.s3.amazonaws.com/i/4ml9xjya2j25wew3qbkg.jpg)
+
+Grab the `invite_token` starting with the `#` and copy-paste it over to your localhost.
+
+![35-localhost-invite-token](https://dev-to-uploads.s3.amazonaws.com/i/41pihd1ctwrmfspl763w.jpg)
+
+You should now get a form to enter your password and complete your signup.
+
+![36-complete-your-signup](https://dev-to-uploads.s3.amazonaws.com/i/1m84bslmfeyi3wm5tsgm.jpg)
+
+If you did everything correctly then you should see your blog posts again.
+
+![38-protected-posts](https://dev-to-uploads.s3.amazonaws.com/i/cndoe6k1jv2m2s1kfad4.jpg)
+
+Now we want to add a link to our home page that we can use to log in and log out. We'll destructure two addition objects, `isAuthenticated` and `logOut`.
+
+![39-isAuthenticated-logOut-destructuring-useAuth()](https://dev-to-uploads.s3.amazonaws.com/i/9jh5htvnio0ni9albagz.jpg)
+
+We'll add another list them that uses a ternary operator to check whether we are authenticated and to display either Log Out or Log In depending on whether we are logged in or not.
+
+![40-onClick-logIn](https://dev-to-uploads.s3.amazonaws.com/i/7q3xlfrq409dg84mftkq.jpg)
+
+Go back to your browser and since we are logged in you should see a link for Log Out.
+
+![41-home-page-log-out](https://dev-to-uploads.s3.amazonaws.com/i/60ti579d6q9g04n8hj71.jpg)
+
+Now lets also add a ternary operator to the link itself so it knows to log out with we are currently logged in, and log in if we aren't currently logged in.
+
+![42-onClick-isAuthenticated](https://dev-to-uploads.s3.amazonaws.com/i/z1o9pjd515d1ty4mpclo.jpg)
+
+If we click Log Out the page will refresh and the link will change to Log In.
+
+![43-home-page-log-in-link](https://dev-to-uploads.s3.amazonaws.com/i/f6ye0seq296fp5zj0sfr.jpg)
+
+If we click Log In then we see our log in form again.
+
+![44-log-in-form](https://dev-to-uploads.s3.amazonaws.com/i/cew9gsrpyjtoe0q4hamc.jpg)
+
+If we log in then the link will change back to Log Out.
+
+![45-home-page-log-out-link](https://dev-to-uploads.s3.amazonaws.com/i/1uev1vu8zzpvybqdjxds.jpg)
+
+We'll destructure one more object called `currentUser`.
+
+![46-currentUser-destructuring-useAuth()](https://dev-to-uploads.s3.amazonaws.com/i/3kkefgm3i8iwi3w2cnke.jpg)
+
+We'll check to make sure we're authenticated and if so we'll show the current user's email with `currentUser.email`.
+
+![47-isAuthenticated-logged-in-as-currentUser.email](https://dev-to-uploads.s3.amazonaws.com/i/v12fwzv6it6bm334urnk.jpg)
+
+If we now look back in our browser you should see a message saying you are logged in.
+
+![48-logged-in-as](https://dev-to-uploads.s3.amazonaws.com/i/0ydtnd7zzque5wvn2ryy.jpg)
+
+And that's it! Right now you should either be feeling a great sense of accomplishment over building some amazing, or a horrible sinking feeling that you just wasted hours of your life building something useless. The choice is yours!
 
 # Reflection
 
