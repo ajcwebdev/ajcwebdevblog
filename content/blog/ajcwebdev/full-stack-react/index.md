@@ -4,17 +4,15 @@ date: "2020-06-19"
 description: cause react is confusing
 ---
 
-There has recently been a sudden influx of different projects aiming to build a "full stack react" framework. What are people talking about when they say full stack react and why is it suddenly such a hot topic?
-
-A long running emphasis throughout the history of React has been its identification as a library instead of a framework. The one-liner for React has always been: A JavaScript library for building user interfaces.
+There has recently been a sudden influx of different projects aiming to build a ***Full Stack React*** framework. What are people talking about when they say full stack react and why is it suddenly such a hot topic? A long running emphasis throughout the history of React has been its identification as a library instead of a framework. The one-liner for React has always been ***a JavaScript library for building user interfaces***.
 
 It unapologetically focused on the view layer and did not seek to provide strong conventions around routing, server rendering, static site generation, or database integration. Instead projects like React Router, Relay, and Redux were created to solve some of these problems while remaining their own separate codebases. In contrast Nextjs and Gatsby built conventions on top of React.
 
 As React has continued to maintain its popularity in JavaScript development there has been an increasing sentiment among some developers that the need for a true full stack React solution was greater than ever.
 
-Developers that cut their teeth on projects like Rails, Ember, and Laravel were especially adamant that the tendency for React developers to create their own bespoke architectures was counterproductive. Adam Wathan and Michael Chan have been long time advocates of this perspective. I became really interested in this topic in March when I listened to their conversation [React Is Not a Rails Competitor](https://www.fullstackradio.com/episodes/136) on Full Stack Radio.
+Developers that cut their teeth on projects like Rails, Ember, and Laravel are especially adamant that the tendency for React developers to create their own bespoke architectures is counterproductive and costly. Adam Wathan and Michael Chan have been long time advocates of this perspective.
 
-In quick secession three different frameworks emerged that identified as full stack React frameworks: RedwoodJS, Blitz.js, and Remix. I've done my best to put together a timeline of these projects for others interested in this topic since these frameworks will likely be frequently compared. Drop a comment or message me on twitter if I'm missing any important articles, talks, commits, podcasts, or videos.
+I became interested in this topic in March when I listened to their conversation ***[React Is Not a Rails Competitor](https://www.fullstackradio.com/episodes/136)*** on Full Stack Radio. This podcast was released in the wake of three different frameworks that emerged in quick secession to tackle this problem: [***RedwoodJS***]((https://github.com/redwoodjs/redwood/commit/e2ceb0dcdffe4c28ff3ce804445387f4749e6a0b)), [***Blitz.js***](https://twitter.com/flybayer/status/1229425878481793024), and [***Remix***](https://twitter.com/remix_run/status/1253043162714525696).
 
 # Timeline
 

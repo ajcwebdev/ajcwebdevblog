@@ -4,26 +4,6 @@ date: "2020-05-31"
 description: opinionated, full-stack, serverless web application framework for the jamstack
 ---
 
-Introduction
-* Redwood Philosophies
-* Full Stack React
-* Jamstack
-* Serverless
-
-Tutorial
-* Part 1 - Setup
-* Part 2 - Routes
-* Part 3 - Prisma
-* Part 4 - CRUD
-* Part 5 - Contact
-* Part 6 - GraphQL
-* Part 7 - Deploy
-* Part 8 - Auth
-
-Reflection
-* Podcasts
-* Blogging
-
 >*Full stack web application development is the next evolution of JAMstack. That becomes a primary place that you would deploy a full stack web application, and that’s what RedwoodJS is about.*
 >
 >***Tom Preston-Werner***  
