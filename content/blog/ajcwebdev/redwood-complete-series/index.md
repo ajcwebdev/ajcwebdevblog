@@ -6,19 +6,19 @@ description: complete series
 
 # Introduction
 
-## [Redwood Philosophies](https://dev.to/ajcwebdev/redwood-1d46)
+## I - [Redwood Philosophies](https://dev.to/ajcwebdev/redwood-1d46)
 
 ***RedwoodJS*** is an opinionated, full-stack, serverless web application framework for the Jamstack. It is designed to enable the dream of a Universal Deployment Machine.
 
-## [Full Stack React](https://dev.to/ajcwebdev/full-stack-react-1ihi)
+## II - [Full Stack React](https://dev.to/ajcwebdev/full-stack-react-1ihi)
 
 There has recently been an influx of different projects aiming to build a ***Full Stack React*** framework. What are people talking about when they say Full Stack React and why is it suddenly such a hot topic?
 
-## [Jamstack](https://dev.to/ajcwebdev/a-short-history-of-the-jamstack-3lk7)
+## III - [Jamstack](https://dev.to/ajcwebdev/a-short-history-of-the-jamstack-3lk7)
 
 The ***Jamstack*** is a departure from traditional server-rendered stacks like LAMP and MEAN. Jamstack applications serve static files from globally distributed CDN's, removing the server and the database from the stack entirely and replacing them with APIs that provide dynamic functionality.
 
-## [Serverless](https://ajcwebdev.substack.com/p/42-a-short-history-of-serverless)
+## IV - [Serverless](https://ajcwebdev.substack.com/p/42-a-short-history-of-serverless)
 
 ***Serverless*** is a buzz word commonly used to refer to Function-as-a-Service cloud products like AWS Lambda. Instead of paying for a server to always be running and ready to accept requests, you pay based on the specific number of function calls your app invokes.
 
