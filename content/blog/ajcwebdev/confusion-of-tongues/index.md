@@ -4,11 +4,11 @@ date: "2019-05-09"
 description: the eternal dream of a universal translator
 ---
 
-> *Beautiful words are untrue, true words are not beautiful.*  
-> **Tao Te Ching, Section 81**
+>*Beautiful words are untrue, true words are not beautiful.*  
+>
+>**Tao Te Ching, Section 81**
 
 ![Bernard Vauquois' pyramid comparing depths of intermediary representations.](Direct_translation_and_transfer_translation_pyramid.svg.png)
-Bernard Vauquois' pyramid comparing depths of intermediary representations.
 
 Linguistic software designed to translate text or speech from one language to another is referred to as machine translation.
 
@@ -34,19 +34,19 @@ Enmerkar demands a tribute of precious materials from Aratta to fund the constru
 > and Sumer, the great mountain of the me of magnificence,  
 > and Akkad, the land possessing all that is befitting,  
 > and the Martu land, resting in security.  
-
+>
 > The whole universe, the well-guarded people,  
 > may they all address Enlil together in a single language!  
 > For at that time,  
 > for the ambitious lords,  
 > for the ambitious princes,  
 > for the ambitious kings  
-
+>
 > Enki, the lord of abundance and of steadfast decisions,  
 > the wise and knowing lord of the Land,
 > expert of the gods,  
 > chosen for wisdom.  
-
+>
 > The lord of Eridug  
 > shall change the speech in their mouths,  
 > as many as he had placed there,  
@@ -62,10 +62,10 @@ The Tower of Babel (Genesis 11) is an origin myth about why the world’s people
 > and they have all one language; and this they begin to do:  
 > and now nothing will be restrained from them,  
 > which they have imagined to do.  
-
+>
 > Go to, let us go down, and there confound their language,  
 > that they may not understand one another’s speech.  
-
+>
 > So the LORD scattered them abroad  
 > from thence upon the face of all the earth:  
 > and they left off to build the city.  
@@ -78,8 +78,9 @@ Some scholars associate the Tower of Babel with the Etemenanki, or “Temple of 
 
 Ziggurat means “to build on a raised area.” It has the form of a terraced compound of successively receding stories or levels. Other notable ziggurats include the Great Ziggurat of Ur and the Ziggurat of Aqar Quf. The Etemenanki was rebuilt by the 6th-century BCE Neo-Babylonian rulers Nabopolassar and Nebuchadnezzar II. Some scholars believe the story was created during the Babylonian captivity of the Hebrews.
 
-> *A former king built the Temple of the Seven Lights of the Earth, but he did not complete its head. Since a remote time, people had abandoned it, without order expressing their words. Since that time earthquakes and lightning had dispersed its sun-dried clay; the bricks of the casing had split, and the earth of the interior had been scattered in heaps.*  
-> **Nebuchadnezzar (605 – 562)**
+> *A former king built the Temple of the Seven Lights of the Earth, but he did not complete its head. Since a remote time, people had abandoned it, without order expressing their words. Since that time earthquakes and lightning had dispersed its sun-dried clay; the bricks of the casing had split, and the earth of the interior had been scattered in heaps.*
+>
+>***Nebuchadnezzar (605 – 562)***
 
 Scholars discovered the oldest known representation of the Etemenanki carved on a black stone in the Schøyen Collection. The Tower of Babel Stele dates from 604–562 BCE, the time of Nebuchadnezzar II. Herodotus referred to the ziggurat as the Temple of Zeus Belus in 440 BCE.
 
@@ -142,7 +143,8 @@ A zairja was a device used by medieval Arab astrologers to generate ideas by mec
 ![Zairja](zairja.jpeg)
 
 > *A branch of the science of letter magic is the technique of finding out answers from questions by means of connections existing between the letters of the expressions used in the question. Authorities on letter magic imagine that these connections can form the basis for knowing the future happenings they want to know.*
-> **Ibn Khaldun (Muqaddimah, 1377)**
+>
+>***Ibn Khaldun (Muqaddimah, 1377)***
 
 Ibn Khaldun (1332–1406) was introduced to the device in 1370 and described it in his universal history Muqaddimah in 1377. Its owner, Al-Marjānī, claimed it was a traditional artifact based on an ancient science, although we don’t seem to have evidence of the machine prior to the 14th century. One possible interpretation is that the device was inspired by the unique concurrent historical influences of algebra and astrology on medieval Islam.
 
@@ -180,15 +182,14 @@ In 1726, Jonathan Swift envisaged a fictional device based on the Ars magna that
 ![The Engine](swift-the-engine.jpeg)
 
 > *Every one knew how laborious the usual method is of attaining to arts and sciences; whereas, by his contrivance, the most ignorant person, at a reasonable charge, and with a little bodily labour, might write books in philosophy, poetry, politics, laws, mathematics, and theology, without the least assistance from genius or study.*  
-
+>
 > *The superfices was composed of several bits of wood, about the bigness of a die, but some larger than others. They were all linked together by slender wires. These bits of wood were covered, on every square, with paper pasted on them; and on these papers were written all the words of their language, in their several moods, tenses, and declensions; but without any order.*  
-
+>
 > *The professor then desired me “to observe; for he was going to set his engine at work.” The pupils, at his command, took each of them hold of an iron handle, whereof there were forty fixed round the edges of the frame; and giving them a sudden turn, the whole disposition of the words was entirely changed.*  
-
+>
 > *He then commanded six-and-thirty of the lads, to read the several lines softly, as they appeared upon the frame; and where they found three or four words together that might make part of a sentence, they dictated to the four remaining boys, who were scribes. This work was repeated three or four times, and at every turn, the engine was so contrived, that the words shifted into new places, as the square bits of wood moved upside down.*  
+>
+>***Jonathan Swift***  
+>***Gulliver’s Travels, 1726***
 
-> **Jonathan Swift (Gulliver’s Travels, 1726)**
-
-![Confusion of Tongues](confusion-of-tongues.jpeg)
-
-*Gustave Doré - Confusion of Tongues (1868)*
+![Gustave Doré - Confusion of Tongues (1868)](confusion-of-tongues.jpeg)

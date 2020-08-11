@@ -58,6 +58,7 @@ In 1926, Archibald M. Crossley started conducting surveys of radio audiences to 
 >*The term public opinion is given its meaning with reference to a multi-individual situation in which individuals are expressing themselves, or can be called upon to express themselves, as favoring or supporting (or else disfavoring or opposing) some definite condition, person, or proposal of widespread importance, in such a proportion of number, intensity, and constancy, as to give rise to the probability of affecting action, directly or indirectly, toward the object concerned.*
 >
 >*Granting that indices of collective alignments of "public opinion" in a social field could be developed there is still good reason for us to continue our emphasis upon measurement at the more elementary level, namely, the behaviors of individuals.*
+>
 >***Floyd H. Allport***  
 >***Toward a Science of Public Opinion, 1937***
 

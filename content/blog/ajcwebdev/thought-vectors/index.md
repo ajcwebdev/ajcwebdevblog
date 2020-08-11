@@ -32,7 +32,7 @@ As a basis for Weaver’s belief that a computer could perform translations he r
 
 >*The role of brains in determining the epistemic relations of our theories to our observations and of these to the facts is all too clear, for it is apparent that every idea and every sensation is realized by activity within that net.*
 >
-***>Warren McCulloch, Walter Pitts***  
+>***Warren McCulloch, Walter Pitts***  
 >***A Logical Calculus of the Ideas Immanent in Nervous Activity, 1943***
 
 # Question Answering
@@ -74,12 +74,13 @@ Progress continued in the field of Computational Linguistics. [Statistical langu
 
 Neural languages models currently dominate both large scale production systems ([Google](https://arxiv.org/pdf/1609.08144.pdf%20(7.pdf), [Baidu](https://www.aclweb.org/anthology/P15-1166), [Amazon](https://twimlai.com/twiml-talk-030-natural-language-understanding-amazon-alexa-zornitsa-kozareva/)) and state of the art research ([Microsoft](https://arxiv.org/pdf/1901.11504.pdf), [Facebook](https://arxiv.org/pdf/1605.07683.pdf), [Apple](https://machinelearning.apple.com/2018/09/27/can-global-semantic-context-improve-neural-language-models.html)). The creators of the [GPT-2 model](https://openai.com/blog/better-language-models/) at OpenAI believe their model may be powerful enough to pose a danger to society.
 
->*Pride even in numbers; wit's a kind pretence*
+>*Pride even in numbers; wit's a kind pretence*  
 >*To something foreign still, but ne'er to sense;*
 >
->*A constant waste of words, the world produces,*
+>*A constant waste of words, the world produces,*  
 >*That's foreign still unknown to the soul*
->***GPT-2***
+>
+>***GPT-2***  
 >***Neural Network Poetry, 2019***
 
 # Characteristica universalis
