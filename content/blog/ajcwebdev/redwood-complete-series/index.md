@@ -12,7 +12,7 @@ description: complete series
 
 ## [Full Stack React](https://dev.to/ajcwebdev/full-stack-react-1ihi)
 
-There has recently been a sudden influx of different projects aiming to build a ***Full Stack React*** framework. What are people talking about when they say Full Stack React and why is it suddenly such a hot topic?
+There has recently been an influx of different projects aiming to build a ***Full Stack React*** framework. What are people talking about when they say Full Stack React and why is it suddenly such a hot topic?
 
 ## [Jamstack](https://dev.to/ajcwebdev/a-short-history-of-the-jamstack-3lk7)
 
@@ -56,4 +56,6 @@ Deploy our frontend application with Serverless functions on Netlify and our bac
 
 Implement role-based authentication with Netlify Identity.
 
-# [Reflection]()
+# Reflection
+
+## Podcasts, Blogging, and Open Source
