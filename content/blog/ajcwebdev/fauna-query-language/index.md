@@ -1,3 +1,9 @@
+---
+title: fauna query language
+date: "2020-08-10"
+description: native api for querying fauna
+---
+
 The Fauna Query Language (FQL) is the native API for querying FaunaDB. While not a general-purpose programming language, it provides much of the functionality expected from one. It allows for complex, precise manipulation and retrieval of data stored within FaunaDB.
 
 A query is executed by submitting it to a FaunaDB cluster, which computes and returns the result. Query execution is transactional: No changes are committed if something goes wrong. If a query fails, an error response is returned instead of a result.
