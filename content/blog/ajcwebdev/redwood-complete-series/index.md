@@ -62,7 +62,7 @@ After creating our contact form we need to create a new contact schema and migra
 
 ## [Part 7 - Deploy](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-7-22b0)
 
-**Deploy our frontend application with Serverless functions on Netlify and our backend to a hosted Postgres database on Heroku.**
+**Deploy our frontend to Netlify and our backend to Heroku.**
 
 A website isn't very useful unless it's on the web. In this part we'll deploy our React frontend to Netlify with their Serverless functions. Netlify will give us a free domain that we can share with the world. For our backend we'll use Heroku to host our database with Postgres.
 
