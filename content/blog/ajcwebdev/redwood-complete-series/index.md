@@ -56,7 +56,7 @@ We'll go deep into Redwood forms and all the corresponding helpers that make our
 
 ## [Part 6 - GraphQL](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-6-a25)
 
-**Connect our contact form to the database to persistent data entered into the form.**
+**Connect our contact form to the database to persist data entered into the form.**
 
 After creating our contact form we need to create a new contact schema and migrate our database. We'll use another Redwood generator to create our schema definition language and our GraphQL resolvers for our services.
 
