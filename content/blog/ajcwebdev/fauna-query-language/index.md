@@ -1,6 +1,6 @@
 ---
 title: fauna query language
-date: "2020-08-10"
+date: "2020-08-11"
 description: native api for querying fauna
 ---
 
