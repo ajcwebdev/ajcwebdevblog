@@ -64,7 +64,7 @@ In 2008, Tom Preston-Werner published a blog post titled “Blogging Like a Hack
 Jekyll works by:
 1. Taking a template directory representing the raw form of a website
 2. Running it through Textile and Liquid converters
-3. Spiting out a complete, static website
+3. Spitting out a complete, static website
 4. Serving with Apache or similar web server
 
 In 2014, Mathias Biilmann Christensen created [staticgen.com](http://mathias-biilmann.net/posts/2014/07/01/staticgen), a leaderboard of top open-source static site generators. Mathias was inspired by the Git-centered workflow and static site generation Jekyll enabled. He wanted to build a company to help developers easily deploy their code and co-founded Netlify with his childhood friend Christian Bach in December 2014. Tom Preston-Werner was an early investor in Netlify.
@@ -152,7 +152,7 @@ It can be a little overwhelming to look at everything that's already been genera
         └── Routes.js
 ```
 
-Each side has their own path in the codebase. These are managed by Yarn [workspaces](https://classic.yarnpkg.com/en/docs/workspaces/). We will be talking to the Fauna client directly so we can delete the `prisma` directory along with the files inside it and we can delete the code in the `db.js`.
+Each side has their own path in the codebase. These are managed by Yarn [workspaces](https://classic.yarnpkg.com/en/docs/workspaces/). We will be talking to the Fauna client directly so we can delete the `prisma` directory along with the files inside it and we can delete all the code in `db.js`.
 
 With our application now set up we can start creating pages. We'll use the `generate page` command to create a home page and a folder to hold that page. Instead of `generate` we can use `g` to save some typing.
 
@@ -198,7 +198,7 @@ fauna shell my_db
 To test out our database we'll create a collection with the name `posts`.
 
 ```javascript
-CreateColletion({ name: "posts" })
+CreateCollection({ name: "posts" })
 ```
 
 After entering this command you'll receive the following output:
