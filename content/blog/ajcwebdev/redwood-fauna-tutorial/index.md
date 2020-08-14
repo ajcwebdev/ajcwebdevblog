@@ -19,7 +19,7 @@ description: together at last
   - Home Page
   - HomePageCell
 
-* Overview of RedwoodJS Directory Structure
+* Redwood Directory Structure
 
 ## Fauna Database
 
@@ -113,7 +113,7 @@ Our project's frontend is running on `localhost:8910` and our backend is running
 
 ![](https://res.cloudinary.com/practicaldev/image/fetch/s--yyS441iU--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ycisyl2bbxasa9j6zr9b.jpg)
 
-## Overview of RedwoodJS Directory Structure
+## Redwood Directory Structure
 
 One of Redwood's guiding philosophies is that there is power in standards, so it makes decisions for you about which technologies to use, how to organize your code into files, and how to name things.
 
