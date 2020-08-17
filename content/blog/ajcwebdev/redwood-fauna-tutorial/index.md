@@ -212,6 +212,8 @@ export default HomePage
 
 Cells provide a simpler and more declarative approach to data fetching. They contain the GraphQL query, loading, empty, error, and success states, each one rendering itself automatically depending on what state your cell is in.
 
+Create a folder in `web/src/components` called `PostsCell` and inside that folder create a file called `PostsCell.js` with the following code:
+
 ```javascript
 // web/src/components/PostsCell/PostsCell.js
 
@@ -388,7 +390,7 @@ Now we'll login to our Fauna account so we can access a database with the shell.
 fauna cloud-login
 ```
 
-You'll be asked to verify your email and password. If you signed up for FaunaDB using your GitHub or Netlify credentials, follow [these steps](https://docs.fauna.com/fauna/current/start/cloud-github), then continue with [Start using your database](https://docs.fauna.com/fauna/current/start/cloud#shell).
+You'll be asked to verify your email and password. If you signed up for FaunaDB using your GitHub or Netlify credentials, follow [these steps](https://docs.fauna.com/fauna/current/start/cloud-github), then skip the Create new Database section and continue this tutorial at the beginning of the Collections section.
 
 ## Create new Database
 
@@ -424,6 +426,14 @@ CreateCollection({ name: "posts" })
 ## Indexes
 
 Now we'll create an index for retrieving our posts.
+
+```javascript
+CreateIndex({
+  name: "all_posts",
+  source: Collection("posts"),
+  terms: [{ field: ["data", "title"] }]
+})
+```
 
 ```javascript
 CreateIndex({
@@ -521,6 +531,14 @@ Get(Ref(Collection("posts"), "207089200754852360"))
 ```
 
 We could also query with the posts title:
+
+```javascript
+Get(
+  Match(
+    Index("all_posts")
+  )
+)
+```
 
 ```javascript
 Get(
