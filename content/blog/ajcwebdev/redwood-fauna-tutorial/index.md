@@ -1,15 +1,5 @@
 # Building a Minimum Viable Stack with RedwoodJS and FaunaDB
 
-Hey everyone, I've been working on this tutorial over the last week and it's about 95% done, right now we're getting an error message from our `posts.js` service saying our `db` variable is undefined. Normally this is our PrismaClient but we are connecting to the Fauna Client directly.
-
-I was not the least bit surprised to see that I messed this part up; throughout the entire Redwood tutorial the PrismaClient was always a part of the framework I never had to touch or think about.
-
-Before diving into this I should explain the reasoning behind the way I built the project and structured the tutorial. I knew that just combing these two technologies for the first time would involve a significant degree of complexity, so I wanted to build the simplest possible application and do everything in a way that would cause the least amount of friction.
-
-There is just a single Home route that renders a single HomePage. That page renders a single cell that fetches data with a single GraphQL query. Finally we have a single service for querying the backend and rendering an array of blog titles to the home page.
-
-For writing to our database with create, update, or delete methods we'll use the Fauna Shell and create 3 `posts` that each have a `title`. Redwood will not perform any write operations on the databases. All Redwood is doing is one `GET` request to get an array of `posts`.
-
 ## Introduction
 
 * RedwoodJS
@@ -35,6 +25,7 @@ For writing to our database with create, update, or delete methods we'll use the
   * Create
   * Map
   * Get
+  * Match
 
 # Introduction
 
@@ -317,7 +308,7 @@ When we generated our project `db` defaulted to an instance of PrismaClient. Sin
 ```javascript
 // api/src/lib/db.js
 
-import faunadb, { query as q } from "faunadb"
+import faunadb from "faunadb"
 
 export const db = new faunadb.Client({ secret: process.env.FAUNADB_SECRET });
 ```
@@ -329,10 +320,13 @@ In our services folder we'll create a `posts` folder with a file called `posts.j
 ```javascript
 // api/src/services/posts/posts.js
 
+import { query as q } from "faunadb"
 import { db } from 'src/lib/db'
 
 export const posts = () => {
-  return db.post.findMany()
+  return db.query(q.Map(
+    q.Paginate(q.Match(q.Index("all_posts"))),
+    q.Lambda("postRef", q.Get(q.Var("postRef")))))
 }
 ```
 
@@ -377,11 +371,16 @@ Lets take one more look at our entire directory structure before moving on to th
 
 You'll need a FaunaDB account to follow along but it's free for creating simple low traffic databases. You can use your email to create an account or either your Github or Netlify account. FaunaDB Shell does not currently support GitHub or Netlify logins so using those will add a couple extra steps when we want to authenticate with the fauna-shell.
 
-First we need to install the `faunadb` client and the `fauna-shell` which will let us easily work with our database.
+First we will install the `fauna-shell` which will let us easily work with our database from the terminal.
 
 ```
-npm install --save faunadb
 npm install -g fauna-shell
+```
+
+Then we will install the `faunadb` client. `cd` into the `api` folder and run the following command:
+
+```
+yarn add faunadb
 ```
 
 Now we'll login to our Fauna account so we can access a database with the shell.
@@ -417,42 +416,9 @@ CreateCollection({ name: "posts" })
 ```javascript
 {
   ref: Collection("posts"),
-  ts: 1597520048816000,
+  ts: 1597718505570000,
   history_days: 30,
-  name: 'posts'
-}
-```
-
-## Indexes
-
-Now we'll create an index for retrieving our posts.
-
-```javascript
-CreateIndex({
-  name: "all_posts",
-  source: Collection("posts"),
-  terms: [{ field: ["data", "title"] }]
-})
-```
-
-```javascript
-CreateIndex({
-  name: "posts_by_title",
-  source: Collection("posts"),
-  terms: [{ field: ["data", "title"] }]
-})
-```
-
-```javascript
-{
-  ref: Index("posts_by_title"),
-  ts: 1597520075780000,
-  active: true,
-  serialized: true,
-  name: 'posts_by_title',
-  source: Collection("posts"),
-  terms: [ { field: [ 'data', 'title' ] } ],
-  partitions: 1
+  name: "posts"
 }
 ```
 
@@ -463,15 +429,21 @@ The `Create` function adds a new document to a collection. Let's create our firs
 ```javascript
 Create(
   Collection("posts"),
-  { data: { title: "Deno is a secure runtime for JavaScript and TypeScript" } }
+  {
+    data: {
+      title: "Deno is a secure runtime for JavaScript and TypeScript"
+    }
+  }
 )
 ```
 
 ```javascript
 {
-  ref: Ref(Collection("posts"), "273952266465051144"),
-  ts: 1597520090502000,
-  data: { title: 'Deno is a secure runtime for JavaScript and TypeScript' }
+  ref: Ref(Collection("posts"), "274160525025214989"),
+  ts: 1597718701303000,
+  data: {
+    title: "Deno is a secure runtime for JavaScript and TypeScript"
+  }
 }
 ```
 
@@ -487,7 +459,12 @@ Map(
   ],
   Lambda("post_title",
     Create(
-      Collection("posts"), { data: { title: Var("post_title") } }
+      Collection("posts"),
+      {
+        data: {
+          title: Var("post_title")
+        }
+      }
     )
   )
 )
@@ -496,17 +473,19 @@ Map(
 ```javascript
 [
   {
-    ref: Ref(Collection("posts"), "273952274233950733"),
-    ts: 1597520097930000,
+    ref: Ref(Collection("posts"), "274160642247624200"),
+    ts: 1597718813080000,
     data: {
-      title: 'YugabyteDB is an open source, high-performance, distributed SQL database for global, internet-scale apps'
+      title:
+        "YugabyteDB is an open source, high-performance, distributed SQL database for global, internet-scale apps"
     }
   },
   {
-    ref: Ref(Collection("posts"), "273952274233951757"),
-    ts: 1597520097930000,
+    ref: Ref(Collection("posts"), "274160642247623176"),
+    ts: 1597718813080000,
     data: {
-      title: 'NextJS is a React framework for building production grade applications that scale'
+      title:
+        "NextJS is a React framework for building production grade applications that scale"
     }
   }
 ]
@@ -517,23 +496,53 @@ Map(
 The `Get` function retrieves a single document identified by `ref`. We can query for a specific post by using its ID.
 
 ```javascript
-Get(Ref(Collection("posts"), "207089200754852360"))
+Get(
+  Ref(
+    Collection("posts"), "274160642247623176"
+  )
+)
 ```
 
 ```javascript
 {
-  ref: Ref(Collection("posts"), "273952274233951757"),
-  ts: 1597520097930000,
+  ref: Ref(Collection("posts"), "274160642247623176"),
+  ts: 1597718813080000,
   data: {
-    title: 'NextJS is a React framework for building production grade applications that scale'
+    title:
+      "NextJS is a React framework for building production grade applications that scale"
   }
 }
 ```
 
-We could also query with the posts title:
+## Indexes
+
+Now we'll create an index for retrieving all the posts in our collection.
 
 ```javascript
-Get(
+CreateIndex({
+  name: "all_posts",
+  source: Collection("posts")
+})
+```
+
+```javascript
+{
+  ref: Index("all_posts"),
+  ts: 1597719006320000,
+  active: true,
+  serialized: true,
+  name: "all_posts",
+  source: Collection("posts"),
+  partitions: 8
+}
+```
+
+## Match
+
+`Index` returns a reference to an index which `Match` accepts and constructs a set. `Paginate` takes the output from Match and returns a Page of results fetched from Fauna. Here we are returning an array of references.
+
+```javascript
+Paginate(
   Match(
     Index("all_posts")
   )
@@ -541,19 +550,59 @@ Get(
 ```
 
 ```javascript
-Get(
-  Match(
-    Index("posts_by_title"),
-    "Deno is a secure runtime for JavaScript and TypeScript"
+{
+  data: [
+    Ref(Collection("posts"), "274160525025214989"),
+    Ref(Collection("posts"), "274160642247623176"),
+    Ref(Collection("posts"), "274160642247624200")
+  ]
+}
+```
+
+## Lambda
+
+We can get an array of references to our posts, but what if we wanted an array of the actual data contained in the reference? We can `Map` over the array just like we would in any other programming language.
+
+```javascript
+Map(
+  Paginate(
+    Match(
+      Index("all_posts")
+    )
+  ),
+  Lambda(
+    'postRef', Get(Var('postRef'))
   )
 )
 ```
 
 ```javascript
 {
-  ref: Ref(Collection("posts"), "273952266465051144"),
-  ts: 1597520090502000,
-  data: { title: 'Deno is a secure runtime for JavaScript and TypeScript' }
+  data: [
+    {
+      ref: Ref(Collection("posts"), "274160525025214989"),
+      ts: 1597718701303000,
+      data: {
+        title: "Deno is a secure runtime for JavaScript and TypeScript"
+      }
+    },
+    {
+      ref: Ref(Collection("posts"), "274160642247623176"),
+      ts: 1597718813080000,
+      data: {
+        title:
+          "NextJS is a React framework for building production grade applications that scale"
+      }
+    },
+    {
+      ref: Ref(Collection("posts"), "274160642247624200"),
+      ts: 1597718813080000,
+      data: {
+        title:
+          "YugabyteDB is an open source, high-performance, distributed SQL database for global, internet-scale apps"
+      }
+    }
+  ]
 }
 ```
 
@@ -566,33 +615,12 @@ So at this point we have our Redwood app set up with just a single:
 * **Service** - `posts.js`
 
 
-
 We used FQL functions in the Fauna Shell to create a database and seed it with data. FQL functions included:
 * **CreateCollection** - Create a collection
-* **CreateIndex** - Create an index
-* **Create** -
-Create a document in a collection
+* **Create** - Create a document in a collection
 * **Map** - Applies a function to all array items
 * **Lambda** - Executes an anonymous function
 * **Get** - Retrieves the document for the specified reference
+* **CreateIndex** - Create an index
 * **Match** - Returns the set of items that match search terms
-
-If we look at our home page we're currently getting an error from our PostsCell.
-
-![04-PostsCell-Error](https://dev-to-uploads.s3.amazonaws.com/i/oq03w7q6ivch6zx1yyv9.jpg)
-
-We're not getting the `message` data being pased into the Failure function, so let's run a query with GraphiQL on `http://localhost:8911/graphql`.
-
-![05-posts-query](https://dev-to-uploads.s3.amazonaws.com/i/r5avhbe9x1mbgzy0s7kn.jpg)
-
-When we run the query we get the following error.
-
-![06-error-message](https://dev-to-uploads.s3.amazonaws.com/i/cu98d6xc6yn6g9yoghgp.jpg)
-
-Based on the stacktrace it looks like we did not properly initialize our `db` variable with `faunadb.Client`. This is part of FaunaDB's [JavaScript driver](https://docs.fauna.com/fauna/current/drivers/javascript)
-
-![07-stacktrace](https://dev-to-uploads.s3.amazonaws.com/i/u1ttwbydvgn9vw4z2nq2.jpg)
-
-We also get the following message in our terminal running the dev server.
-
-![08-terminal-error](https://dev-to-uploads.s3.amazonaws.com/i/88qysy3uwr318qgn59lb.jpg)
+* **Paginate** - Takes a Set or Ref, and returns a page of results
