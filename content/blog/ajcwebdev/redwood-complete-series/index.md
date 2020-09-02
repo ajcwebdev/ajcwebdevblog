@@ -26,51 +26,51 @@ The ***Jamstack*** is a departure from traditional server-rendered stacks like L
 
 ## [Part 1 - Setup](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-1017)
 
-**Install and create our first Redwood application.**
+**Install and create our first Redwood application**
 
 This series will start at the very beginning and assume no prior knowledge of Redwood. We'll install the Redwood CLI and learn how to use Redwood's custom generators to create pages.
 
 ## [Part 2 - Routes](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-2-44ph)
 
-**Explore Redwood's router and create links for our pages.**
+**Explore Redwood's router and create links for our pages**
 
 Redwood has its own built-in router inspired by Ruby on Rails, React Router, and Reach Router. Redwood Router is designed to list all routes in a single file, without any nesting.
 
 ## [Part 3 - Prisma](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-3-5ao5)
 
-**Get our database up and running and learn to create, retrieve, update, and destroy blog posts.**
+**Get our database up and running and learn to create, retrieve, update, and destroy blog posts**
 
 Prisma 2.0 is a query builder that provides a type-safe API for submitting database queries that return JavaScript objects. We'll learn how to write a Prisma schema file and use it to initialize our database.
 
 ## [Part 4 - CRUD](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m0g)
 
-**Explain all the generated code for performing CRUD operations and set up our frontend to render a list of our blog posts by querying data from our backend.**
+**Explain all the generated code for performing CRUD operations and set up our frontend to render a list of our blog posts by querying data from our backend**
 
 This part goes deep into the code that Redwood writes for you. How is Redwood handling form data? What is the CLI spitting out when we generate pages or cells? What is a GraphQL schema definition language? What does all this have to do with services? Finally we'll generate a cell that queries our backend and renders all our blog posts to the front page of our site. 
 
 ## [Part 5 - Contact](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-5-2ol4)
 
-**Combine everything we've learned up to this point to generate a contact page and take input from a user.**
+**Combine everything we've learned up to this point to generate a contact page and take input from a user**
 
-We'll go deep into Redwood forms and all the corresponding helpers that make our lives easier when working with forms. Redwood uses react-hook-form by default but it can also use other React form builders.
+We'll explore further into Redwood forms and all the corresponding helpers that make our lives easier when working with forms. Redwood uses react-hook-form by default but it can also use other React form builders.
 
 ## [Part 6 - GraphQL](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-6-a25)
 
-**Connect our contact form to the database to persist data entered into the form.**
+**Connect our contact form to the database to persist data entered into the form**
 
 After creating our contact form we need to create a new contact schema and migrate our database. We'll use another Redwood generator to create our schema definition language and our GraphQL resolvers for our services.
 
 ## [Part 7 - Deploy](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-7-22b0)
 
-**Deploy our frontend to Netlify and our backend to Heroku.**
+**Deploy our frontend to Netlify and our backend to Heroku**
 
 A website isn't very useful unless it's on the web. In this part we'll deploy our React frontend to Netlify with their Serverless functions. Netlify will give us a free domain that we can share with the world. For our backend we'll use Heroku to host our database with Postgres.
 
 ## [Part 8 - Auth](https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-8-3pjc)
 
-**Implement role-based authentication with Netlify Identity.**
+**Implement role-based authentication with Netlify Identity**
 
-In the final part of our series we'll use Netlify Identity to implement role-based authentication on our blog. We'll use one more Redwood generator for authentication. We'll be able to use Netlify's login functionality so we don't have to make our own login form. Redwood Router gives us built in private routes for controling exactly which parts of our app are accessible to the public and which are locked down.
+In the final part of our series we'll use Netlify Identity to implement role-based authentication on our blog. We'll use one more Redwood generator for authentication. We'll be able to use Netlify's login functionality so we don't have to make our own login form.
 
 # Reflection
 
