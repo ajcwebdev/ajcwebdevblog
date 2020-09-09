@@ -1,7 +1,7 @@
 ---
-title: react state management
+title: react state management - options
 date: "2020-05-22"
-description: A comparison of various state management solutions in the React ecosystem
+description: a comparison of various state management solutions in the React ecosystem
 ---
 
 # React Core Library

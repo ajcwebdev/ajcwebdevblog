@@ -1,5 +1,5 @@
 ---
-title: react state management
+title: react state management - class components
 date: "2020-06-02"
 description: class components
 ---
