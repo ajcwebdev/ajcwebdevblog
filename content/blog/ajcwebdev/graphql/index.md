@@ -26,13 +26,15 @@ GraphQL is frequently compared to REST, the dominant paradigm for client-server 
 
 [![Image](https://sedaily-topics.s3.amazonaws.com/topic_images/0_6740655432542186.jpg)](https://medium.com/@sagar.mane006/understanding-rest-representational-state-transfer-85256b9424aa)
 
-Philosophical discussions aside, REST is:
+Philosophical discussions aside, REST is:  
 POST - Create  
 GET - Read - Retrieve  
 PUT - Update  
 DELETE - Destroy  
 
-REST is CRUD. CRUD stands for create, read, update, delete. All programmers need to be familiar with this terminology. Astute readers may be wondering why we need 9 terms to describe 4 concepts, to which I do not have a good answer. The term seems to originate from  James Martin's [Managing the Data-base Environment](http://is.cba.edu.kw/433/Handouts/ch01.pdf) in 1983.
+REST is CRUD. CRUD stands for create, read, update, delete. All programmers need to be familiar with this terminology.
+
+Astute readers may be wondering why we need 9 terms to describe 4 concepts, to which I do not have a good answer. The term seems to originate from  James Martin's [Managing the Data-base Environment](http://is.cba.edu.kw/433/Handouts/ch01.pdf) in 1983.
 
 ### Simple Object Access Protocol
 
