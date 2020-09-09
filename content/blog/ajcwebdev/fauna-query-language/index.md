@@ -1,7 +1,7 @@
 ---
 title: fauna query language
 date: "2020-08-10"
-description: native api for querying fauna
+description: native API for querying fauna
 ---
 
 The Fauna Query Language (FQL) is the native API for querying FaunaDB. While not a general-purpose programming language, it provides much of the functionality expected from one. It allows for complex, precise manipulation and retrieval of data stored within FaunaDB.

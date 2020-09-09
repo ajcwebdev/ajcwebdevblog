@@ -1,7 +1,7 @@
 ---
 title: thought vectors
 date: "2019-05-08"
-description: Natural language processing and its implications
+description: natural language processing and its implications
 ---
 
 >*Just trying to deal with the unanalyzed chaotic data is unlikely to get you anywhere.*

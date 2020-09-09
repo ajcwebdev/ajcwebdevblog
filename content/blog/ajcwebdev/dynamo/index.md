@@ -1,7 +1,7 @@
 ---
 title: dynamo
 date: "2020-06-26"
-description: fast and flexible nosql database service for any scale
+description: fast and flexible noSQL database service for any scale
 ---
 
 These are the notes I'm taking as I'm going through [Alex DeBrie's DynamoDB guide](https://www.dynamodbguide.com/) and all credit should go to him. If you find this valuable you can buy [The DynamoDB Book](https://www.dynamodbbook.com).

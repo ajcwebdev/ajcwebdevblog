@@ -1,7 +1,7 @@
 ---
 title: nexus
 date: "2020-06-20"
-description: declarative, code-first graphql schemas with type definitions
+description: declarative, code-first graphQL schemas with type definitions
 ---
 
 Nexus provides declarative, code-first GraphQL schemas for JavaScript/TypeScript with robust, composable type definitions. It has an ambiguous relation to Prisma and was announced on their blog in 2019 by Tim Griesser, an engineer at Cypress.io. [There is a very, very long post in the Prisma docs called Old to new Nexus](https://www.prisma.io/docs/guides/upgrade-from-prisma-1/upgrading-nexus-prisma-to-nexus). The Nexus framework is built on top of the [Nexus Schema library built by Tim Griesser](https://github.com/graphql-nexus/schema). 
