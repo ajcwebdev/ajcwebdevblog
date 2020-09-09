@@ -1,7 +1,7 @@
 ---
 title: cambridge analytica 101
 date: "2018-03-20"
-description: Mind control or vapor ware?
+description: mind control or vaporware?
 ---
 
 Today in the United States we have somewhere close to four or five thousand data points on every individual. So we model the personality of every adult across the United States, some 230 million people.

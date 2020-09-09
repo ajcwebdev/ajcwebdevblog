@@ -1,7 +1,7 @@
 ---
 title: cryptonomicon
 date: "2018-02-06"
-description: In 1999 Neal Stephenson explained Bitcoin to the world a decade before it was invented
+description: Neal Stephenson explained Bitcoin to the world a decade before it was invented
 ---
 
 Cryptonomicon is set in two time periods

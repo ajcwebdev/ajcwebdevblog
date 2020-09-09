@@ -1,7 +1,7 @@
 ---
 title: crypto constitution
 date: "2018-07-17"
-description: The political implications of cryptocurrencies
+description: the political implications of cryptocurrencies
 ---
 
 Governance is one of the most hotly debated topics around blockchain, but the deliberations are still in their early stages. Balancing the different needs and requests of users, developers, and investors will be much more challenging than overcoming the range of technical challenges that have hindered adoption of Bitcoin and Ethereum.

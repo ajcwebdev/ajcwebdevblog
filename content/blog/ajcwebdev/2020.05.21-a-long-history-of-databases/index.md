@@ -1,7 +1,7 @@
 ---
 title: a long history of databases
 date: "2020-05-21"
-description: Database Managament Systems, Data Models, and Query Languages.
+description: database managament systems, data models, and query languages
 ---
 
 > There are no widely accepted definitions for the terms data-base systems or information systems.  
