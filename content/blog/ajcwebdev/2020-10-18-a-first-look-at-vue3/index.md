@@ -1,5 +1,5 @@
 ---
-title: a first look at vue 3: part 1 - setup
+title: a first look at vue 3 part 1 - setup
 date: "2020-10-18"
 description: install and create our first vue application
 ---
