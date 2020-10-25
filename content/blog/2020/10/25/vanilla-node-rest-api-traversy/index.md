@@ -22,3 +22,36 @@ const PORT = process.env.PORT || 5000
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 ```
+
+```javascript
+const products = require('../data/products')
+
+function findAll() {
+  return new Promise((resolve, reject) => {
+    resolve(products)
+  })
+}
+
+module.exports = {
+  findAll
+}
+```
+
+```javascript
+const Product = require('../models/productModel')
+
+async function getProducts(req, res) {
+  try {
+    const products = await Product.findAll()
+
+    res.writeHead(200, { 'Content-Type': 'application/json' })
+    res.end(JSON.stringify(products))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = {
+  getProducts
+}
+```
