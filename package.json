@@ -8,7 +8,6 @@
     "url": "https://github.com/tinacms/gatsby-starter-tinacms/issues"
   },
   "dependencies": {
-    "@deckdeckgo/highlight-code": "^2.1.1",
     "gatsby": "^2.15.36",
     "gatsby-image": "^2.2.27",
     "gatsby-plugin-feed": "^2.3.16",
@@ -20,7 +19,6 @@
     "gatsby-plugin-tinacms": "^0.1.26",
     "gatsby-plugin-typography": "^2.3.12",
     "gatsby-remark-copy-linked-files": "^2.1.26",
-    "gatsby-remark-highlight-code": "^2.1.0",
     "gatsby-remark-images": "^3.1.26",
     "gatsby-remark-prismjs": "^3.3.18",
     "gatsby-remark-responsive-iframe": "^2.2.23",
@@ -30,7 +28,7 @@
     "gatsby-tinacms-json": "^0.8.10",
     "gatsby-tinacms-remark": "^0.7.5",
     "gatsby-transformer-json": "^2.2.20",
-    "gatsby-transformer-remark": "^2.8.46",
+    "gatsby-transformer-remark": "^2.8.28",
     "gatsby-transformer-sharp": "^2.2.23",
     "moment": "^2.24.0",
     "prismjs": "^1.17.1",
