@@ -4,6 +4,8 @@ date: "2020-10-23"
 description: notes on monitoring heroku postgres
 ---
 
+# Database Metrics
+
 ## `db_size`
 * Number of bytes contained in the database
 * Includes all table and index data on disk, including database bloat
@@ -62,3 +64,32 @@ The blocking queries can then be terminated in order to resolve lock contention.
 * Replication is asynchronous so a number greater than zero may not indicate an issue, however an increasing value deserves investigation
 * This metric is only published for follower databases
 
+# Server Metrics
+
+## `load-avg-1m`, `load-avg-5m`, `load-avg-15m`
+* The average system load over a period of 1 minute, 5 minutes and 15 minutes, divided by the number of available CPUs
+* A `load-avg` of 1.0 indicates that, on average, processes were requesting CPU resources for 100% of the timespan; this number includes I/O wait
+* For databases that have burstable performance, a baseline load average is guaranteed
+
+The `load-avg` metric shows average CPU load over the indicated periods. Heroku’s reported load metrics are normalized by dividing the system load by the number of CPUs.
+
+A load average of 1.0 over a given time window indicates full utilization of all CPUs, a load over 1.0 indicates that processes had to wait for CPU time in the given window (with higher values indicating more time spent by processes waiting), and values under 1.0 indicate that CPUs spent time idle during the given window. If this value is high, you will get less consistent query execution times and longer wait times.
+
+Since values over 1.0 indicate over-utilization, you will want to know before the load gets to that number. Set up alerts for when this `load-avg` reaches 0.8 (warning) and 0.9 (critical).
+
+Check current activity with the `pg:ps` command for cpu-intensive queries. Additionally check IOPS, as exceeding provisioned IOPS will cause processes to need to wait on I/O to become available before they can process. If you are consistently seeing high values for `load-avg`, then it may be time to upgrade to a larger Heroku Postgres plan. Before doing that, or if you’re already on the largest plan, look to tuning expensive queries to reduce the amount of processing work done on the database server and/or data read from disk.
+
+## `read-iops`, `write-iops`
+* Number of read or write operations in I/O sizes of 16KB blocks
+
+## `memory-total`
+* Total amount of server memory available
+
+## `memory-free`
+* Amount of free memory available in kB
+
+## `memory-cached`
+* Amount of memory being used the OS for page cache, in kB
+
+## `wal-percentage-used`
+* The percentage of wal used, healthy below 80%
