@@ -2,7 +2,7 @@
 title: notes on monitoring heroku postgres
 date: "2020-10-23"
 description: notes on monitoring heroku postgres
----
+--- 
 
 # Database Metrics
 
@@ -93,3 +93,123 @@ Check current activity with the `pg:ps` command for cpu-intensive queries. Addit
 
 ## `wal-percentage-used`
 * The percentage of wal used, healthy below 80%
+
+# Finding Slow Queries
+
+## Logging
+
+### `log_min_duration_statement`
+
+Causes the duration of each completed statement to be logged if the statement ran for at least the specified number of milliseconds. For example, if you set it to 250ms then all SQL statements that run 250ms or longer will be logged.
+
+Enabling this parameter can be helpful in tracking down unoptimized queries in your applications. Only superusers can change this setting.
+
+### `log_line_prefix`
+
+`printf`-style string that is output at the beginning of each log line.
+
+* Timestamp
+* Process ID
+* Session Line Number
+* Logged in User
+* Database logged in to
+* Application name
+* Remote host
+
+### `log_checkpoints`
+
+Causes checkpoints and restartpoints to be logged in the server log. Some statistics are included in the log messages, including the number of buffers written and the time spent writing them.
+
+### `log_connections`
+
+Causes each attempted connection to the server to be logged, as well as successful completion of client authentication.
+
+### `log_disconnections`
+
+Causes session terminations to be logged. The log output provides information similar to `log_connections`, plus the duration of the session.
+
+### `log_lock_waits`
+
+Controls whether a log message is produced when a session waits longer than `deadlock_timeout` to acquire a lock. This is useful in determining if lock waits are causing poor performance.
+
+### `log_temp_files`
+
+Controls logging of temporary file names and sizes. Temporary files can be created for sorts, hashes, and temporary query results. If enabled by this setting, a log entry is emitted for each temporary file when it is deleted. A value of zero logs all temporary file information, while positive values log only files whose size is greater than or equal to the specified amount of data. If this value is specified without units, it is taken as kilobytes.
+
+### `log_autovacuum_min_duration`
+
+Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions. For example, if you set this to 250ms then all automatic vacuums and analyzes that run 250ms or longer will be logged. In addition, when this parameter is set to any value other than -1, a message will be logged if an autovacuum action is skipped due to the existence of a conflicting lock. Enabling this parameter can be helpful in tracking autovacuum activity.
+
+## Log Analysis
+
+### pgBadger
+
+## Viewing Active Queries
+
+### `pg_stat_statements`
+
+The `pg_stat_statements` module provides a means for tracking planning and execution statistics of all SQL statements executed by a server.
+
+The module must be loaded by adding `pg_stat_statements` to `shared_preload_libraries` in `postgresql.conf`, because it requires additional shared memory. This means that a server restart is needed to add or remove the module.
+
+The statistics gathered by the module are made available via a view named `pg_stat_statements`. This view contains one row for each distinct database ID, user ID and query ID (up to the maximum number of distinct statements that the module can track).
+
+# USE Method
+
+For every resource, check utilization, saturation, and errors.
+It's intended to be used early in a performance investigation, to identify systemic bottlenecks.
+
+resource: all physical server functional components (CPUs, disks, busses, ...) [1]
+utilization: the average time that the resource was busy servicing work [2]
+saturation: the degree to which the resource has extra work which it can't service, often queued
+errors: the count of error events
+
+# pgbouncer
+
+pgbouncer is a PostgreSQL connection pooler that aims to lower the performance impact of opening new connections to PostgreSQL. Any target application can be connected to pgbouncer as if it were a PostgreSQL server, and pgbouncer will create a connection to the actual server, or it will reuse one of its existing connections.
+
+In order not to compromise transaction semantics for connection pooling, pgbouncer supports several types of pooling when rotating connections:
+
+### Session pooling
+
+* Most polite method and default method
+* When a client connects, a server connection will be assigned to it for the whole duration the client stays connected
+* When the client disconnects, the server connection will be put back into the pool
+
+### Transaction pooling
+
+* A server connection is assigned to a client only during a transaction
+* When PgBouncer notices that transaction is over, the server connection will be put back into the pool
+
+### Statement pooling
+
+* Most aggressive method
+* The server connection will be put back into the pool immediately after a query completes
+* Multi-statement transactions are disallowed in this mode as they would break
+
+# What Needs to be Monitored?
+
+### Queries/SQL
+
+* Throughput
+* Latency
+* Concurrency/load
+* Errors
+
+### Postgres Server
+
+* DML
+* DDL
+* Logs
+* Wait-time
+* Users
+* Objects
+* Backups
+* Replication
+
+### OS and Hardware
+
+* I/O
+* Memory
+* Network
+* CPU
