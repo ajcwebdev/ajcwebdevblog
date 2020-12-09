@@ -1,0 +1,81 @@
+<h2>What is Vue.js?</h2>
+<p>Vue (pronounced /vjuː/, like <strong>view</strong>) is a <strong>progressive framework</strong> for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable.</p>
+<p>The core library is focused on the view layer only and is easy to integrate with other libraries or projects. Vue can also be used in combination with modern tooling to power sophisticated Single-Page Applications.</p>
+<h2>Getting Started</h2>
+<p>First we'll install the CLI.</p>
+<pre><code class="language-bash">yarn global add @vue/cli
+</code></pre>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wvdqwfgn9jav121sejgc.jpg" alt="01-yarn-add-vue-cli"></p>
+<p><code>vue --version</code> will display the current version.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ya7otqbtvjsp8vokfmj8.jpg" alt="02-vue-version"></p>
+<p><code>vue -h</code> will display available commands.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qgx4alhdya4p6am2in3t.jpg" alt="03-vue-help"></p>
+<p>Since ES Modules are awesome, we'll use <a href="https://github.com/vitejs/vite">Vite</a> to generate our Vue project.</p>
+<pre><code class="language-bash">yarn create vite-app ajcwebdev-vue3
+</code></pre>
+<p>This command creates a Vite project called <code>ajcwebdev-vue3</code>. Feel free to name your project whatever you want, just make sure to use your project name anytime I use <code>ajcwebdev-vue3</code> in a terminal command.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5rmlld2taahi898axva6.jpg" alt="04-create-vite-app"></p>
+<pre><code class="language-bash">cd ajcwebdev-vue3
+yarn
+</code></pre>
+<p><code>cd</code> into the new project directory and enter <code>yarn</code> to install the dependencies.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/irke83vcmmp522kxlj68.jpg" alt="05-yarn-install"></p>
+<pre><code class="language-bash">yarn dev
+</code></pre>
+<p><code>yarn dev</code> will start our development server.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ywf6g81xci6lwldz1k34.jpg" alt="06-yarn-dev"></p>
+<p>Open a browser and go to <code>localhost:3000</code> to see the default starter page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/sxtv3colexsvqxs8cb25.jpg" alt="07-homepage"></p>
+<p>Click the count button to increment the number.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4r3iaydosui0erwf1y0y.jpg" alt="08-click-count"></p>
+<p>Now open up the project and look at the directory structure.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5x7dq265wiqyte12yde6.jpg" alt="09-project-structure"></p>
+<p>There are three folders:</p>
+<ul>
+<li><code>node_modules</code> for all our dependencies, if you look in here it will stress you out so don't ever do that</li>
+<li><code>public</code> contains the favicon icon displayed on browser tabs</li>
+<li><code>src</code> project files that we will be editing</li>
+</ul>
+<p>And four files:</p>
+<ul>
+<li><code>.gitignore</code> for files we don't want to commit to git such as our <code>node_modules</code></li>
+<li><code>yarn.lock</code> to lock our dependency versions</li>
+<li><code>package.json</code> for managing our scripts and dependencies</li>
+<li><code>index.html</code> where the entire application is loaded into the main <code>div</code></li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7o5t68kdwukksa5iolxq.jpg" alt="10-package.json"></p>
+<p>We have two scripts:</p>
+<ul>
+<li><code>dev</code> for local development</li>
+<li><code>build</code> bundles the code for production</li>
+</ul>
+<p><code>Vue</code> is our only dependency along with two development dependencies: <code>vite</code> and <code>@vue/compiler-sfc</code> which is a package containing lower level utilities that you can use if you are writing a plugin/transform for a bundler or module system that compiles Vue single file components into JavaScript.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dabsf0qikmwzovexchlh.jpg" alt="11-index.html"></p>
+<p>In the body we load the <code>main.js</code> file in a <code>script</code> tag. The application is loaded into the main <code>div</code> on line 10.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xk48l9s43xzehoptl29q.jpg" alt="12-public-src"></p>
+<p>In our <code>src</code> folder we have three files:</p>
+<ul>
+<li><code>App.vue</code></li>
+<li><code>index.css</code></li>
+<li><code>main.js</code></li>
+</ul>
+<p>And two folders:</p>
+<ul>
+<li><code>assets</code></li>
+<li><code>components</code></li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/45b2k5o345574rumtqb9.jpg" alt="13-main.js"></p>
+<p><code>App</code> is imported and mounted with <code>createApp()</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xd19f3ghihd6guvlksoj.jpg" alt="14-app.vue"></p>
+<p>A Vue component contains a <code>template</code> for our HTML and a <code>script</code> for our JavaScript. In the script we are importing the <code>HelloWorld</code> component and exporting the <code>App</code> component. The <code>HelloWorld</code> component is rendered in the template with a message passed in.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qdla1gq85gyy6btv0s5o.jpg" alt="15-assets-components"></p>
+<p>In our components folder we have the <code>HelloWorld</code> component that is imported in <code>App</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xhfz6xobi0ybce9mv3z0.jpg" alt="16-HelloWorld.vue"></p>
+<p>The template contains the <code>msg</code> object we passed into <code>HelloWorld</code> back in our <code>App</code> component. It also has a button with <code>@click=&quot;count++&quot;</code> to increment our <code>count</code> variable. <code>@</code> is a shorthand for the <code>v-on</code> directive which listens to DOM events.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7ohzhgxri0o0nyb1fyfm.jpg" alt="17-App.vue-edit"></p>
+<p>To make sure everthing is working we'll make a few edits to <code>App</code> by taking out the logo and changing the <code>msg</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/fgng8mae60nfsgkqxvao.jpg" alt="18-HelloWorld.vue-edit"></p>
+<p>We'll also edit the <code>HelloWorld</code> component by taking out the <code>count</code> object and editing the <code>template</code>.</p>
+<p>Save your changes and return to the browser.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/sh69a5ttavkv4i4aa23g.jpg" alt="19-homepage-edit"></p>
+<p>In the next part we'll learn how to create multiples pages and link between them.</p>

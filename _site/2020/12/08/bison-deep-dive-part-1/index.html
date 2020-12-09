@@ -1,0 +1,330 @@
+<h1>1 - _templates</h1>
+<h2>component/new/new.ejs</h2>
+<pre><code class="language-ejs">---
+to: components/&lt;%= [h.inflection.camelize(h.dirName(name)), h.camelizedBaseName(name)].filter(Boolean).join('/') %&gt;.tsx
+---
+&lt;% formattedPath = h.camelizedPathName(name) -%&gt;
+&lt;% component = h.camelizedBaseName(name) -%&gt;
+import React from 'react';
+import { Heading, Center } from '@chakra-ui/core';
+
+/** Description of component */
+export function &lt;%= component %&gt;() {
+  const message = 'Hola! &lt;%= component %&gt; Created!';
+
+  return (
+    &lt;Center bg=&quot;red.300&quot; color=&quot;white&quot; padding=&gt;
+      &lt;Heading&gt;{message}&lt;/Heading&gt;
+    &lt;/Center&gt;
+  );
+};
+</code></pre>
+<h1>2 - .github</h1>
+<h2>PULL_REQUEST_TEMPLATE.md</h2>
+<pre><code class="language-md">Description of PR that completes issue here...
+
+## Changes
+
+api:
+
+- Description of changes
+
+web:
+
+- Description of changes
+
+## Screenshots
+
+(prefer animated gif)
+
+## Checklist
+
+- [ ] Requires dependency update?
+- [ ] Automated tests
+- [ ] Looks good on large screens
+- [ ] Looks good on mobile
+
+Closes [chXXXX][view ticket](https://app.clubhouse.io/org/story/XXXX)
+</code></pre>
+<h2>workflows</h2>
+<h3>main.js.yml</h3>
+<pre><code class="language-yml">name: CI
+
+on: [push]
+
+jobs:
+  ###############
+  # Lint &amp; Test
+  ###############
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    # needs: linters
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myapp_test
+      NODE_ENV: test
+    services:
+      postgres:
+        image: postgres:11.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: myapp_test
+        ports: ['5432:5432']
+        # Make sure the database is ready before we use it
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Node
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: 14.6.0
+
+      # Yarn cache/install
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo &quot;::set-output name=dir::$(yarn cache dir)&quot;
+      - name: JS package cache
+        uses: actions/cache@v2.1.0
+        with:
+          path: $
+          key: $-yarn-$
+          restore-keys: |
+            $-yarn-
+      - name: Install packages
+        run: |
+          yarn install --frozen-lockfile
+
+      # Setup &amp; configure database
+      - name: Setup test database
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://postgres:postgres@localhost/myapp_test
+        run: |
+          yarn db:migrate
+
+      # Build app and generate types
+      - name: Build App
+        run: yarn build
+
+      # Lint Code
+      - name: ESLint
+        run: yarn lint
+
+      # Jest Tests (API/Frontend)
+      - name: Run Jest Tests (API &amp; Frontend)
+        run: yarn test:ci
+
+      # E2E Tests via Cypress
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v2
+        with:
+          # build: yarn build
+          start: yarn test:server
+          wait-on: 'http://localhost:3001'
+        env:
+          NODE_ENV: test
+          GITHUB_TOKEN: $
+          DATABASE_URL: postgresql://postgres:postgres@localhost/myapp_test
+
+      - name: Upload Cypress Screenshots
+        uses: actions/upload-artifact@v1
+        # Only capture images on failure
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - name: Upload Cypress Videos
+        uses: actions/upload-artifact@v1
+        # Test run video was always captured, so this action uses &quot;always()&quot; condition
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+  ###############
+  # Deploy!
+  ###############
+  deployStaging:
+    name: Deploy to Preview
+    runs-on: ubuntu-latest
+    # To speed up CI builds, we deploy this in parallel
+    # needs: tests
+
+    ## For a typical JAMstack flow, the ref below should be your default branch.
+    ## For a traditional flow that auto-deploys staging and deploys prod is as needed, keep as is
+    if: github.ref != 'refs/heads/production' # every branch EXCEPT production
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ngduc/vercel-deploy-action@master
+        with:
+          vercel-token: $
+          github-token: $
+          vercel-org-id: $
+          vercel-project-id: $
+          # SET THIS OR YOU WILL DEPLOY TO YOUR PERSONAL VERCEL NAMESPACE
+          # scope: $
+
+  deployProd:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    # For production deploys, make sure tests pass first
+    needs: tests
+    ## For a typical JAMstack flow, the ref below should be your default branch.
+    ## For a traditional flow that auto-deploys staging and deploys prod is as needed, keep as is
+    if: github.ref == 'refs/heads/production'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ngduc/vercel-deploy-action@master
+        with:
+          vercel-token: $
+          github-token: $
+          vercel-org-id: $
+          vercel-project-id: $
+          # SET THIS OR YOU WILL DEPLOY TO YOUR PERSONAL VERCEL NAMESPACE
+          # scope: $
+          vercel-args: '--prod'
+</code></pre>
+<pre><code class="language-yml">name: CI
+
+on: [push]
+
+jobs:
+  
+  tests:
+    name: Tests
+    
+    runs-on: ubuntu-latest
+    
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myapp_test
+      NODE_ENV: test
+    
+    services:
+      postgres:
+        image: postgres:11.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: myapp_test
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.1
+        with:
+          node-version: 14.6.0
+      
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo &quot;::set-output name=dir::$(yarn cache dir)&quot;
+      
+      - name: JS package cache
+        uses: actions/cache@v2.1.0
+        with:
+          path: $
+          key: $-yarn-$
+          restore-keys: |
+            $-yarn-
+      
+      - name: Install packages
+        run: |
+          yarn install --frozen-lockfile
+      
+      - name: Setup test database
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://postgres:postgres@localhost/myapp_test
+        run: |
+          yarn db:migrate
+      
+      - name: Build App
+        run: yarn build
+      
+      - name: ESLint
+        run: yarn lint
+      
+      - name: Run Jest Tests (API &amp; Frontend)
+        run: yarn test:ci
+      
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn test:server
+          wait-on: 'http://localhost:3001'
+        env:
+          NODE_ENV: test
+          GITHUB_TOKEN: $
+          DATABASE_URL: postgresql://postgres:postgres@localhost/myapp_test
+      
+      - name: Upload Cypress Screenshots
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      
+      - name: Upload Cypress Videos
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+  
+  deployStaging:
+    name: Deploy to Preview
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/production'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ngduc/vercel-deploy-action@master
+        with:
+          vercel-token: $
+          github-token: $
+          vercel-org-id: $
+          vercel-project-id: $
+  
+  deployProd:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: tests
+    if: github.ref == 'refs/heads/production'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ngduc/vercel-deploy-action@master
+        with:
+          vercel-token: $
+          github-token: $
+          vercel-org-id: $
+          vercel-project-id: $
+          vercel-args: '--prod'
+</code></pre>
+<h1>3 - .vscode</h1>
+<h2>settings.json</h2>
+<pre><code class="language-json">{
+  &quot;editor.tabSize&quot;: 2,
+  &quot;files.trimTrailingWhitespace&quot;: true,
+  &quot;editor.formatOnSave&quot;: true,
+  &quot;editor.codeActionsOnSave&quot;: {
+    &quot;source.fixAll.eslint&quot;: true
+  },
+  &quot;[html]&quot;: {
+    &quot;editor.formatOnSave&quot;: false
+  },
+  &quot;[prisma]&quot;: {
+    &quot;editor.defaultFormatter&quot;: &quot;Prisma.prisma&quot;
+  }
+}
+</code></pre>

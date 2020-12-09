@@ -1,0 +1,63 @@
+<p>Deno is a secure runtime for JavaScript and TypeScript. The original creator of Node, Ryan Dahl, started the project intending to build a modern, server-side JavaScript framework that incorporates the knowledge he gained building out the initial Node ecosystem, while also incorporating many of the features of JavaScript that have become standardized since 2015.</p>
+<p>In 10 Things I Regret About Node, Ryan Dahl gave the following list of 8 regrets:</p>
+<ol>
+<li>Not sticking with Promises</li>
+<li>Security</li>
+<li>The Build System: GYP</li>
+<li>package.json</li>
+<li>require(&quot;somemodule&quot;) is not specific</li>
+<li>node_modules</li>
+<li>require(&quot;module&quot;) without the extension &quot;.js&quot;</li>
+<li>index.js</li>
+</ol>
+<p>To translate for non-Node developers:</p>
+<ol>
+<li>Node is fundamentally divergent from the standardization of JavaScript in the last 5 years.</li>
+<li>Node has too much access to the computer it's running on.</li>
+</ol>
+<p>3-8. The module/package system has become a bit of a nightmare.</p>
+<p><img src="https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fb32fea2d-ac02-4670-9954-010c98b03500_300x300.gif" alt="sad-deno"></p>
+<p><a href="https://github.com/denolib/animated-deno-logo/">&quot;I imagine him standing in the rain at night - stoically facing the dark battle that is software engineering.&quot;</a></p>
+<blockquote>
+<p><em>Why would you do this? What's the point, isn't this disrupting the community? Isn't this bifurcating the module system? Nothing good can come from this, isn't this a Python 3 situation where we're going to end up with 10 years of difficulty with two different forks of the language?</em></p>
+</blockquote>
+<blockquote>
+<p><em>And I think that those are good concerns, but I think it's time to reevaluate.</em></p>
+</blockquote>
+<blockquote>
+<p><em>JavaScript has changed quite a bit in the last 10 years since I originally sat down to do Node. The main important features that have been added are typed arrays which give you true access to binary data. That was not around in 2009. ES Modules, the module system is now standardized.</em></p>
+</blockquote>
+<blockquote>
+<p><em><strong>Ryan Dahl - <a href="https://www.youtube.com/watch?v=HjdJzNoT_qg">Deno, a new way to JavaScript (August 28, 2019)</a></strong></em></p>
+</blockquote>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_9104501175592736.jpg" alt="Image"></p>
+<h2>Deno Principles</h2>
+<ol>
+<li>Secure by default. No file, network, or environment access, unless explicitly enabled.</li>
+<li>Supports TypeScript out of the box.</li>
+<li>Ships only a single executable file.</li>
+<li>Built-in utilities including dependency inspector (deno info) and code formatter (deno fmt).</li>
+<li>Standard modules are audited and guaranteed to work with Deno: deno.land/std</li>
+</ol>
+<h2>Rust and Tokio</h2>
+<p>Node is a JavaScript runtime implemented in C++. In contrast, Deno is a TypeScript runtime implemented in Rust. It uses a new event loop in Rust called Tokio. Ryan hadn’t been coding much JavaScript since around 2012 when he moved on from Node.</p>
+<p>If you know a lot of programmers you almost certainly know at least one guy who really, really likes Rust. Ryan is that guy, and Deno is what happens when that guy makes a new Node. Like Node, Deno is a strange mix of somewhat un-JavaScripty programmers working together with diehard JavaScript monoglots to progress the web platform.</p>
+<h2>Oak</h2>
+<p>Oak is a middleware framework for Deno's http server inspired by Koa. Koa itself aimed to be a more modern implementation of the Express framework and included contributors from Express. Middleware enables communication and management of data in distributed applications.</p>
+<p>Types of middleware include web servers, application servers, content management systems, and similar tools that support application development and delivery. Oak also includes a router middleware inspired by koa-router for defining how an application’s endpoints (URIs) respond to the client's requests.</p>
+<p>When learning Node it is extremely common to learn Express along with it and many never learn to use Node without Express. Many programmers coming to Deno will already have this mental model which means Oak is likely to be a very consequential framework for the Deno ecosystem.</p>
+<h2>Podcasts</h2>
+<p>The Changelog - A visit to Deno Land (May 15, 2020)
+The Overflow – Digging into Deno 1.0 (May 22, 2020)</p>
+<h2>Videos</h2>
+<p>Ryan Dahl - 10 Things I Regret About Node.js (June 6, 2018)
+Ryan Dahl - Deno, A New Server-Side Runtime (November 27, 2018)
+Ryan Dahl - Deno, a new way to JavaScript (April 8, 2019)
+Rafał Pocztarski - From Node.js to Deno (May 10, 2019)
+Ryan Dahl - A secure runtime for JavaScript and TypeScript (May 27, 2019)
+Ryan Dahl - Deno, a new way to JavaScript (August 28, 2019)
+Rafał Pocztarski - What is Deno? (October 25, 2019)
+Michał Sabiniarz - How to contribute to Deno? (October 25, 2019)
+Bartek Iwańczuk - Deno internals, how modern runtime is built (October 25, 2019)
+Ryan Dahl, Kitson Kelly - Deno is a New Way to JavaScript (December 19, 2019)</p>
+<p><em>Originally published on <a href="https://ajcwebdev.substack.com/p/01-deno">minimumViableStack</a></em></p>

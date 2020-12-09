@@ -1,0 +1,74 @@
+<p>In case you weren't already confused enough about the differences between <a href="https://blog.logrocket.com/blitz-vs-redwood/">Redwood and Blitz</a> we now have <a href="https://www.youtube.com/watch?v=tEInOneENuo">a third contender</a>, Bison, with a very similar overall architecture but its own particular combination of technologies. <a href="https://community.redwoodjs.com/u/cball">Chris Ball</a> appears to be the brains behind the project. It is supported by Echobind where he works as CTO.</p>
+<p>Bison knows that while good artists borrow, great artists steal, and they have taken direct inspiration from Redwood with their <a href="https://github.com/echobind/bisonapp#Alternatives">own version of Cells</a>. But they also have their own vision of what they want the framework to be and where they want it to go:</p>
+<blockquote>
+<p><em>Think of Bison as a bit closer to the metal, but preconfigured for maximum DX and efficiency. The good news is, if you disagree with any of the choices we've made, nothing is hidden from you and you're welcome to adapt the &quot;framework&quot; to fit your needs.</em></p>
+</blockquote>
+<p>In tandem with the public announcement of the project they also released a short <a href="https://vimeo.com/447643624">overview video</a> and a long <a href="https://vimeo.com/447586198">deep dive</a> of the entire architecture. I really love this approach and I hope other new frameworks on the horizon consider it.</p>
+<p>Here's a break down of each stack and how they compare:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Redwood</th>
+<th>Blitz</th>
+<th>Bison</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Routing</strong></td>
+<td>Redwood Router</td>
+<td>Next.js</td>
+<td>Next.js</td>
+</tr>
+<tr>
+<td><strong>Types</strong></td>
+<td>TypeScript</td>
+<td>TypeScript</td>
+<td>TypeScript</td>
+</tr>
+<tr>
+<td><strong>GraphQL Client</strong></td>
+<td>Apollo</td>
+<td>Vanilla JS/TS</td>
+<td>Nexus</td>
+</tr>
+<tr>
+<td><strong>Not-an-ORM</strong></td>
+<td>Prisma</td>
+<td>Prisma</td>
+<td>Prisma</td>
+</tr>
+<tr>
+<td><strong>Code Generation</strong></td>
+<td>Redwood CLI</td>
+<td>Blitz CLI</td>
+<td>GraphQL Codegen, Hygen Templates</td>
+</tr>
+<tr>
+<td><strong>Styling</strong></td>
+<td>Tailwind</td>
+<td>Import CSS</td>
+<td>Chakra UI</td>
+</tr>
+<tr>
+<td><strong>Forms</strong></td>
+<td>React Hook Form</td>
+<td>Vanilla JS/TS</td>
+<td>React Hook Form</td>
+</tr>
+<tr>
+<td><strong>Testing</strong></td>
+<td>Jest</td>
+<td>Jest, RTL</td>
+<td>Jest, RTL, Cypress</td>
+</tr>
+<tr>
+<td><strong>Deploy</strong></td>
+<td>Netlify</td>
+<td>Vercel</td>
+<td>Vercel</td>
+</tr>
+</tbody>
+</table>
+<p>All three frameworks seem to have their own authentication which would probably need a much longer post than this to directly compare. All three have their own unique opinions about project and file structure that would also make an interesting post by itself. All three support SQLite/Postgres out of the box with the option to switch in other databases of your choosing.</p>

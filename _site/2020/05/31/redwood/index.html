@@ -1,0 +1,1037 @@
+<blockquote>
+<p><em>Full stack web application development is the next evolution of JAMstack. That becomes a primary place that you would deploy a full stack web application, and that’s what RedwoodJS is about.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://changelog.com/jsparty/119">Redwood brings full-stack to the JAMstack (March 12, 2020)</a></strong></em></p>
+</blockquote>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zm6hfjusl47tlaooxqdu.png" alt="redwood-logo"></p>
+<p>Redwood is an opinionated, full-stack, serverless web application framework for building and deploying JAMstack applications. Imagine:</p>
+<ul>
+<li>
+<p>React frontend</p>
+</li>
+<li>
+<p>Statically delivered by CDN</p>
+</li>
+<li>
+<p>Talking via GraphQL to backend</p>
+</li>
+<li>
+<p>Backend running on AWS Lambdas</p>
+</li>
+<li>
+<p>All deployable with <code>git</code> push</p>
+</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6q1mh8r0weq11kbfogta.png" alt="Alt Text"></p>
+<h2>Redwood Philosophies</h2>
+<p><strong>There is power in standards about which tech to use, how to organize code into files, and how to name things</strong></p>
+<p><strong>Relational databases like PostgreSQL and MySQL are still the workhorses of today's web apps</strong></p>
+<p><strong>Operate in a serverless mindset and deploy to a generic computational grid</strong></p>
+<p><strong>To deploy your application, you should only need to commit and push to your Git repository</strong></p>
+<p><strong>To scale from zero to thousands of users should not require your intervention</strong></p>
+<p><strong>Useful for writing simple, toy applications and complex, mission-critical applications</strong></p>
+<p><strong>JavaScript can be the primary language on both frontend and backend</strong></p>
+<h2>Universal Deployment Machine</h2>
+<blockquote>
+<p><em>My dream of a future is for something I call a universal deployment machine, which means I write my code. It's all text. I just write text. Then I commit to GitHub. Then it's picked up and it's deployed into reality. That's it. That's the whole thing. That's what I want. That's what I've been looking for.</em></p>
+<p><em><strong>Tom Preston Warner</strong></em><br>
+<em><strong><a href="https://shoptalkshow.com/412/">RedwoodJS Shoptalk (May 11, 2020)</a></strong></em></p>
+</blockquote>
+<h1>Full Stack React</h1>
+<p>There has recently been a sudden influx of different projects aiming to build a <em><strong>Full Stack React</strong></em> framework. What are people talking about when they say full stack react and why is it suddenly such a hot topic? A long running emphasis throughout the history of React has been its identification as a library instead of a framework. The one-liner for React has always been <em><strong>a JavaScript library for building user interfaces</strong></em>.</p>
+<p>It unapologetically focused on the view layer and did not seek to provide strong conventions around routing, server rendering, static site generation, or database integration. Instead projects like React Router, Relay, and Redux were created to solve some of these problems while remaining their own separate codebases. In contrast Nextjs and Gatsby built conventions on top of React.</p>
+<p>As React has continued to maintain its popularity in JavaScript development there has been an increasing sentiment among some developers that the need for a true full stack React solution was greater than ever.</p>
+<p>Developers that cut their teeth on projects like Rails, Ember, and Laravel are especially adamant that the tendency for React developers to create their own bespoke architectures is counterproductive and costly. Adam Wathan and Michael Chan have been long time advocates of this perspective.</p>
+<p>I became interested in this topic in March when I listened to their conversation <em><strong><a href="https://www.fullstackradio.com/episodes/136">React Is Not a Rails Competitor</a></strong></em> on Full Stack Radio. This podcast was released in the wake of three different frameworks that emerged in quick secession to tackle this problem: <a href="(https://github.com/redwoodjs/redwood/commit/e2ceb0dcdffe4c28ff3ce804445387f4749e6a0b)"><em><strong>RedwoodJS</strong></em></a>, <a href="https://twitter.com/flybayer/status/1229425878481793024"><em><strong>Blitz.js</strong></em></a>, and <a href="https://twitter.com/remix_run/status/1253043162714525696"><em><strong>Remix</strong></em></a>.</p>
+<h1>Jamstack</h1>
+<blockquote>
+<p><em>Jekyll is a simple, blog aware, static site generator.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">Blogging Like a Hacker (November 17, 2008)</a></strong></em></p>
+</blockquote>
+<p>In 2008, Tom Preston-Werner published a blog post titled “Blogging Like a Hacker,” which told his story of blogging, programming, and his eventual invention of Jekyll. Jekyll was a reaction against complicated blog engines like WordPress.</p>
+<p>His constraints included the ability to style his own blog and host it on the domain of his choosing. This eliminated wordpress.com and blogger.com. He mentioned that some people use GitHub as a blog but he considered that an impedance mismatch.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_6513975690444203.png" alt="Image"></p>
+<p>He decided to approach blogging from a software developers perspective. His writing would be stored in a Git repository and published via a deploy script or post-commit hook. A static site would be preferable to a dynamic site to keep complexity at a minimum. The blog would need to be easily customizable.</p>
+<p>Jekyll works by:</p>
+<ol>
+<li>Taking a template directory representing the raw form of a website</li>
+<li>Running it through Textile and Liquid converters</li>
+<li>Spiting out a complete, static website</li>
+<li>Serving with Apache or similar web server</li>
+</ol>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_6838986812671863.png" alt="Image"></p>
+<blockquote>
+<p><em>I was tired of having my blog posts end up in a database off on some remote server. That is backwards. I’ve lost valuable posts that way. I want to author my posts locally in Textile or Markdown. My blog should be easily stylable and customizable any way I please. It should take care of creating a feed for me. And most of all, my site should be stored on GitHub so that I never lose data again.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://github.com/mojombo/tpw">tpw</a></strong></em></p>
+</blockquote>
+<p>Numerous projects influenced by Jekyll appeared in the following years.</p>
+<ul>
+<li>Thomas Reynolds created <a href="https://awardwinningfjords.com/2009/10/22/middleman.html">Middleman</a>, a static site generator utilizing Haml and Sass in <a href="https://github.com/middleman/middleman/commit/493089d4b0ebdb64524695dc4fe4e703ddeec536">2009</a></li>
+<li>Alexis Metaireau created <a href="https://blog.john-pfeiffer.com/how-to-set-up-a-pelican-static-blog-site/">Pelican</a>, a Python project that converts static text files into html sites in <a href="https://github.com/getpelican/pelican/commit/00cf9644d8a85e98cf6eb6c0ebf32cf03046f0ee">2010</a></li>
+<li>Tommy Chen created <a href="https://hexo.io/">Hexo</a>, a blog framework powered by Node.js in <a href="https://github.com/hexojs/hexo/commit/6129b2fd773ffafa0bf5626df26b72e7e8f7ad7c">2012</a></li>
+<li>Jeff Escalante created <a href="https://roots.netlify.app/">Roots</a>, a static site compiler written in CoffeeScript, in <a href="https://github.com/jescalan/roots/commit/5b3b93585e9accb43f67178ba6e1bc1e66f21ff6">2012</a></li>
+<li>Steve Francia created <a href="https://spf13.com/post/go-go-hugo-blog/">Hugo</a>, a static site generator written in Go <a href="https://github.com/gohugoio/hugo/commit/50a1d6f3f155ab837310e00ffb309a9199773c73">in 2013</a></li>
+</ul>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_1401401717454267.png" alt="Image"></p>
+<h2>Staticgen</h2>
+<blockquote>
+<p><em>There are those who describe Netlify as “GitHub Pages on Steroids”. If that’s the case then Hugo on Netlify must be digging into Lance Armstrong’s stash.</em></p>
+<p><em><strong>Mathias Biilmann</strong></em><br>
+<em><strong><a href="https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/">Hosting Hugo on Netlify (July 30, 2015)</a></strong></em></p>
+</blockquote>
+<p>In 2014, Mathias Biilmann Christensen created <a href="http://mathias-biilmann.net/posts/2014/07/01/staticgen">staticgen.com</a>, a leaderboard of top open-source static site generators. It uses a variety of metrics including GitHub stars, forks, and twitter followers to rank different static site generators.</p>
+<p>Around that time Mathias was running MakerLoop, a content management startup based in San Francisco. He believed that Git-centered workflows with static site generators like Jekyll represented a massive change in the web development space. This lead to Mathias co-founding Netlify with his childhood friend Christian Bach. Tom Preston-Werner was an early investor in Netlify.</p>
+<h2>Gatsby</h2>
+<p>Gatsby was created by Kyle Mathews in <a href="https://github.com/gatsbyjs/gatsby/commit/24606f5a2d5c85d7b6661403333f34823409bdf3">2015</a>. It started as a static site generator built with React, but as the project grew it no longer functioned as simply a static site generator, and Kyle found the term to be ill fitting to the project.</p>
+<p>Gatsby incorporated GraphQL and increasingly used sophisticated 3rd party APIs to perform various dynamic tasks that could not be achieved with older static site generators. Other projects appeared that were influenced by Gatsby including <a href="https://gridsome.org/">Gridsome</a> and <a href="https://www.netlify.com/blog/2019/12/16/introducing-scully-the-angular-static-site-generator/">Scully</a>.</p>
+<p>This new paradigm started to be referred to as the <a href="https://jamstack.org/">JAMstack</a>, as in JavaScript, APIs, and Markup. Mathias credits <a href="https://changelog.com/podcast/251">Andreas Sæbjørnsen</a> with first coining the term. Recently there has been a push to refer to it simply as Jamstack in an attempt to distance itself from the original acronym (<a href="https://css-tricks.com/jamstack-vs-jamstack/">see JAMstack vs. Jamstack by Chris Coyier</a>). The Jam has been slowly spreading ever since.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_7525431285920556.jpg" alt="Image"></p>
+<h1>Serverless</h1>
+<blockquote>
+<p><em>It's 2012, I get hired into AWS and it's my first day there. And my boss Alyssa Henry, who at that time is running all of storage, so S3, EBS, like the whole storage division for AWS sits me down at lunch and says,</em></p>
+<p><em>&quot;Okay, Tim, so here's the deal. We heard from customers that they love S3. It's simple, it's easy to use. It's a different kind of way of thinking about the cloud. They love all of that, but it's just a storage solution, right? There's no way to ... Let's say you store an image, there is no way to make a thumbnail of it. You pull out a compressed file, there's no easy way to decompress it on the fly plus the other million things developers might want to do with the stuff that they're storing in here. So they've told us this in customer advisory meetings and one on ones, see if he can do something with that. Okay. I'm busy, got to run. Good luck.&quot;</em></p>
+<p><em>So this is day one for me at AWS. This is literally my very first conversation coming out of the sort of the onboarding and signing up all the paperwork. So I'm like,</em></p>
+<p><em>&quot;Okay, grow a business in the cloud. Make it easy and think about S3 as a kind of inspiration.&quot;</em></p>
+<p><em>We had to make the cloud as easy for someone who does applications and business logic as it is for someone with a PhD in distributed systems. And that's when we realized like there was some there, there. And so we got excited about that. We came up with this idea for event hookup and we were kind of off to the races.</em></p>
+<p><em><strong>Tim Wagner</strong></em><br>
+<em><strong><a href="https://www.serverlesschats.com/52/">The Past, Present, and Future of Serverless (June 8, 2020)</a></strong></em></p>
+</blockquote>
+<p><img src="https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F090fdbbd-e1a0-45bc-8ef9-d8833254e983_1600x800.png" alt=""></p>
+<p>Serverless is a made up buzz word that is also commonly used to refer to Function-as-a-Service cloud products like <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, <a href="https://azure.microsoft.com/en-us/services/functions/">Azure Functions</a>, and <a href="https://cloud.google.com/functions">Google Cloud Functions</a>. The basic premise is that instead of paying for a server to always be running and ready to accept requests, you pay based on the specific number of function calls your app invokes.</p>
+<p>It was pioneered by Tim Wagner’s team at Amazon Web Services in 2012 and has become a popular paradigm for “cloud native” applications, which are applications designed specifically to run on a platform like AWS, Azure, GCP, Digital Ocean, or Linode. Tim Wagner served as general manager for Lambda, <a href="https://aws.amazon.com/api-gateway/">API Gateway</a>, and the <a href="https://aws.amazon.com/serverless/serverlessrepo/">Serverless Application Repository</a>.</p>
+<blockquote>
+<p><em>The computers would handle a number of problems concurrently. Organizations would have input-output equipment installed on their own premises and would buy time on the computer much the same way that the average household buys power and water from utility companies.</em></p>
+<p><em><strong>W. F. Bauer</strong></em><br>
+<em><strong><a href="https://dl.acm.org/doi/10.1145/1458043.1458055">Computer design from the programmer's viewpoint (1958)</a></strong></em></p>
+</blockquote>
+<p>It has much in common philosophically with the Jamstack but is a more general paradigm building on work going back to <a href="https://en.wikipedia.org/wiki/Multics">Multics</a> and other <a href="https://en.wikipedia.org/wiki/Time-sharing">time-sharing systems</a> of the 1960s.</p>
+<p><img src="https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F0e80f909-47e4-4fa0-b7bd-df9817602242_951x276.png" alt="aws-lambda"></p>
+<p>In 2015 the Serverless Framework open source project was released, and eventually lead to the creation of a company called Serverless, Inc. This successfully confused everyone about the meaning of the term serverless to an even greater degree than before. In reference to the term, Serverless founder Austen Collins claimed it was, &quot;<a href="https://techcrunch.com/2016/10/12/serverless-raises-3m-to-help-developers-go-serverless/"><em><strong>not technically accurate</strong></em></a>.&quot;</p>
+<h1>Part 1 - Setup</h1>
+<blockquote>
+<p><em>I like to think that most things can be achieved. Whatever you have in your head you can probably pull off with code as long as it's possible within the constraints of the universe. It's just a matter of time... and money... and attention.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://www.fullstackradio.com/episodes/138">Full Stack Radio 138</a></strong></em></p>
+</blockquote>
+<p><a href="https://dev.to/ajcwebdev/redwood-1d46">Redwood</a> is an opinionated, full-stack, serverless web application framework for building and deploying Jamstack applications.</p>
+<p>I've structured the series to reflect the actual process I go through when experimenting with a new framework for the first time. I stick to the path laid out in the official docs tutorial, but as I go through each step I reference the documentation for each command or component. This helps me build a mental model of the framework instead of just copy-pasting commands and code snippets.</p>
+<p>I will start at the very beginning and assume no prior knowledge of Redwood although I do assume a basic knowledge of React. But I'm talking really basic, if you know what a component is, have written at least a dozen lines of JSX, and have generated at least one project with <a href="https://reactjs.org/docs/create-a-new-react-app.html">create-react-app</a> then you'll be fine.</p>
+<p>If none of that made sense you should click the link to the create-react-app docs and work through those before reading this. This article is geared towards someone who has at least a few months experience in a coding bootcamp or on the job, around the point where they start getting comfortable with the basic workflows of git, npm, the terminal, and simple HTML websites.</p>
+<p>You'll need <code>yarn</code> for this tutorial which has slight differences from <code>npm</code>. If you've never used <code>yarn</code> you can find installation instructions <a href="https://yarnpkg.com/getting-started/install">here</a> or just enter <code>yarn install</code> into your terminal.</p>
+<h1><code>yarn create redwood-app</code></h1>
+<p>The first step is to install Redwood globally to my system and generate our first project. We'll accomplish both of these with the <code>yarn create</code> command.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6fe6msthvip5b2ff8r1t.jpg" alt="01-yarn-create-redwood-app"></p>
+<p>This will create a folder called <code>ajcwebdev</code> that holds all the code that will be generated. You can call your project anything you want, just make sure to keep using your name anytime I use <code>ajcwebdev</code> in a terminal command.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cjaeklfvncspim7wlodu.jpg" alt="02-yarn-creating-redwood-app"></p>
+<h1><code>yarn redwood dev</code></h1>
+<p><code>yarn rw</code> is the same as <code>yarn redwood</code> and can be used to save a few keystrokes if you want. We'll <code>cd</code> into that folder and then start our development server.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/i30ds3opi4rgswptijbh.jpg" alt="03-cd-yarn-redwood-dev"></p>
+<p><code>yarn redwood dev</code> can be used to run a development server for the Redwood server, Webpack server or your database &quot;server&quot; which isn't exactly a server.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/y4mlr95xq35kbtn6vlu9.jpg" alt="04-yarn-redwood-dev"></p>
+<p>Don't worry about any of that for now but that'll be important in later articles.</p>
+<p>Our server is now running on localhost:8910 (a mnemonic to help remember that is thinking of counting 8-9-10). Open a web browser and enter localhost:8910 into the address bar. If you've done everything correctly up to this point you'll see the Redwood starter page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ycisyl2bbxasa9j6zr9b.jpg" alt="06-redwood-starter-page"></p>
+<p>WHOOPS, it worked, we're up and running.</p>
+<p>Don't worry too much about what it says about custom routes, we'll talk about that in the next article. Lets look at the file structure that has been created for us.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/fjo3yan8dvi0geynn6or.jpg" alt="07-project-structure"></p>
+<p>Don't worry about most of this, for the purpose of this article we'll only be working in the <code>web</code> folder. Since we are responsible developers the first thing we do is go to the README.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7ox6y0oe85s9o9j8bj8d.jpg" alt="08-README"></p>
+<p>The README provides instructions for the commands that we used earlier to get our application set up, <code>yarn install</code> and <code>yarn redwood dev</code>. It also mentions something you may have noticed earlier, we have something else running on <code>localhost:8911</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vjbt2amtwrz4nmv6qqxm.jpg" alt="09-serverless-functions"></p>
+<p>Once again, don't worry if that doesn't make sense since it's outside the scope of this part.</p>
+<p>In Redwood our frontend code is contained in the <code>web</code> folder and our backend code is contained in the <code>api</code> folder. Lets look at our <code>web</code> folder.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3ouxm52ot3p6r1sc9y54.jpg" alt="10-project-structure-web"></p>
+<p>Redwood structures the <code>web</code> folder a bit like create-react-app projects with a <code>public</code> and <code>src</code> folder but the index.html file that renders our root component is in the <code>src</code> folder instead of <code>public</code>.</p>
+<h1><code>redwood generate page</code></h1>
+<p>With our application now set up we can start creating pages. We'll use the <code>generate page</code> command to create a home page and a folder to hold that page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1w9jbx6nva7vec9pvllf.jpg" alt="11-yarn-redwood-generate-page-home"></p>
+<p>This created files for our home page and another file for testing that page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/okmjl4hxk5ux0tb7g1p7.jpg" alt="12-yarn-redwood-generating-HomePage"></p>
+<p>Since I only entered <code>home</code> it will use that to name both the folder and the component file but you can specify each if necessary.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vaoq73eoxk6nz5qo6aev.jpg" alt="13-project-structure-web-src-pages"></p>
+<p>Return to your browser and you will now see a new page instead of the landing page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/mogitc893pv03j68lz9q.jpg" alt="14-HomePage"></p>
+<p>Let's look at the code that was generated for this page. It's a component called <code>HomePage</code> that returns a <code>&lt;div&gt;</code> with a header <code>&lt;h1&gt;</code> and a paragraph tag <code>&lt;p&gt;</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ejcu3z1rm630xxmxotqx.jpg" alt="15-HomePage-component"></p>
+<p>This should be pretty self-explanatory if you have experience with React. If this doesn't look familiar to you then you should take a little time to study React by itself before jumping into Redwood. Now we'll edit the page and see what happens.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8f0c42emzcmskgymii1w.jpg" alt="16-HomePage-edit"></p>
+<p>Feel free to include links to your own social accounts. With those changes made return to your browser.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/hn5a8lp4b1oqfy3xhavo.jpg" alt="17-HomePage-new"></p>
+<p>Now we are going to generate our <code>about</code> page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/h3lunfia2zs8dn0l9mq1.jpg" alt="18-yarn-redwood-generate-page-about"></p>
+<p>Like before we created an <code>AboutPage</code> component inside of an <code>AboutPage</code> folder along with a file for testing that page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/k5k2ae5jzazrac5ksm27.jpg" alt="19-yarn-redwood-generating-AboutPage"></p>
+<p>We don't yet have a link to get to it from the home page, so for now you'll need to enter the route manually into your browser address bar by adding <code>/about</code> after <code>localhost:8910</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/bsv9l45ikjfbxcgyewb3.jpg" alt="20-AboutPage"></p>
+<p>Open up the code and it's another React component much like the last! Components are kind of a big deal in React.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/fapy9aa8ticdut1cftsf.jpg" alt="21-AboutPage-component"></p>
+<p>We can also edit this page just like the <code>home</code> page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tbeillfms6a7m9gi0n3c.jpg" alt="22-AboutPage-edit"></p>
+<p>With those changes return to your browser.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/iz3zabuptlphfcctcsd6.jpg" alt="23-AboutPage-new"></p>
+<p>We can also see these files have been added to our <code>src</code> folder.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/w8nz5fcatytkyju9ty1d.jpg" alt="24-project-structure-web-new"></p>
+<p>In the next part we'll take a look at Redwood's router and create links for the pages we created.</p>
+<h1>Part 2 - Routes</h1>
+<blockquote>
+<p><em>We basically wrote the tutorial the way that we wanted the code to work and then we made the tutorial work by writing the code. As opposed to <a href="https://tom.preston-werner.com/2010/08/23/readme-driven-development.html">Readme Driven Development</a> which I've written about this is tutorial driven development.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://www.fullstackradio.com/episodes/138">Full Stack Radio 138</a></strong></em></p>
+</blockquote>
+<p>In part 1 we installed and created our first RedwoodJS application. We used <code>yarn create redwood-app</code> to generate the initial app and <code>redwood generate page</code> to create a <code>HomePage</code> folder containing a <code>HomePage</code> file containing a <code>HomePage</code> component along with an <code>AboutPage</code> folder containing an <code>AboutPage</code> file containing an <code>AboutPage</code> component.</p>
+<p>We were able to navigate between the different pages in our browser by entering <code>/about</code> for the about page or a slash (<code>/</code>) for the home page. Depending on your experience with React this may have been surprising to you.</p>
+<p>If you've worked on routing in React before you know that to achieve this there needs to be an entirely different package imported containing the router and then your routes need to be wrapped in a <code>&lt;BrowserRouter&gt;</code> or <code>&lt;Router&gt;</code> component to give the router access to your pages. Well guess what.....</p>
+<h1><code>Routes.js</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qjzms9pgwvboxzisnpdq.jpg" alt="01-web-src-routes"></p>
+<p>In our <code>src</code> folder we have a file called <code>Routes.js</code>. When we used the CLI to generate <code>HomePage</code> and <code>AboutPage</code> we also created these routes.</p>
+<ul>
+<li>All Page components from 'src/pages` are auto-imported</li>
+<li>Nested directories are supported, and should be uppercase</li>
+<li>Each subdirectory will be prepended onto the component name</li>
+</ul>
+<p>Examples:</p>
+<p><code>src/pages/HomePage/HomePage.js</code>         -&gt; <code>HomePage</code>
+<code>src/pages/Admin/BooksPage/BooksPage.js</code> -&gt; <code>AdminBooksPage</code></p>
+<h1><code>index.js</code></h1>
+<p>The other file in our <code>src</code> folder is <code>index.js</code> which is our root component that ReactDOM renders to the screen.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xzttnicig89d6xskt5c6.jpg" alt="02-web-src-index"></p>
+<p>In React all <a href="https://reactjs.org/blog/2013/06/05/why-react.html">components are composable</a> which encourages the creation of reusable UI components that present data that changes over time. Traditionally, web application UIs were built using templates or HTML directives.</p>
+<p>But in React you always have a root component that contains other components and those components may contain other components. If that's a little confusing just give it some time and it'll start to click as this series goes on.</p>
+<p>The important take away is:</p>
+<ol>
+<li>Your routes and thus all the website's pages are contained within the <code>&lt;RedwoodProvider&gt;</code> tags (we'll talk about these more once we get to state management).</li>
+<li>The provider itself is contained within the <code>&lt;FatalErrorBoundary&gt;</code> component that is taking in <code>&lt;FatalErrorPage&gt;</code> as a prop which defaults your website to an error page if all else fails.</li>
+</ol>
+<h1><code>Link</code></h1>
+<p>When it comes to routing, matching URLs to Pages is only half the equation. The other half is generating links to your pages. Lets add a link to our page so we can navigate between our home page and about page by clicking on the page. We'll need to add 3 things to our <code>HomePage</code> file:</p>
+<ol>
+<li>Import <code>Link</code> and <code>routes</code> from <code>@redwoodjs/router</code></li>
+<li><code>&lt;Link to={}&gt;About&lt;/Link&gt;</code></li>
+<li>Pass into the Link component <code>routes.about()</code></li>
+</ol>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f9xkqr5045j6iu9si4m1.jpg" alt="03-HomePage-link-to-about-page"></p>
+<h3>named route functions</h3>
+<p>You use a <code>Link</code> to generate a link to one of your routes and can access URL generators for any of your routes from the <code>routes</code> object. We call the functions on the <code>routes</code> object <em><strong>named route functions</strong></em> and they are named after whatever you specify in the <code>name</code> prop of the <code>Route</code>. This is a key term for the redwood mental model. Return to your browser to see the changes to your home page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3t6p5rlpwxqvey5admb0.jpg" alt="04-home-page-with-about-link"></p>
+<p>We now have a link we can click to navigate to our about page from our home page. Click the link and you will be brought to your about page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/40086y4wtzrhxak5qbri.jpg" alt="05-about-page"></p>
+<p>We also want to be able to navigate back to our home page once we are on our about page. We'll do the same three steps from earlier but with a different prop:</p>
+<ol>
+<li>Import <code>Link</code> and <code>routes</code> from <code>@redwoodjs/router</code></li>
+<li><code>&lt;Link to={}&gt;About&lt;/Link&gt;</code></li>
+<li>Pass into the Link component <code>routes.home()</code></li>
+</ol>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/0cox7ilggmdfs8kz10s5.jpg" alt="06-AboutPage-component"></p>
+<p>Everything is exactly the same except we pass in <code>routes.home()</code> instead of <code>routes.about()</code> because we want to navigate to our home page this time. Take a look at your about page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xz6g1u1vey407bbx1s0r.jpg" alt="07-about-page-with-return-home-link"></p>
+<p>There is now a link that will take you back to the home page when clicked. If we open up our editor and look at our working tree we can see the changes we added.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/b3v2rq3qfmbmx5uj8659.jpg" alt="08-AboutPage-working-tree"></p>
+<p>You can only see this if you're working with git and regularly committing and pushing your code which is highly recommended.</p>
+<h1>Layout</h1>
+<p>You've probably been on a website before. Usually there's some kind of navigation bar at the top and footer at the bottom that stays consistent as you travel around the website. Redwood's folder structure is designed to make this really easy.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8vc8q5i88vsytad8dsgr.jpg" alt="09-layouts"></p>
+<p>Remember what I said before about everything being a component containing other components? That's the middle part. Pages contain components. Your layout will contain all of your pages.</p>
+<p>We can generate a file for our layout with <code>yarn redwood generate layout</code> or <code>yarn rw g layout</code>. Btw, if at any point you're having trouble remembering commands just enter:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/yiy2tj9repgqp0187qz1.jpg" alt="10-yarn-rw--help"></p>
+<p>and you'll get a quick reminder of all the commands.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rjocasva57iluyltwprw.jpg" alt="11-yarn-rw-commands"></p>
+<h1><code>generate layout</code></h1>
+<p>This will work a lot like the <code>generate page</code> commands we've done earlier</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/x3q31dwppbdt1szmrj02.jpg" alt="12-yarn-redwood-g-layout-blog"></p>
+<p>The only difference is it will create a folder inside <code>./web/src/layouts</code> this time instead of <code>./web/src/pages</code> because we are generating a layout and not a page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uzit8s41dxa5eafcjv8e.jpg" alt="13-generating-BlogLayout"></p>
+<p>That makes sense. Take a look at your layouts folder and you'll see a file called <code>BlogLayout.js</code> and another called <code>BlogLayout.test.js</code> for testing.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/03fwaru9jot6xg28zg1e.jpg" alt="14-BlogLayout-folder"></p>
+<h1><code>BlogLayout</code> component</h1>
+<p>Lets look at our <code>BlogLayout</code> component</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wsne05s98qq85n2aoilu.jpg" alt="15-layout-BlogLayout"></p>
+<p><code>children</code> is where the magic will happen. Any page content given to the layout will be rendered here.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3t1ackcgti53g9had7it.jpg" alt="16-BlogLayout-component"></p>
+<p>Back to HomePage and AboutPage, we add a <BlogLayout> wrapper and now they're back to focusing on the content they care about</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/o4nn6hsf23s3uq8gnfhv.jpg" alt="17-Homepage-import-BlogLayout"></p>
+<p>We can remove the import for Link and routes from HomePage since those are in the Layout instead:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3zsqpyzv5jb48xylpqgj.jpg" alt="18-AboutPage-import-BlogLayout"></p>
+<p>Notice that the import statement uses <code>src/layouts/BlogLayout</code> and not <code>../src/layouts/BlogLayout</code> or <code>./src/layouts/BlogLayout</code>.</p>
+<ul>
+<li>This is a convenience feature so you don't need to worry about the nesting of your folders.</li>
+<li><code>src</code> is an alias to the <code>src</code> path in the current workspace. If you're working in web then <code>src</code> points to <code>web/src</code> and in <code>api</code> it points to <code>api/src</code>.</li>
+</ul>
+<p>If we look at our home pages now it should look and behave the same way as before except we have turned our title in the <code>&lt;h1&gt;</code> tag into a home page link.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/469y1ctqit6xhbb5btu8.jpg" alt="19-home-page-with-BlogLayout"></p>
+<p>Our about page is the same except we have removed the link to return home since we can now click the title.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/fqrddthwkdjhgiyuos02.jpg" alt="20-about-page-with-BlogLayout"></p>
+<p>In the next part we'll start working with a database and learn to create, retrieve, update, and destroy blog posts.</p>
+<h1>Part 3 - Prisma</h1>
+<blockquote>
+<p><em>What I wanted was to codify and standardize the types of things that we were already doing and just remove choice and remove friction and just give people the ability to sit down and say, alright I know these technologies already, I have the prerequisite knowledge to do this.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://www.fullstackradio.com/episodes/138">Full Stack Radio 138</a></strong></em></p>
+</blockquote>
+<p>In this part we'll get our database up and running and learn to create, retrieve, update, and destroy blog posts.</p>
+<p>So far we've been working in the <code>web</code> folder. In our <code>api</code> folder there is a folder called <code>prisma</code> for our Prisma schema.</p>
+<p>Prisma is a <a href="https://www.prisma.io/docs/understand-prisma/why-prisma">query builder</a> that provides a type-safe API for submitting database queries which return JavaScript objects. It is similar to an ORM and was selected by Tom in the hopes of emulating <a href="https://guides.rubyonrails.org/active_record_basics.html">Active Record's</a> role in Ruby on Rails.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4sisnx4k4e64iu1hfsic.jpg" alt="00-project-structure-api.jpg"></p>
+<p>The Prisma schema file is the main configuration file for your Prisma setup. It is typically called <code>schema.prisma</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/i572d9i7wt73ib2oio1l.jpg" alt="01-schema-prisma.jpg"></p>
+<p>In order to set up Prisma Client, you need a Prisma schema file with:</p>
+<ul>
+<li>your database connection</li>
+<li>the Prisma Client <code>generator</code></li>
+<li>at least one <code>model</code></li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/q1yc2jpdjyslvlp54r39.jpg" alt="02-schema-prisma-Post-model.jpg"></p>
+<h1><code>seeds.js</code></h1>
+<p><code>seeds.js</code> is used to populate your database with any data that needs to exist for your app to run at all (maybe an admin user or site configuration).</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/46t9inuntle6618ov9v3.jpg" alt="03-seeds"></p>
+<h1><code>db save</code></h1>
+<p>Running <code>yarn rw db save</code> generates the folders and files necessary to create a new migration.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uqln1ynyspzdmbu98ivy.jpg" alt="04-yarn-redwood-db-save.jpg"></p>
+<p>You will be asked to name your migration.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/68tg1nfsuqp3lefwexc0.jpg" alt="05-creating-database-migration"></p>
+<p>I entered <code>initialize-database</code> as the name of my migration.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/aiogafas0oxb1xbgmy2z.jpg" alt="06-new-datamodel"></p>
+<h3>Data sources</h3>
+<p>Specify the details of the data sources Prisma should connect to (e.g. a PostgreSQL database)</p>
+<h3>Generators</h3>
+<p>Specifies what clients should be generated based on the data model (e.g. Prisma Client)</p>
+<h3>Data model definition</h3>
+<p>Specifies your application models (the shape of the data per data source) and their relations</p>
+<h1><code>migrations</code></h1>
+<p>A migration defines the steps necessary to update your current schema.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ubpbkdw7mctqvvass6eu.jpg" alt="07-created-your-migration"></p>
+<p>The <code>migrate</code> command creates and manages database migrations. It can be used to create, apply, and rollback database schema updates in a controlled manner.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8tpket3dljyi0wajzkuf.jpg" alt="08-api-folder-structure.jpg"></p>
+<h1><code>README</code></h1>
+<p><code>&lt;migration&gt;/README.md</code> is a human-readable description of the migration.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/919d2z0ex8zw77j3sja6.jpg" alt="09-database-migration-initialize-database.jpg"></p>
+<p>Includes metadata like:</p>
+<ul>
+<li>when the migration was created and by who</li>
+<li>a list of the actual migration changes</li>
+<li>a diff of the changes that are made to the <code>schema.prisma</code> file</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3rhekltrx73wcscbuzah.jpg" alt="10-database-changes"></p>
+<p><code>&lt;migration&gt;/schema.prisma</code> is the schema that will be created if the migration is applied to the project.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2g8xewy97q1gd29m9l0o.jpg" alt="11-schema-prisma-migration.jpg"></p>
+<p>It looks like TypeScript is yelling at us because according to the Prisma docs before using the <a href="https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-cli/command-reference#migrate-up"><code>migrate up</code> command you must define a valid <code>datasource</code> within your schema.prisma file</a>.</p>
+<p>For example the url could be set to <code>file:my-database.db</code> to define a SQLite database file within the current directory. Prisma's migration functionality is currently in an experimental state.</p>
+<h1><code>steps.json</code></h1>
+<p><code>steps.json</code> is an alternative representation of the migration steps that will be applied.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/nlu2dmpzvfk9qjx5rw4d.jpg" alt="12-steps-json.jpg"></p>
+<p>Steps are actions that resolve into zero or more database commands. Steps generically describe models, fields and relationships, so they can be easily translated to datasource-specific migration commands.</p>
+<h1><code>db up</code></h1>
+<p>Generates the Prisma client and applies migrations. <a href="https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-cli/command-reference#migrate-up"><code>migrate up</code></a> migrates the database up to a specific state.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zilmcvz5eubgavyhh0x8.jpg" alt="13-yarn-redwood-db-up"></p>
+<p>This will apply the migration. It will run the commands against the database to create the changes we need. This results in creating a new table called <code>Post</code> with the fields we previously defined.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/n5zz1eh33q84wi84qg94.jpg" alt="14-migrate-database-up-started"></p>
+<p>The following <code>datasource</code> defines a SQLite database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ks7ary9dej93nfohsxu6.jpg" alt="15-datamodel-that-will-initialize-the-db"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gge1uqjuu0c247i6g9xi.jpg" alt="16-database-migration"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f7hz8wtp11hkr65fyd11.jpg" alt="17-generating-prisma-client"></p>
+<h1><code>generate scaffold</code></h1>
+<p>Generate Pages, SDL, and Services files based on a given DB schema Model. Also accepts <code>&lt;path/model&gt;</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/hejunjalusimfqc0ni7j.jpg" alt="18-yarn-redwood-g-scaffold-post"></p>
+<p>A scaffold quickly creates a CRUD for a model by generating the following files and corresponding routes:</p>
+<ul>
+<li>sdl</li>
+<li>service</li>
+<li>layout</li>
+<li>pages</li>
+<li>cells</li>
+<li>components</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uxpifwyj51wv1oris5f1.jpg" alt="19-generating-scaffold-files"></p>
+<p>Lets open our browsers and enter <code>localhost:8910/posts</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/57122pye2dznq6afq1l6.jpg" alt="20-posts-page"></p>
+<p>We have a new page called Posts with a button to create a new post. If we click the new post button we are given an input form with fields for title and body.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/u7xmgfa9essbyxnbleqn.jpg" alt="21-new-post-form"></p>
+<p>We were taken to a new route, <code>/posts/new</code>. Let's create a blog post about everyone's favorite dinosaur.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xesdkrsz41e62l8n2wla.jpg" alt="22-new-deno-post"></p>
+<p>If we click the save button we are brought back to the posts page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1kpfuu8yzr4enme5ksq9.jpg" alt="23-deno-post-created"></p>
+<p>We now have a table with our first post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5960uw4sxoognkym6t82.jpg" alt="24-deno-post-edit"></p>
+<p>When we click the edit button we are taken to a route for the individual post that we want to edit. Each post has a unique id.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6p5pdukj78eq9db09mon.jpg" alt="25-deno-post-edited"></p>
+<p>The title has now been changed from <code>01-deno</code> to <code>01-deno-edit</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5ou2sj12nfeqx5skyai6.jpg" alt="26-will-delete-post"></p>
+<p>Lets create another post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ry7es7pt0u57pbd8kx4x.jpg" alt="27-hover-delete-button"></p>
+<p>If we click the delete button we will be given a warning.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2e6nm9qhipmd9wa8iiqu.jpg" alt="28-delete-post-warning"></p>
+<p>Click ok to confirm and you'll receive a message saying your post has been deleted.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/o7nhmnk6h8iqbbcfvi9x.jpg" alt="29-post-deleted"></p>
+<p>Lets add another blog post:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/9er8hp0hmqcf75xryjrs.jpg" alt="31-fauna-post"></p>
+<p>And one more:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/snl7cab45hr3xivh7ast.jpg" alt="32-next-post"></p>
+<p>If we make more posts they will start on the id after the deleted item. We already had an id 2. You can't call something else id 2, that would make your database a liar. I created and deleted one more post before continuing on, so that's why I am missing id 2 and id 3.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/t99kca9pv79kp39bk6v6.jpg" alt="30-most-posts"></p>
+<p>In the next part we'll look at the code that powers this functionality and learn about <a href="https://redwoodjs.com/tutorial/cells">Cells</a>. We'll also set up our frontend to query data from our backend to render a list of our blog posts to the front page.</p>
+<h1>Part 4 - CRUD</h1>
+<blockquote>
+<p><em>What I’ve experienced and what I know many people have experienced learning React and getting into this is that path right now is very, very, very, very, very long. And hard. And horrible.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://www.fullstackradio.com/episodes/138">Full Stack Radio 138</a></strong></em></p>
+</blockquote>
+<p>In this part we'll look at all the code that was generated that allowed us to perform our CRUD operations on the blog posts. We'll also set up our frontend to query data from our backend to render a list of our blog posts to the front page. If you've never worked with <a href="https://www.howtographql.com/">GraphQL</a> or serverless functions like <a href="https://www.serverless.com/aws-lambda/">Lambda</a> then some of the concepts in this part may be new.</p>
+<h1><code>api/src</code></h1>
+<p>We've seen the <code>prisma</code> folder under <code>api</code>, now we'll look at the <code>src</code> folder containing our GraphQL code. Redwood comes with GraphQL integration built in to make it easy to get our client talking to our serverless functions.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/p4fn5syh1i8ruaknq2mx.jpg" alt="01-api-src-folder"></p>
+<h1><code>api/src/functions</code></h1>
+<p>The <code>functions</code> folder will contain any lambda functions your app needs in addition to the <code>graphql.js</code> file auto-generated by Redwood.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vwnsj9ofwozsqpdyz57h.jpg" alt="02-api-src-functions-folder"></p>
+<h1><code>graphql.js</code></h1>
+<p>This file is required to use the GraphQL API.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vv2tq8i55o013gk6ojqn.jpg" alt="03-api-src-functions-graphql"></p>
+<p>Don't worry too much about what's going on in this file, we will be working more with the schema definition language.</p>
+<h1>SDL: Schema Definition Language</h1>
+<p><code>graphql</code> contains your GraphQL schema and is written in a Schema Definition Language. The files will end in <code>.sdl.js</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zxqkpem39z40ao7mnp9x.jpg" alt="04-api-src-graphql-folder"></p>
+<h1><code>posts.sdl.js</code></h1>
+<p>GraphQL schemas for a service are specified using the GraphQL SDL (<a href="https://graphql.org/learn/schema/">schema definition language</a>) which defines the API interface for the client. Our <code>schema</code> has five object types each with their own fields and types.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5o4we1jhx17lh4j8efmz.jpg" alt="05-api-src-graphql-posts-sdl"></p>
+<h2><code>Post</code></h2>
+<p>Represents a blog post</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4kay4muxjejve35nib3u.jpg" alt="06-api-src-graphql-posts-sdl-Post"></p>
+<h2><code>Query</code></h2>
+<p>Represents a query that retrieves either:</p>
+<ul>
+<li>multiple posts in an array (line 12)</li>
+<li>a single post with an <code>id</code> (line 13)</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1zvdg4j316xsj25etds9.jpg" alt="07-api-src-graphql-posts-sdl-Query"></p>
+<h2><code>CreatePostInput</code></h2>
+<p>Represents <code>title</code> and <code>body</code> of a new post</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qc5tl58xc297sii3m5xf.jpg" alt="08-api-src-graphql-posts-sdl-CreatePostInput"></p>
+<h2><code>UpdatePostInput</code></h2>
+<p>Represents <code>title</code> and <code>body</code> of a post being updated</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7fvwnfwnk7ertm6hnwtb.jpg" alt="09-api-src-graphql-posts-sdl-UpdatePostInput"></p>
+<h2><code>Mutation</code></h2>
+<p>Represents create, update, and delete operations on a post</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ptzrabxzayuj3xvfledx.jpg" alt="10-api-src-graphql-posts-sdl-Mutation"></p>
+<ul>
+<li>
+<p><code>createPost</code>: Takes <code>title</code> and <code>body</code> from <code>CreatePostInput</code> and creates a <code>Post</code></p>
+</li>
+<li>
+<p><code>updatePost</code>: Takes <code>title</code> and <code>body</code> from <code>UpdatePostInput</code> and <code>id</code> of the <code>Post</code> being updated</p>
+</li>
+<li>
+<p><code>deletePost</code>: Takes <code>id</code> of the <code>Post</code> being deleted</p>
+</li>
+</ul>
+<h1><code>lib</code></h1>
+<p><code>lib</code> contains one file, <code>db.js</code>, which instantiates the Prisma database client. You can use this folder for other code related to the API side that doesn't fit in functions or services.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rlzrocgjoyc402cmnkn3.jpg" alt="11-api-src-lib-folder"></p>
+<h1><code>db.js</code></h1>
+<p><a href="https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client">Prisma Client</a> is an auto-generated and type-safe query builder that's tailored to your data.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ay5ibk7uzeh0rz85pc8a.jpg" alt="12-api-src-lib-db"></p>
+<h1><code>services</code></h1>
+<p><code>services</code> contains business logic related to your data. When you're querying or mutating data for GraphQL, that code ends up here, but in a format that's reusable in other places in your application. A service implements the logic of talking to the third-party API.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3pwaj3wamgtnbl8iqugd.jpg" alt="13-api-src-services-folder"></p>
+<p>Redwood will automatically import and map resolvers from the <code>services</code> file onto your SDL. You write resolvers in a way that makes them easy to call as regular functions from other <a href="https://www.softwaredaily.com/topic/graphql/question/5ebcfe42ab37a6002da0d63e">resolvers</a> or <code>services</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5875tb982w1poimunt5t.jpg" alt="14-api-src-services-posts"></p>
+<p>Redwood will look in <code>api/src/services/posts/posts.js</code> for the following five resolvers:</p>
+<h3><code>posts()</code></h3>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/d9us71jk32gdm3607r28.jpg" alt="14-1-api-src-services-posts-posts"></p>
+<h3><code>post({id})</code></h3>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5itfxp1tf66h8ylll6az.jpg" alt="14-2-api-src-services-posts-post"></p>
+<h3><code>createPost({input})</code></h3>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tr0hh0rift9muttjo8cp.jpg" alt="14-3-api-src-services-posts-createPost"></p>
+<h3><code>updatePost({id, input})</code></h3>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zj83x56uh09253wf2izk.jpg" alt="14-4-api-src-services-posts-updatePost"></p>
+<h3><code>deletePost({id})</code></h3>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gjalgcswunobtewv317d.jpg" alt="14-5-api-src-services-posts-deletePost"></p>
+<h1><code>PostPage</code></h1>
+<p><code>PostPage</code> is a component that takes in <code>PostCell</code> with a post's <code>id</code> as a prop. <code>PostCell</code> is wrapped in the <code>PostsLayout</code> component.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/28pioylp3oqk6no3s42c.jpg" alt="15-web-src-pages-PostPage"></p>
+<p>Here's the view of <code>PostPage</code> with a <code>PostCell</code> wrapped in the <code>PostsLayout</code>:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ytvwsrqml2t7t6nqp6eo.jpg" alt="16-PostPage-rendered"></p>
+<h1><code>PostsLayout</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xumxuzi89chjjrb9tbvn.jpg" alt="17-layouts-PostsLayout"></p>
+<p>If you click Posts you will be linked to <code>routes.posts()</code> and if you click New Post you will be linked to <code>routes.NewPost()</code></p>
+<p>Here's the view of just the <code>PostsLayout</code>:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/h4kubdnasvfwtxce4p38.jpg" alt="18-PostsLayout-rendered"></p>
+<h1><code>PostCell</code></h1>
+<p>Cells provide a simpler and more declarative approach to data fetching. When you create a cell you export several specially named constants and then Redwood takes it from there.</p>
+<p>Cells should be used when your component needs some data from the database or other service that is delayed in responding. Redwood juggles what is displayed and when.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zhdb77u4h5qzkpy4ghbv.jpg" alt="19-web-src-components-PostCell"></p>
+<p>The minimum you need for a cell are the <code>QUERY</code> and <code>Success</code> exports.</p>
+<ul>
+<li>If you don't export an <code>Empty</code> component, empty results will be sent to your <code>Success</code> component.</li>
+<li>If you don't provide a <code>Failure</code> component you'll get error output sent to the console.</li>
+</ul>
+<h1><code>Post</code></h1>
+<ul>
+<li><a href="https://redwoodjs.com/docs/flash-messaging-bus.html#useflash-hook"><code>useFlash</code></a> is an abridgment of <code>React.useContext(FlashContext)</code>.</li>
+<li><a href="https://www.apollographql.com/docs/react/data/mutations/"><code>useMutation</code></a> is a hook provided by Apollo which will allow us to execute the mutation when we're ready. It is the primary API for executing mutations in an Apollo application.</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6b8o02fiad235wki946j.jpg" alt="20-web-src-components-Post"></p>
+<h2><code>DELETE_POST_MUTATION</code></h2>
+<p>GraphQL string representing the mutation that is passed into <code>useMutation</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5h3ob2a6dj9u51j836pw.jpg" alt="21-web-src-components-Post-DELETE_POST_MUTATION"></p>
+<h2><code>onCompleted</code></h2>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/efcnlcx4sy93met5vqly.jpg" alt="22-web-src-components-Post-onCompleted"></p>
+<p>Displays a message letting you know the post has been deleted</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/o6fgt8algt5f2ochy79q.jpg" alt="22-1-web-src-components-Post-onCompleted-rendered"></p>
+<h2><code>onDeleteClick</code></h2>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tlur271kq4temva6o2ru.jpg" alt="23-web-src-components-Post-onDeleteClick"></p>
+<p>Asks you to confirm that you are sure you want to delete the post, and gives the <code>id</code> of the post about to be deleted</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5yxnc2r858800cf73y5n.jpg" alt="23-1-web-src-components-Post-onDeleteClick-rendered"></p>
+<h1><code>rw-segment</code></h1>
+<p>In the return statement of the <code>Post</code> component there is a <code>&lt;div&gt;</code> with the className <code>rw-segment</code> which takes the <code>post</code> object and pulls out the post's <code>id</code>, <code>title</code>, <code>body</code>, and <code>createdAt</code> date.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uampof3jlrwtx4pgqdvq.jpg" alt="24-web-src-components-Post-rw-segment"></p>
+<p>Here's the view in our application:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ocetrswbe7ih41x7pwud.jpg" alt="25-Post-rw-segment-rendered"></p>
+<h1><code>rw-button-group</code></h1>
+<p>This code corresponds to the edit and delete buttons.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8s5309g282e1ar0pxulm.jpg" alt="26-web-src-components-Post-rw-button-group"></p>
+<p>Here's the view in our application:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/p4kra1j13aojdsp53reb.jpg" alt="27-Post-rw-button-group-rendered"></p>
+<p>Now if we look at the entire component we can see how <code>rw-segment</code> and <code>rw-button-group</code> are nested inside empty tags.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/mqshax5qboz32eaf0f6l.jpg" alt="28-web-src-components-Post-return"></p>
+<p>Here's the view for the entire component.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vkyu2uod0pufu5mcdf5f.jpg" alt="29-Post-return-rendered"></p>
+<h1><code>NewPostPage</code></h1>
+<p><code>NewPostPage</code> is a component that takes in <code>NewPost</code> wrapped in the <code>PostsLayout</code> component. The same <code>PostsLayout</code> from <code>PostPage</code> is being reused here but with a different component nested inside.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3d4iwj8nylkk0hgb5ckb.jpg" alt="30-web-src-pages-NewPostPage"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gn3ld4u3r3aeyutjvryx.jpg" alt="31-NewPostPage-rendered"></p>
+<h1><code>NewPost</code></h1>
+<p><code>NewPost</code> is a component that takes in data from the <code>PostForm</code> component and uses <code>CREATE_POST_MUTATION</code> to save the post to the database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/e8r7kn63op9wuvic3ewv.jpg" alt="32-web-src-components-NewPost"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/l7mqsdjpj68lqaqtkqua.jpg" alt="33-new-post-form-rendered"></p>
+<h1><code>PostForm</code></h1>
+<p>Redwood provides several helpers to make your life easier when working with forms. It is a wrapper around <a href="https://react-hook-form.com/">react-hook-form</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/63mf8q41ms8zmvmkdpg6.jpg" alt="34-src-components-PostForm"></p>
+<h1><code>onSubmit</code></h1>
+<p>A prop that accepts a function name or anonymous function to be called if validation is successful. Behind the scenes the handler given to <code>onSubmit</code> is given to react-hook-form's <a href="https://react-hook-form.com/api/#handleSubmit"><code>handleSubmit</code></a> function.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/pxb2jzewpip02t3892zg.jpg" alt="35-src-components-PostForm-onSubmit"></p>
+<h1><code>&lt;Form&gt;</code></h1>
+<p>Surrounds all form elements and provides contexts for errors and form submission.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/u9p64kiu714rywymuxfk.jpg" alt="36-src-components-PostForm"></p>
+<h1><code>&lt;FormError&gt;</code></h1>
+<p>Displays an error message, typically at the top of your form, containing error messages from the server</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kopxz4rajuith88cvq7w.jpg" alt="37-src-components-PostForm-FormError"></p>
+<h1><code>&lt;Label&gt;</code></h1>
+<p>Used in place of the HTML <code>&lt;label&gt;</code> tag and can respond to errors with different styling</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/q2owaav8w3vdqup8pq4o.jpg" alt="38-src-components-PostForm-Title-Label"></p>
+<h1><code>&lt;TextField&gt;</code></h1>
+<p>Renders an HTML <code>&lt;input type=&quot;text&quot;&gt;</code> field, but is registered with react-hook-form to provide some validation and error handling.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/yyiscrr4pk5zdtwl8ktw.jpg" alt="39-src-components-PostForm-Title-TextField"></p>
+<h1><code>&lt;FieldError&gt;</code></h1>
+<p>Displays form validation errors and server errors.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/9vrhbi9fb8p85th2yump.jpg" alt="40-src-components-PostForm-Title-FieldError"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ei6pkhkp0ftu1nlomkxy.jpg" alt="41-Title-rendered"></p>
+<p><code>&lt;Label&gt;</code>, <code>&lt;TextField&gt;</code>, and <code>&lt;FieldError&gt;</code> are also used for the Body.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rvmxv1baq5toyi7ia4pg.jpg" alt="42-Body"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/w3tkymddbblwioxawp4i.jpg" alt="43-Body-rendered"></p>
+<h1><code>&lt;Submit&gt;</code></h1>
+<p>Used in place of <code>&lt;button type=&quot;submit&quot;&gt;</code> and will trigger a validation check and &quot;submission&quot; of the form. It executes the function given to the <code>onSubmit</code> attribute on <code>&lt;Form&gt;</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/yftnmrnnvh7wu2w6smnx.jpg" alt="44-Save"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vjpc0o4riipmg0yr3pbm.jpg" alt="45-Save-rendered"></p>
+<p>And here's the view of the entire <code>&lt;Form&gt;</code> component:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3v46mdwsvorcd1gqosim.jpg" alt="46-PostForm-rendered"></p>
+<h1><code>EditPostPage</code></h1>
+<p>Much like <code>PostPage</code>, <code>EditPostPage</code> is a component that takes in <code>EditPostCell</code> with a post's <code>id</code> as a prop. <code>EditPostCell</code> is wrapped in the <code>PostsLayout</code> component.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wv7r7ll0k1vkx970m7d2.jpg" alt="47-web-src-pages-EditPostPage"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wmzu2lgzbv2aoatffa2o.jpg" alt="48-EditPostPage-rendered"></p>
+<h1><code>EditPostCell</code></h1>
+<p>We have the <code>UPDATE_POST_MUTATION</code> and <code>QUERY</code> object types we discussed at the beginning of this article. At the bottom we are again returning the <code>&lt;PostForm&gt;</code> component except this time we also have a <code>post</code> prop to specify which post is being edited.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vhut3tz01l71dl3jwn96.jpg" alt="49-web-src-components-EditPostCell"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qdiz1vubwwdf27ivtnif.jpg" alt="50-EditPostCell-rendered"></p>
+<h1><code>PostsPage</code></h1>
+<p>In Redwood we use singular &quot;post&quot; when working with a single post object and the data associated with it. When we are working with many posts we use the plural &quot;posts.&quot; Here we are displaying all of our posts, so it's called <code>PostsPage</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/lnfmzpy7q4ukr3uoqgrx.jpg" alt="51-web-src-pages-PostsPage"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7wzcdzu69xwsgus2d1r2.jpg" alt="52-PostsPage-rendered"></p>
+<h1><code>PostsCell</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kjgnfqrdujdyrq3vuvj2.jpg" alt="53-web-src-components-PostsCell"></p>
+<p>Here's the view if you have no posts:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/amyxsy9qenzoh3o2q8co.jpg" alt="54-posts-page"></p>
+<h1><code>Posts</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/snm1sfn10k3zuvwi9nr2.jpg" alt="55-web-src-components-Posts"></p>
+<p><code>truncate</code> limits the length of the posts being shown, and <code>timeTag</code> encapsulates the logic for created a timestamp for each post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/juwt14splx7gtt33bkus.jpg" alt="56-web-src-components-Posts-PostsList"></p>
+<p><code>onCompleted</code> and <code>onDeleteClick</code> are the same functions that we saw in the <code>NewPost</code> component.</p>
+<h1><code>rw-table-wrapper-responsive</code></h1>
+<p>We have a <code>div</code> that wraps one big table with the className <code>rw-table</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8wzutcd2fkxjhp73quj6.jpg" alt="57-web-src-components-Posts-return"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/o1f2pi8mxmzxmsj86hb7.jpg" alt="58-Posts-rw-table-wrapper-responsive-rendered"></p>
+<p>This is a lot of code so we'll break this down to the table head and table body, and the table body is broken down into table posts and table actions.</p>
+<ol>
+<li>Table head (47-55)</li>
+<li>Table body (56-91)</li>
+<li>Table posts (57-62)</li>
+<li>Table actions (63-88)</li>
+</ol>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8xgl6k2x92s2lstwdi3f.jpg" alt="59-Posts-rw-table-wrapper-responsive"></p>
+<h1><code>&lt;thead&gt;</code></h1>
+<p>The table head lets us know the different fields.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/lwnqvinu625el0rkjcb8.jpg" alt="60-Posts-thead"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/glbmk5wznlufgel4t4z1.jpg" alt="61-Posts-thead-rendered"></p>
+<h1><code>&lt;tbody&gt;</code></h1>
+<p>In the first half of the table body we map over the data passed through the <code>post</code> prop, use the post's <code>id</code> for the <code>key</code> and then pull out the <code>id</code>, <code>title</code>, <code>body</code>, and <code>createdAt</code> time.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/i47ffyvrkd8ozjv162io.jpg" alt="62-Posts-td"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/11wn58igymraxfee2li3.jpg" alt="63-Posts-td-rendered"></p>
+<p>In the second half of the table body we have links to go to a post's page, edit a post, or delete a post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jz3rfn88x9igohxo412u.jpg" alt="64-Posts-rw-table-actions"></p>
+<p>Here's the view:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/834jvs58ynt6vz1exwou.jpg" alt="65-Posts-rw-table-actions-rendered"></p>
+<h1><code>generate cell</code></h1>
+<p>Now we are going to create a cell that will render the most recent blog posts to the front page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/yzdzjfaayztr9b5t5180.jpg" alt="66-yarn-redwood-generate-cell-BlogPosts"></p>
+<p>Redwood will generate a file called <code>BlogPostsCell.js</code> and a file for testing called <code>BlogPostsCell.test.js</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2ica696wtl6kl0q04udn.jpg" alt="67-generating-cell-files"></p>
+<p>This will generate a <code>QUERY</code> for us and use <code>JSON.stringify</code> to render the results of the query. But there is one thing we need to change.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4xircas45g7ws73y4fp9.jpg" alt="68-web-src-components-BlogPostsCell"></p>
+<p>We need to make a slight adjustment to get our QUERY to match up with the schema that we have already created. Change <code>blogPosts</code> on lines 3, 15, 16 to just <code>posts</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/phubewo9nep40b98v08s.jpg" alt="69-web-src-components-BlogPostsCell-posts-edit"></p>
+<p>Now we can take the <code>BlogPostsCell</code> component and insert it into our <code>HomePage</code> component. We need to first import it, and then place the tag inside of the <code>BlogLayout</code> tags.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/joyk0mneceqc4qsn63dn.jpg" alt="70-BlogPostsCell-in-HomePage"></p>
+<p>This gives us just the <code>id</code> and the <code>typename</code> which is <code>Post</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ysnrohoraf25ul47iw22.jpg" alt="71-BlogPostsCell-render-HomePage"></p>
+<p>Lets go back to our <code>QUERY</code> and add in <code>title</code>, <code>body</code>, and <code>createdAt</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/r2gi8723ql9tjlgkxyro.jpg" alt="72-web-src-components-BlogPostsCell-id-title-body-createdAt"></p>
+<p>Now we should get all the info we need on the home page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/s7fsmj90nm6j0m0ir2h5.jpg" alt="73-BlogPostsCell-render-id-title-body-createdAt"></p>
+<p>This doesn't look very good though, I don't think anyone would want to read this blog. In the <code>BlogPostsCell</code> file inside <code>Success</code> we can create a component for our posts and give it a little structure.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3kb5ndh5vxfaodu5kfv0.jpg" alt="74-BlogPostsCell-map-over-posts"></p>
+<p>We'll do some more styling later on but for now we have our posts rendered to the front page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4nion84xg9lco3guqomu.jpg" alt="75-BlogPostsCell-render-map-over-posts"></p>
+<p>In the next part we'll create a contact form.</p>
+<h1>Part 5 - Contact</h1>
+<blockquote>
+<p><em>We see it as a Rails replacement. Anything you would normally do with Rails we hope that you’ll be able to do with Redwood.</em></p>
+<p><em><strong>Tom Preston-Werner</strong></em><br>
+<em><strong><a href="https://www.fullstackradio.com/episodes/138">Full Stack Radio 138</a></strong></em></p>
+</blockquote>
+<p>In this part we'll be combining everything we've learned up to this point to generate a contact page and take input from a user. We'll be using the same form tags that we learned about in part 4, which are wrappers around <a href="https://react-hook-form.com/get-started">react-hook-form</a>.</p>
+<p>This is the simplest way to create a form, but Redwood can be used with other popular React form libraries like Formik or you can use react-hook-form directly.</p>
+<p>Forms are a topic I'm particularly passionate about and believe receive far too little attention in bootcamp curriculums and online tutorials. They may not be the most exciting topic, but I encourage you to not gloss over these parts of the framework.</p>
+<h1><code>generate page</code></h1>
+<p>The first step is to enter the <code>yarn redwood generate page</code> command to create our contact page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gnky2rp1tjrwr13qfokx.jpg" alt="01-yarn-redwood-generate-page-contact"></p>
+<p>This same command could be shorted to <code>yarn rw g page</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uwwn9tlak4c6efgcpr7b.jpg" alt="02-generating-page-files"></p>
+<h1><code>web/src/pages/ContactPage</code></h1>
+<p>This generates a folder called <code>ContactPage</code> in our <code>web/src/pages</code> folder, and creates two files, <code>ContactPage.js</code> and <code>ContactPage.test.js</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/oqifajbebykifbtn4b97.jpg" alt="03-pages-folder"></p>
+<p>This should look familiar if you've followed along with the whole series.</p>
+<h1><code>ContactPage.js</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/t0tnp2nnh789f9w36d67.jpg" alt="04-ContactPage"></p>
+<p>Our <code>ContactPage</code> component contains the same boilerplate we saw when we created our home page and our about page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rca3x88upx0ygw2rtgjo.jpg" alt="05-ContactPage-rendered"></p>
+<p>Lets go to our BlogLayout and add a link to the contact page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/pqpeyfrojltroi1b7gu7.jpg" alt="06-routes.contact"></p>
+<p>Now we'll import <code>BlogLayout</code> into <code>ContactPage.js</code> and wrap our contact page content in the <code>BlogLayout</code> component.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jn2jhta2c7y4b39bm7vf.jpg" alt="07-ContactPage-BlogLayout"></p>
+<p>We can now navigate to any of our three pages.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ghcflmtowr04qa52pybq.jpg" alt="08-ContactPage-BlogLayout-rendered"></p>
+<p>We're going to import the <code>Form</code> tags that we looked at in the previous section. Refer to <a href="https://dev.to/ajcwebdev/a-first-look-at-redwood-js-part-4-2m0g">part 4</a> or the <a href="https://redwoodjs.com/docs/form">Redwoodjs docs</a> to learn more about these tags.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/31uifks0kpj1cewv9qnt.jpg" alt="09-ContactPage-Form-imports"></p>
+<p>Now that we've imported them lets create a <code>Form</code> with a <code>Label</code> and <code>TextField</code> for name, and a <code>Submit</code> button.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5l2goqr45sb3yin4ee0z.jpg" alt="10-ContactPage-Form-Label-TextField-Submit"></p>
+<p>Here is the label, input, and button.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xgrnf2eo0iw84s19rpda.jpg" alt="11-ContactPage-Form-rendered"></p>
+<p>We'll add a little CSS in a moment, but first lets see what happens if we try to input data.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/uq14xbl4dtr0w742eicp.jpg" alt="12-ContactPage-input"></p>
+<p>If we click the save button we'll get an error.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/hb4gmxc86wcmdtuzhiy2.jpg" alt="13-error-message"></p>
+<p>This makes sense, we haven't told our form what to do yet with the data. Let's create a function called <code>onSubmit</code> that will take in a <code>data</code> object and console log the <code>data</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7sny4ozuquipsgnb79fr.jpg" alt="14-ContactPage-onSubmit"></p>
+<p>The <code>onSubmit</code> prop accepts a function name or anonymous function to be called if validation is successful. This function will be called with a single object containing key/value pairs of all Redwood form helper fields in your form.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gtmct9loe4l157euyu9z.jpg" alt="15-ContactPage-Form-onSubmit"></p>
+<p>Now if enter data into the form and click save we'll see the following in our console:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1kh371fa5okutqyast5q.jpg" alt="16-console.log(data)"></p>
+<p>Our input is contained in the <code>data</code> object. Right now it only has a key/value pair for name but we'll be adding more in a moment. But before doing that lets see what we can do with this <code>data</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/9gd75g46o52c32wz5y6i.jpg" alt="17-ContactPage-onSubmit-data.name"></p>
+<p>We can pull out the value of name by console logging <code>data.name</code>:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tejm0ez4iagkibw6tgfc.jpg" alt="18-console.log(data.name)"></p>
+<p>We want to be able to accept a longer message from our users, so we're going to import the <code>TextAreaField</code> tag.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3dmk4lpgjfi0g2k6ax7w.jpg" alt="19-ContactPage-TextAreaField-import"></p>
+<p>We now how a <code>TextField</code> for name and email, and a <code>TextAreaField</code> for a message.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7sl845kphfn7u77ger1b.jpg" alt="20-ContactPage-email-message"></p>
+<p>To make this look a little nicer we're going to include just a little CSS.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wuw2gdiimpwb69h2tyct.jpg" alt="21-index.css"></p>
+<p>Our buttons, inputs, and labels are now <code>display: block</code> which adds a line break after any appearance of these tags, and the label also has a little bit of margin on the top.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/aez5p7kwdg9bmu2qkaet.jpg" alt="22-ContactPage-email-message-rendered"></p>
+<p>Lets test out all the fields.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ij9nzr2f3mzklww3okab.jpg" alt="23-ContactPage-email-message-input"></p>
+<p>We now are getting back an object with 3 key/value pairs.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/j0l66t5v4dg5ts0wreuv.jpg" alt="24-ContactPage-email-message-console.log"></p>
+<p>We can console log any part of the object that we want.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/w0aaeha6su8ppez2rwfl.jpg" alt="25-data.email-data.message"></p>
+<p>Now if we look at our console we'll see each output and it even tells us which file and line corresponds to each piece of data.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/k2a1l3wgl38h2j3imv40.jpg" alt="26-data.email-data.message-console.log"></p>
+<p>What happens if we only fill out some of the form and try to submit?</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/l15pcrt8vroptzujvjts.jpg" alt="27-just-name-input"></p>
+<p>The form doesn't care, it simply takes the empty inputs and returns an empty string.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/i8u3bizp271soc4yo5u0.jpg" alt="28-empty-email-message"></p>
+<p>Lets add some validation so the user can't submit the form unless they've given input for all three fields.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wb59lwmmwu4fcb840alq.jpg" alt="29-errorClassName-validation"></p>
+<p>We gave each <code>TextField</code> an <code>errorClassName</code> with the attribute <code>error</code>. The <code>validation</code> prop accepts an object containing options for react-hook-form. Right now we're just adding the <code>required</code> attribute, but later we'll use the <code>validation</code> prop for a regular expression.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/d64m79tnai9smdypvjpo.jpg" alt="30-input.error-textarea.error-label.error"></p>
+<p>In our CSS we'll add the following properties for errors.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ievk6oz92vhx7xo10r6x.jpg" alt="31-textfield-errors"></p>
+<p>Now when we try to submit an empty field we see the color change to red.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xk6otdf9nfbterim9jth.jpg" alt="32-textfield-errors-with-name"></p>
+<p>Once we give input the red error color goes away.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ahq77s6l4vck30leeoku.jpg" alt="33-invalid-email"></p>
+<p>There's still an issue, which is we can submit an email that is invalid.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tyo3m4a64famwe53ybcf.jpg" alt="34-email-regex"></p>
+<p>Here's a regular expression provided in the Redwood tutorial video. Don't ask me to explain it, cause I don't know what it's doing. All I know is it does a thing with the <code>@</code> symbol, then it does another thing with the <code>.</code> symbol, then it does some other things and figures out if you gave an email or not. Google &quot;regex tutorials&quot; if that wasn't a satisfactory explanation for you.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8767bg0540xoric7emeh.jpg" alt="35-email-error"></p>
+<p>Now we get an error if we don't provide a valid email address. It would really be nice if we could tell our user why they are getting an error.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/k94z8brdv9579rren5jt.jpg" alt="36-import-FieldError"></p>
+<p>We're going to import <code>FieldError</code> to show error messages to our users.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/nanx830w4mi64lnt5wlx.jpg" alt="37-FieldError-name-email-message"></p>
+<p>Now if we try to submit without giving input we are told that the field is required.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ru2fv4gbj42b8z2zi6y2.jpg" alt="38-name-email-message-required"></p>
+<p>If we enter an invalid email we are told that the email is not formatted correctly.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8m3vz5y783ig4jn7q2fi.jpg" alt="39-email-formatted-incorrectly"></p>
+<p>If we add the <code>errorClassName</code> to the <code>Label</code> tags we'll also turn the labels red if there's an error.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/toesfu3e17p12qept4nf.jpg" alt="40-label-errorClassName"></p>
+<p>Now we have the label and the input field turn red if there's an error.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xh9903231ih17rtema60.jpg" alt="41-label-errors"></p>
+<p>Might as well make everything red while we're at it.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/74710e4qxk9vn66gftl8.jpg" alt="42-FieldError-style-red"></p>
+<p>Since the <code>FieldError</code> will only show on errors we can just inline styles with <code>style=</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/k94wcphsoe2jcqakb8xv.jpg" alt="43-all-red"></p>
+<p>Glorious red as far as the eye can see. Something's still not right though. Lets get &quot;message is required&quot; onto it's own line.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7l7znwd69ctzp9511s1j.jpg" alt="44-message-error-display-block"></p>
+<p>Now it's <code>display: 'block'</code> which should put the error on it's own line.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xc4y2ebmi9ds2bcd0smr.jpg" alt="45-message-error-display-block-rendered"></p>
+<p>It would also be nice if we could tell the user a field is required before they hit the submit button. We'll do that by adding <code>mode: 'onBlur'</code> and pass that into <code>validation</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wpdlpvig8uzyhs09v7hq.jpg" alt="46-form-validation-mode-onBlur"></p>
+<p>Now when we enter a field and leave without filling it out we are immediately given feedback.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/m9i7zrgesaq2sl1exxft.jpg" alt="47-form-validation-mode-onBlur-rendered"></p>
+<p>And for now that's our entire form. Here's a look at all the form code.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/23faa5uxpnw0yftygxj6.jpg" alt="48-entire-form"></p>
+<p>In the next part we'll connect our contact form to our database so we can persistent the data entered into the form.</p>
+<h1>Part 6 - GraphQL</h1>
+<p>In this part we'll connect our contact form to our database so we can persistent the data entered into the form.</p>
+<p>To modify our database we'll go to our <code>schema.prisma</code> file and add a <code>Contact</code> model.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/c43cyb5b5fx9okxnjwk3.jpg" alt="01-Contact-model"></p>
+<p>The model takes the <code>name</code>, <code>email</code>, and <code>message</code> strings from the form inputs. It creates an <code>id</code> with <code>autoincrement()</code> and <code>createdAt</code> time with <code>now()</code>.</p>
+<p>Enter <code>yarn redwood db save</code> to create a migration schema.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xn7b5ogaaiewjuclfb0z.jpg" alt="02-db-save"></p>
+<p>You'll be asked to name the migration. I named mine <code>create-contact</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5rsuqs9tccetjg86hfcu.jpg" alt="03-name-of-migration"></p>
+<p>This will create another <code>migrations</code> directory with a schema file, README, and <code>steps.json</code> file like we saw in part 3.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qie8znsllijf4yseb0gj.jpg" alt="04-migrate-save--name"></p>
+<p>Enter <code>yarn redwood db up</code> to apply that migration to the database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tu2fu0ca9dgwat65am53.jpg" alt="05-db-up"></p>
+<p>This will output the database actions applied after the migration.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/e1z7owcfkxkwdipidjhw.jpg" alt="06-migrate-up"></p>
+<p>Database actions include three <code>RawSql</code> statements and one <code>CreateTable</code> statement.</p>
+<p>Lastly a Prisma client will be generated.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/yug1wkswfh90w6xdu4rm.jpg" alt="07-generate-Prisma-client"></p>
+<p>Enter <code>yarn redwood generate sdl contact</code> to create the schema definition language for the contact form.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qqiyvy9b9cgi7aze3j80.jpg" alt="08-generate-sdl-contact"></p>
+<p>This will create an sdl in your <code>graphql</code> folder and a resolver in your <code>services</code> folder.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/v2g3y3y00f8rccgebebr.jpg" alt="09-generating-SDL-files"></p>
+<p>We created three files:</p>
+<ul>
+<li><code>contacts.sdl.js</code> in the <code>graphql</code> folder</li>
+<li><code>contacts.js</code> in the <code>services/contacts</code> folder</li>
+<li><code>contacts.test.js</code> in the <code>services/contacts</code> folder</li>
+</ul>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jl7rrs5f0p3ox0jyrc9q.jpg" alt="10-api-src-folder"></p>
+<p>Lets take a look at our schema definition language first.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jadii0kc8jhuws7fu4qx.jpg" alt="11-contacts.sdl.js"></p>
+<p>The sdl has a <code>Contact</code> type and a <code>Query</code> type and inputs for creating a contact and updating a contact. Everything that is required for the database is required for GraphQL.</p>
+<p>We need to create our own mutation. We don't get this by default because the sdl generator doesn't know what we plan to do with the schema.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4khk66kfbb87madmzo02.jpg" alt="12-type-Mutation"></p>
+<p>Our <code>Mutation</code> type will be called <code>createContact</code>. The input is <code>CreateContactInput!</code> and it returns <code>Contact</code>.</p>
+<p>Now lets look at our <code>contacts</code> service. It has a resolver for the <code>Query</code> type from our sdl.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tkmvc85is2u7mrpajrbm.jpg" alt="13-contacts.js"></p>
+<p>Lets create a resolver for <code>createContact</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ak4zrylmiiviabn4l3ic.jpg" alt="14-createContact-resolver"></p>
+<p>This takes <code>input</code> from the browser and adds it to the database.</p>
+<p>In our <code>ContactPage</code> file we'll add the mutation and assign it to <code>CREATE_CONTACT</code>. It is a common convention to use all caps for our mutations.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dyhfa9i70wo5npmuraax.jpg" alt="15-CREATE_CONTACT-mutation"></p>
+<p>We will just return the <code>id</code> since the user will not see this.</p>
+<p>Inside the <code>ContactPage</code> component we'll call <code>useMutation()</code>. We pass an object <code>create</code> with variables that are defined in <code>CREATE_CONTACT</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jqytpgppsleqfwaiytbd.jpg" alt="16-useMutation"></p>
+<p>The input is the actual object containing the <code>data</code> which is assigned to <code>variables</code> and passed to the <code>create()</code> function inside <code>onSubmit</code>.</p>
+<p>Make sure to import <code>useMutation</code> at the top of the file.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qy9rbqv38umqyda5b5vj.jpg" alt="17-import-useMutation"></p>
+<p>We are now ready to enter our data. Enter a name, email, and message and click the Save button.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/iej5joqzutcnrymnymds.jpg" alt="18-form-input"></p>
+<p>Our form gives us the following object which we saw in the previous part.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kvcgouy4bnafsxp30cyg.jpg" alt="19-form-input-console-log"></p>
+<p>We can now check to make sure it was saved. Remember all the way back in part 1 when we said there was something else running on <code>localhost:8911</code>?</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dhdqv7dy8r5okpi3dizm.jpg" alt="20-localhost-8911"></p>
+<p>This is how we access the graphiQL interface. Click the graphql link.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gocu73heuv7b92vyooyz.jpg" alt="21-graphiQL"></p>
+<p>GraphiQL is like an IDE for your GraphQL queries. On the left side you'll enter a query, and after clicking the middle play button the response will appear on the right side.</p>
+<p>Lets create a <code>contact</code> query that will return all the <code>contacts</code> in the database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/skitmwpammuhs1j9rx88.jpg" alt="22-contact-query"></p>
+<p>We'll ask for the <code>id</code>, <code>name</code>, <code>email</code>, and <code>message</code>.</p>
+<p>Click the play button and on the right side you'll receive a <code>data</code> object containing whatever your entered into your form.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/efazzobjp57xlnrrg10w.jpg" alt="23-contact-data"></p>
+<p>The <code>data</code> object contains a <code>contacts</code> array with objects containing the form input.</p>
+<p>There's a few more things we can add to our form to make the user experience a little better. We want to give the user some immediate feedback after they click the save button. We also want to put in safeguards in case the user feels like clicking the save button many times in fast succession.</p>
+<p>To do this we'll add a <code>loading</code> object after <code>create</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/v19mts3la6gn4ndwwzon.jpg" alt="24-loading"></p>
+<p><code>loading</code> will be true while the mutation is being performed, and will change to false when the mutation is complete.</p>
+<p>We will add <code>disabled</code> to the <code>Submit</code> button and pass it the <code>loading</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ly3s1q3cfrglcu0ujy2f.jpg" alt="25-Submit-disabled-loading"></p>
+<p>While the mutation is in progress disabled is true, and once it is complete it will change to false.</p>
+<p>To test this out go to your Network tab in your browsers devtools. Here we can simulate slow 3G.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/s8yz7ik6srnez501wich.jpg" alt="26-slow-3G"></p>
+<p>Enter some more data and click the Save button.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xhk3hsq685x9vbigl660.jpg" alt="27-save-button-greyed-out"></p>
+<p>Now when you click the Save button it will be greyed out for a moment while the input is saved to the database.</p>
+<p>Another problem with this form is the input sticks around on the page even after it is submitted. It would be better if we cleared the fields after submitting.</p>
+<p>We can do this by importing <code>useForm</code> from <code>react-hook-form</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qm40kw1ilmxmhmrau32h.jpg" alt="28-import-useForm"></p>
+<p>Inside our <code>ContactPage</code> component we'll create a <code>formMethods</code> variable and assign it the <code>useForm()</code> function that we just imported.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/g5cpom8hvye3qb433agh.jpg" alt="29-formMethods"></p>
+<p>Inside <code>&lt;Form&gt;</code> we'll add <code>formMethods</code> and pass it <code>formMethods</code> as a prop.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4huv3mrojbtg8ei9515e.jpg" alt="30-Form-formMethods"></p>
+<p>This gives us access to the reset function. In <code>useMutation</code> we'll add a second parameter, which is a callback called <code>onCompleted</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7jsntqefz3d350cnckey.jpg" alt="31-onCompleted"></p>
+<p>When the mutation is complete we'll call <code>formMethods.reset()</code> and display an <code>alert()</code> saying <code>'Thanks for the message!'</code></p>
+<p>Lets test this out in our browser. Enter some more data and click the Save button.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/pkh5dc09mtfxdfgcsto4.jpg" alt="32-alert-thanks-for-the-message"></p>
+<p>First the alert message appears on the screen. After clicking Ok the form will be cleared.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cde29kj2j1nussmbrxvu.jpg" alt="33-form-cleared"></p>
+<p>Another thing we can improve is the label. Right now it is just defaulting to whatever is entered as the <code>name</code> attribute in <code>&lt;Label&gt;</code>.</p>
+<p>We can add a closing <code>&lt;/Label&gt;</code> tag and enter something between the tags to change the label. Let's capitalize the labels.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f2c1zxdshjp3mafjesf5.jpg" alt="34-Name-label"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/oxqk7l87px13roqlahrw.jpg" alt="35-Email-label"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/nkijmhmo2y1iirldiv2q.jpg" alt="36-Message-label"></p>
+<p>Check your form for the changes.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vot61he4m2gqffmhc5zc.jpg" alt="37-updated-form-labels"></p>
+<p>Right now we just have client side validation. We also want to validate the input again when it hits the database, so the last thing we'll add is server side validation.</p>
+<p>We'll do this in our <code>contacts.js</code> file inside the <code>services/contacts</code> folder. This is the last place the data travels before entering the database.</p>
+<p>First import <code>UserInputError</code> from <code>@redwoodjs/api</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ed684sc1mj3i8qhglbwl.jpg" alt="38-import-UserInputError"></p>
+<p>Then we'll create a <code>validate</code> function that takes the <code>input</code> and checks if there is an input for email and if it matches the email regex.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5zsq2odq9tnalv4kca6r.jpg" alt="39-validate-function"></p>
+<p>If there is no input or it isn't a valid email it will throw an object with an error message.</p>
+<p>Add this function to <code>createContact</code> and pass it the input right before returning the input to the database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/shcd9lnx0k4ljz4ayqt8.jpg" alt="40-validate-input"></p>
+<p>To get access to this we'll go back to our <code>ContactPage</code> file and pass <code>error</code> into our mutation after the <code>loading</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2q8ijixqc9cc15pwu8h3.jpg" alt="41-error-useMutation"></p>
+<p>Redwood gives us another helper to do this. Import <code>FormError</code> at the top of the page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/436i7gv1obqvxelposwh.jpg" alt="42-import-FormError"></p>
+<p>After the opening <code>&lt;Form&gt;</code> tag we'll add the <code>&lt;FormError&gt;</code> tag. Enter <code>error={error}</code> and close off the tag. Finally add <code>error={error}</code> to the <code>&lt;Form&gt;</code> tag itself.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8hivftrgxfyv8po89rt9.jpg" alt="43-Form-error-error"></p>
+<p>Now we get an error from the server at the top of the page.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5jgvz9g4h0yzu2524vkg.jpg" alt="44-cant-create-new-contact"></p>
+<p>In the next part we'll finally deploy our project to the internet with Netlify and Heroku.</p>
+<h1>Part 7 - Deploy</h1>
+<p>In this <a href="https://www.merriam-webster.com/dictionary/penultimate">penultimate</a> part we will:</p>
+<ul>
+<li>Deploy our frontend application with Serverless functions on Netlify</li>
+<li>Deploy our backend to a hosted Postgres database on Heroku</li>
+</ul>
+<p>First you will need a Github repo with your Redwood project. Mine is <a href="https://github.com/ajcwebdev/ajcwebdev/">here</a> and contains branches that match up with the state of the project at the end of each of the first six parts. You'll want to make sure the latest branch is merged into the main branch.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/oqxtndfdnigckcbfe0ge.jpg" alt="02-github-repo"></p>
+<p>Next you'll need an account on <a href="http://netlify.com/">Netlify</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gsqffnnk0hljq7i1m91d.jpg" alt="03-netlify-sites"></p>
+<p>Click <code>New site from Git</code> to create a new site from git.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1b8eka5x2xzfij2dguum.jpg" alt="04-new-site-from-git"></p>
+<p>You can also use GitLab or Bitbucket.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rf47bzvdpckdcrcu89mz.jpg" alt="05-create-a-new-site"></p>
+<p>Enter the name of your repo into the search bar.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7ga9cvn445ujqaizti5d.jpg" alt="06-ajcwebdev-repo"></p>
+<p>Select the repo.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4v0psjhaw7ea41cntjie.jpg" alt="07-ajcwebdev/ajcwebdev"></p>
+<p>Redwood should select the following build instructions by default.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qrnaw4skocvlwzfee0l8.jpg" alt="08-build-defaults"></p>
+<p>Click <code>Deploy site</code> to deploy the site.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/572nknzho262jp870t9x.jpg" alt="09-site-deploy-in-progress"></p>
+<p>If we go to the <code>Deploys</code> section we can see more information about the build.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/0ohsanro33avkm5e25n2.jpg" alt="10-netlify-deploys"></p>
+<p>Your build should take at least a minute or more, so don't freak out if it doesn't work immediately.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gey04r5sox4b2kg3b35u.jpg" alt="11-deploy-published"></p>
+<p>Our deploy took 1 minute and 35 seconds and we can also see a summary of the deploy.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cvzuzyy424g8x4p2pwak.jpg" alt="12-deploy-summary"></p>
+<p>We haven't really deployed the site though, because right now we just have the frontend deployed to Netlify. But we haven't done anything with our database so we should expect an error:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/h3usifvixdlpef3ly033.jpg" alt="13-error-502"></p>
+<p>To get our database online we'll need to set up another account and project on <a href="heroku.com">Heroku</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2q0t1aqwqn6988wpkev2.jpg" alt="14-heroku-apps"></p>
+<p>If this is your first project you can click the <code>Create new app</code> button in the middle to create a new app or you can click the <code>New</code> button on the top right.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vw15vd439zqqtxp5jro6.jpg" alt="15-create-new-app"></p>
+<p>We'll give the app the same name as the Github repo.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/rn0nb2tu3e2w6hn5oj9t.jpg" alt="16-app-name-ajcwebdev"></p>
+<p>Now we have a dashboard for our project much like we did in Netlify.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kcz8vpv2dubbdjbfe400.jpg" alt="17-heroku-deploy"></p>
+<p>Lets take a look at our <code>Resources</code> tab so we can provision our database.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/bsspznyekikwp5ykb8va.jpg" alt="18-heroku-resources"></p>
+<p>Click <code>Find more add-ons</code> to find more add-ons.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/iiloqno840koo34sh8vl.jpg" alt="19-find-more-add-ons"></p>
+<p>There are many add-ons. We only need one, Heroku Postgres. Why Postgres? <a href="https://www.heavybit.com/library/podcasts/jamstack-radio/ep-35-graphql-querying-with-hasuras-tanmai-gopal/">Because Postgres is the best database. There is no other database (02:37)</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/opa5syr4igu12lzybb7x.jpg" alt="20-heroku-postgres"></p>
+<p>Click <code>Install Heroku Postgres</code> to install Heroku Postgres.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/iqkc8u5w9ku2l9h0zqyy.jpg" alt="21-install-heroku-postgres"></p>
+<p>You can select your add-on plan, we'll be using the free option.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jtc3jh4e44cbncuw2apu.jpg" alt="22-provision-add-on"></p>
+<p>Enter the name of your heroku app and it should appear in the autocomplete.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/pnz7t87xknbmd2juxdb5.jpg" alt="23-app-to-provision-to"></p>
+<p>Select your project and click <code>Provision add-on</code> to provision the add-on.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/trg087x8p3ap259mkpf1.jpg" alt="24-click-provision-add-on-button"></p>
+<p>Now our database is installed.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/vq4q9dk3kddee29vii8m.jpg" alt="25-app-provisioned"></p>
+<p>Lets go to the <code>Settings</code> tab so we can connect this database to our frontend. Click <code>Reveal Config Vars</code> to reveal the config variables.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/89eall7eshul9v3jpk51.jpg" alt="26-heroku-settings"></p>
+<p>We can see a key/value pair for the database URL, normally it wouldn't be wise to share environment variables online, but this project is purely explanatory and won't be holding any sensitive data.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/h851tvjmkn1k8nuci0h8.jpg" alt="27-enter-config-vars"></p>
+<p>Select the value and copy it to your clipboard. We'll be using this back in our Netlify project.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/tdbwdkrtuhovjv7j71qr.jpg" alt="28-copy-postgres-vars"></p>
+<p>Select <code>Deploy settings</code> to go to your deploy settings.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/l7314ljzh8uf6u5vgt0o.jpg" alt="29-netlify-deploys"></p>
+<p>Under <code>Build &amp; deploy</code> select <code>Environment</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/oencxni0wlxc7fzjj7pz.jpg" alt="32-environment-variables"></p>
+<p>Click the <code>Edit variables</code> button to edit the variables.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/q0a0k2bapyqhzq6phdbq.jpg" alt="33-edit-variables"></p>
+<p>We're going to use the key/value pair from our Heroku Postgres app.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/laxg642p28rty060zpjb.jpg" alt="34-set-environment-variables"></p>
+<p>First enter <code>DATABASE_URL</code> for the key.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4a1q892c8p33dd4384n1.jpg" alt="35-DATABASE_URL"></p>
+<p>Then paste the value.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6rp62306rnvvhm9m0glw.jpg" alt="36-paste-postgres-vars"></p>
+<p>At the end of the value add <code>?connection_limit=1</code>. This makes sure that each AWS Lambda only opens one database connection.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/122c8k9jgxymmjas0wjr.jpg" alt="37-add-connection-limit"></p>
+<p>We'll create one more variable.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dw8kgm76770kozcl3i7n.jpg" alt="38-new-variable"></p>
+<p>It will be called <code>BINARY_TARGET</code> with the value <code>rhel-openssl-1.0-x</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/i36b0ueh2ie3rnp2tq2t.jpg" alt="39-BINARY_TARGET"></p>
+<p>This is a setting for Prisma which needs to know how to generate the client libraries to access the database. Usually it can auto detect that.</p>
+<p>However, in this case the libraries that are being built on Netlify are running on Ubuntu. The API deployed to AWS Lambda is running a flavor of RedHat Enterprise Linux. We need to let Prisma know to build for RedHat and not for Ubuntu (<a href="https://www.youtube.com/watch?v=UpD3HyuZkvY">thanks Rob for the explanation (04:09)</a>).</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wk7akue4m5mxm3a1l459.jpg" alt="40-save-variables"></p>
+<p>If we go back to our code in <code>schema.prisma</code> we can see that we set our datasource to the environment variable <code>DATABASE_URL</code> and our client to <code>BINARY_TARGET</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/nr6dw5tqryjt9mkf03cv.jpg" alt="41-schema-datasource-generator"></p>
+<p>And then Prisma looks up our local environment file. We override these once you deploy to Netlify.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/96qfggo0xtf1shzcwjun.jpg" alt="42-env.defaults"></p>
+<p>Click the <code>Trigger deploy</code> button to trigger a deploy and select <code>Deploy site</code> to deploy the site.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zytfidzhpakovjtb3c1p.jpg" alt="43-trigger-deploy"></p>
+<p>You will now receive a great series of logs.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/z40cboxq13wp1mrp3fn1.jpg" alt="44-build-logs-1"></p>
+<p>The logs will detail the build process.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8yy4l7k14bufb3u4s7ig.jpg" alt="45-build-logs-2"></p>
+<p>Do not concern yourself with the logs.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/eootzwb58yjda38pbike.jpg" alt="46-build-logs-3"></p>
+<p>Let the logs wash over you and through you.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/prcyns2i2i2kbvmtu5wf.jpg" alt="47-build-logs-4"></p>
+<p>Raft is a <a href="https://www.youtube.com/watch?v=w9GP7MNbaRc&amp;t=31m47s">bunch of logs that get you off Paxos island</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/la1l401gkdl7hjmq3h0l.jpg" alt="48-build-logs-5"></p>
+<p>Now let's go back to our site.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/q1l566zivlxxzhm17k4k.jpg" alt="49-website-empty"></p>
+<p>Lets create a new post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/zyj83rse42utpkes6fdp.jpg" alt="50-posts"></p>
+<p>Click the <code>NEW POST</code> button to make a new post. Enter a title and body.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/mvvxj6fakcacjpfxni42.jpg" alt="51-new-post"></p>
+<p>Save the new post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/39jf6jl3atvs4bkih0gq.jpg" alt="52-first-post-created"></p>
+<p>Lets try to edit our new post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gnrv1fxfx8f75gcg5c4o.jpg" alt="53-first-post-edit"></p>
+<p>Save your edit to the post.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gumgl08iaq5b3ndae1rk.jpg" alt="54-first-post-edit-working"></p>
+<p>It looks like it's working. Lets check the front page to make sure it's really working.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ebsgis2sngfwh7qoon6p.jpg" alt="55-front-page-working"></p>
+<p>In the next and final part we'll add authentication to our application, something that has never confused any developer ever.</p>
+<h1>Part 8 - Auth</h1>
+<p>You made it to the last part!</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/jewl54ynr64v8hkfbugb.gif" alt="Alt Text"></p>
+<p>We're going to implement role-based authentication so no one can edit our blog willy-nilly. But before we do that let's give ourselves a custom domain. We can do this in our Settings on Netlify.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/k8b0eggbgpnnhxivsugr.jpg" alt="01-netlify-settings"></p>
+<p>Go to Domain management and you should see a box for Custom domains.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7p33rzro0uvqp1vdxyyq.jpg" alt="02-custom-domains"></p>
+<p>Netlify assigns a random domain name by default but gives the option to edit it.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/pmiu3qoa77l36epvxnxp.jpg" alt="03-change-site-name"></p>
+<p>I'll change my site name to <code>ajcwebdev-redwood</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/lyhldf9h1ugjwave5vx9.jpg" alt="04-ajcwebdev-redwood-netlify-app"></p>
+<p>Click Save and it'll reflect your new site name.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/hdljrrgq5g7yre3a8wbd.jpg" alt="05-default-subdomain"></p>
+<p>Now lets go to the Identity tab.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/qgg3ny0rgl7wsdp6818c.jpg" alt="06-netlify-identity"></p>
+<p>Click <code>Enable Identity</code> to enable identity.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/fjgpii8n9mmvtsdp083n.jpg" alt="07-netlify-identity-level-0"></p>
+<p>Here we can invite users to give them permissions. We are going to lock down our site and only give ourselves permission to see or edit anything. Click <code>Invite user</code> to invite a user.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/md0mzxm5jw9zrrtak2nu.jpg" alt="08-invite-users"></p>
+<p>We'll come back to that, but first we're going to learn one more <code>redwood generate</code> command, this time for authentication. We have the option to use <a href="https://docs.netlify.com/visitor-access/identity/">Netlify Identity</a>, <a href="https://auth0.com/">Auth0</a>, and <a href="https://docs.magic.link/welcome">Magic Link</a>. I'm going to use Netlify.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/9uarq75n1ef87oskjq44.jpg" alt="09-redwood-generate-auth-netlify"></p>
+<p>This will create an <code>auth.js</code> file in <code>api/src/lib</code> and automatically modify our <code>index.js</code> file in <code>web/src</code> and our <code>graphql.js</code> file in <code>api/src/functions</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/53iq4s8z1n13y167i6kl.jpg" alt="10-redwood-genearte-auth-netlify-output"></p>
+<p>If we check our <code>package.json</code> file in our <code>web</code> folder we'll see two new dependencies <code>@redwoodjs/auth</code> and <code>netlify-identity-widget</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/0lhp3g6agt8wkvpnrq3k.jpg" alt="11-dependencies-redwood-auth-netlify-identity-widget"></p>
+<p>Lets look at our <code>api/src</code> folder.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/y2ho6mvb8ijdwh6l6irp.jpg" alt="12-lib-auth.js"></p>
+<p>Lets look at the <code>auth.js</code> file that was generated.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5xnylp6avc3ve9ydtle0.jpg" alt="13-auth.js"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7bguinfxurg6vyvobcu1.jpg" alt="14-index.js-netlify-identity"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/608jer42ndraueuxo785.jpg" alt="15-graphql.js-getCurrentUser"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/up1g48ccibsrt456oh04.jpg" alt="16-posts.js-import-requireAuth"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4qnfha11ikd42z8nxee3.jpg" alt="17-requireAuth()"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/j5jayhvnq8ksx7oir0ps.jpg" alt="18-test-new-post"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/0odsc2xc7ijj8xfumf3f.jpg" alt="19-don't-have-permission-to-make-new-post"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ued4vdeue1rq3uftukga.jpg" alt="20-import-Private-from-router"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7i0ci5lvqk51fa102pii.jpg" alt="21-Private-routes-posts"></p>
+<p>If we go back to the <code>new</code> route we'll now get an error message.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5pcsziq7mn2875k4qam5.jpg" alt="22-something-went-wrong"></p>
+<p>Instead of just showing an error message, we can redirect the user back to the home page by adding <code>unauthenticated=&quot;home&quot;</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xs6yvks02mdszx3hck29.jpg" alt="23-Private-unauthenticated-home-redirect"></p>
+<p>Now we'll see a redirect in the URL and we'll be taken back to the home</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1lkg2p4flr14rj7odq7p.jpg" alt="25-redirect-to-home-page"></p>
+<p>To implement authentication we'll start by importing <code>useAuth</code> from the Redwood <code>auth</code> package.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cetywo5g3k016i22pxnq.jpg" alt="26-BlogLayout.js-import-useAuth-from-auth"></p>
+<p>We'll use object destructuring to pull out the <code>logIn</code> object.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3sy05ojscvheq11pd374.jpg" alt="27-logIn-destructuring-useAuth()"></p>
+<p>We'll then add a link to Log In and pass the <code>logIn</code> object to the <code>onClick</code> event handler.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5ahpwwnavbyzbexf9saz.jpg" alt="28-a-href-onClick-logIn"></p>
+<p>If we return to our browser we'll now see a link to log in.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/t9bnxguhqw4fynl3bioh.jpg" alt="29-home-page-with-log-in-link"></p>
+<p>If we click the link we'll get this fancy looking message from Netlify asking for our site's url.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/24kk3h89pbsjd4sgc4uf.jpg" alt="30-url-of-your-netlify-site"></p>
+<p>Enter the domain that we created at the beginning of the article.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3l2vn0vg40x4402vo6lm.jpg" alt="31-set-site's-url"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6inq8s5leaez9azgz3fa.jpg" alt="32-log-in-form"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7dee7ylzvx3x8h5lygrl.jpg" alt="33-you've-been-invited-to-join"></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/4ml9xjya2j25wew3qbkg.jpg" alt="34-deployed-site-invite-token"></p>
+<p>Grab the <code>invite_token</code> starting with the <code>#</code> and copy-paste it over to your localhost.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/41pihd1ctwrmfspl763w.jpg" alt="35-localhost-invite-token"></p>
+<p>You should now get a form to enter your password and complete your signup.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1m84bslmfeyi3wm5tsgm.jpg" alt="36-complete-your-signup"></p>
+<p>If you did everything correctly then you should see your blog posts again.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cndoe6k1jv2m2s1kfad4.jpg" alt="38-protected-posts"></p>
+<p>Now we want to add a link to our home page that we can use to log in and log out. We'll destructure two addition objects, <code>isAuthenticated</code> and <code>logOut</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/9jh5htvnio0ni9albagz.jpg" alt="39-isAuthenticated-logOut-destructuring-useAuth()"></p>
+<p>We'll add another list them that uses a ternary operator to check whether we are authenticated and to display either Log Out or Log In depending on whether we are logged in or not.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7q3xlfrq409dg84mftkq.jpg" alt="40-onClick-logIn"></p>
+<p>Go back to your browser and since we are logged in you should see a link for Log Out.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/60ti579d6q9g04n8hj71.jpg" alt="41-home-page-log-out"></p>
+<p>Now lets also add a ternary operator to the link itself so it knows to log out with we are currently logged in, and log in if we aren't currently logged in.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/z1o9pjd515d1ty4mpclo.jpg" alt="42-onClick-isAuthenticated"></p>
+<p>If we click Log Out the page will refresh and the link will change to Log In.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/f6ye0seq296fp5zj0sfr.jpg" alt="43-home-page-log-in-link"></p>
+<p>If we click Log In then we see our log in form again.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/cew9gsrpyjtoe0q4hamc.jpg" alt="44-log-in-form"></p>
+<p>If we log in then the link will change back to Log Out.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1uev1vu8zzpvybqdjxds.jpg" alt="45-home-page-log-out-link"></p>
+<p>We'll destructure one more object called <code>currentUser</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/3kkefgm3i8iwi3w2cnke.jpg" alt="46-currentUser-destructuring-useAuth()"></p>
+<p>We'll check to make sure we're authenticated and if so we'll show the current user's email with <code>currentUser.email</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/v12fwzv6it6bm334urnk.jpg" alt="47-isAuthenticated-logged-in-as-currentUser.email"></p>
+<p>If we now look back in our browser you should see a message saying you are logged in.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/0ydtnd7zzque5wvn2ryy.jpg" alt="48-logged-in-as"></p>
+<p>And that's it! Right now you should either be feeling a great sense of accomplishment over building some amazing, or a horrible sinking feeling that you just wasted hours of your life building something useless. The choice is yours!</p>
+<h1>Reflection</h1>
+<h1>Podcasts</h1>
+<h1>Blogging</h1>

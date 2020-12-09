@@ -1,0 +1,136 @@
+<h1>React Core Library</h1>
+<h2><a href="https://reactjs.org/docs/state-and-lifecycle.html">Class Component State</a> (2013)</h2>
+<p>Despite the large variety of 3rd party state management solutions, the React Core library has state management already built in. Before hooks, which we'll discuss later in this post, only class components were able to store state.</p>
+<pre><code class="language-javascript">const todoData = [
+  {
+    task: &quot;Organize Garage&quot;,
+    id: 1528817077286,
+    completed: false
+  },
+  {
+    task: &quot;Bake Cookies&quot;,
+    id: 1528817084358,
+    completed: false
+  }
+];
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todo: todoData
+    };
+  }
+</code></pre>
+<h2><a href="https://reactjs.org/docs/hooks-state.html">useState hook</a> (2018)</h2>
+<h2><a href="https://reactjs.org/docs/context.html">Context API</a> (2018)</h2>
+<h3>React.createContext</h3>
+<pre><code class="language-javascript">const MyContext = React.createContext(defaultValue);
+</code></pre>
+<h3>Context.Provider</h3>
+<pre><code class="language-javascript">&lt;MyContext.Provider value={/* some value */}&gt;
+</code></pre>
+<h1>Third Party Libraries</h1>
+<h2><a href="https://redux.js.org/">Redux</a> (2015)</h2>
+<h2><a href="https://mobx.js.org/README.html">MobX</a> (2015)</h2>
+<h2><a href="https://kea.js.org/">Kea</a></h2>
+<p>First Commit: March 29, 2016
+862 Commits
+1,599 Stars</p>
+<p>John Au-Yeung - <a href="https://blog.logrocket.com/simplify-react-state-management-with-kea/">Simplify React state management with Kea (March 10, 2020)</a></p>
+<h2><a href="https://overmindjs.org/">Overmind</a></h2>
+<p>First Commit: June 18, 2018
+1,398 Commits
+938 Stars</p>
+<p>Nathan Sebhastian - <a href="https://blog.bitsrc.io/making-state-management-easier-with-overmindjs-5fcdd87e8c8e">Easier React State Management with OvermindJS (May 19, 2020)</a></p>
+<h2><a href="https://easy-peasy.now.sh/">Easy Peasy</a> (2018)</h2>
+<p>First Commit: October 21, 2018
+627 Commits
+3,445 Stars</p>
+<p>Easy Peasy aims to be an intuitive and simple state management library with zero configuration. It includes a store and actions like Redux but no reducers.</p>
+<h3>1 - Create your store</h3>
+<pre><code class="language-javascript">const store = createStore({
+  todos: {
+    items: ['Create store', 'Wrap application', 'Use store'],
+    add: action((state, payload) =&gt; {
+      state.items.push(payload)
+    })
+  }
+});
+</code></pre>
+<h3>2 - Wrap your application</h3>
+<pre><code class="language-javascript">function App() {
+  return (
+    &lt;StoreProvider store={store}&gt;
+      &lt;TodoList /&gt;
+    &lt;/StoreProvider&gt;
+  );
+}
+</code></pre>
+<h3>3 - Use the store</h3>
+<pre><code class="language-javascript">function TodoList() {
+  const todos = useStoreState(state =&gt; state.todos.items)
+  const add = useStoreActions(actions =&gt; actions.todos.add)
+  return (
+    &lt;div&gt;
+      {todos.map((todo, idx) =&gt; &lt;div key={idx}&gt;{todo}&lt;/div&gt;)}
+      &lt;AddTodo onAdd={add} /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h2><a href="https://recoiljs.org/">Recoil</a> (2020)</h2>
+<p>First Commit: May 5, 2020
+80 Commits
+<a href="https://github.com/facebookexperimental/Recoil/stargazers">4,861 Stars</a></p>
+<p>Recoil is the newest attempt at state management in React. It introduces brand new abstractions including atoms (shared state) and selectors (pure functions).</p>
+<h3>Atoms</h3>
+<p>Atoms are units of state that can be update and subscribed to.</p>
+<pre><code class="language-javascript">const fontSizeState = atom({
+  key: 'fontSizeState',
+  default: 14,
+});
+</code></pre>
+<pre><code class="language-javascript">function FontButton() {
+  const [fontSize, setFontSize] = useRecoilState(fontSizeState);
+  return (
+    &lt;button onClick={() =&gt; setFontSize((size) =&gt; size + 1)} style=&gt;
+      Click to Enlarge
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<h3>Selectors</h3>
+<p>Selectors are pure functions that take atoms or other selectors as input.</p>
+<pre><code class="language-javascript">const fontSizeLabelState = selector({
+  key: 'fontSizeLabelState',
+  get: ({get}) =&gt; {
+    const fontSize = get(fontSizeState);
+    const unit = 'px';
+
+    return `${fontSize}${unit}`;
+  },
+});
+</code></pre>
+<pre><code class="language-javascript">function FontButton() {
+  const [fontSize, setFontSize] = useRecoilState(fontSizeState);
+  const fontSizeLabel = useRecoilValue(fontSizeLabelState);
+
+  return (
+    &lt;&gt;
+      &lt;div&gt;Current font size: ${fontSizeLabel}&lt;/div&gt;
+
+      &lt;button onClick={() =&gt; setFontSize(fontSize + 1)} style=&gt;
+        Click to Enlarge
+      &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2>Further Reading</h2>
+<p>Daniel Schulz - <a href="https://medium.com/dailyjs/comparison-of-state-management-solutions-for-react-2161a0b4af7b">Comparison of State Management Solutions for React (September 18, 2018)</a></p>
+<p>Kent C. Dodds - <a href="https://kentcdodds.com/blog/application-state-management-with-react">Application State Management with React (April 22, 2019)</a></p>
+<p>Robin Wieruch - <a href="https://www.robinwieruch.de/react-state">React State Management (October 14, 2019)</a></p>
+<p>Adam Nathaniel Davis - <a href="https://dev.to/bytebodger/throw-out-your-react-state-management-tools-4cj0">Throw Out Your React State-Management Tools (March 3, 2020)</a></p>
+<p>Dmitri Pavlutin - <a href="https://dmitripavlutin.com/react-state-management/">3 Rules of React State Management (March 4, 2020)</a></p>
+<p>Mateusz Piguła, Adrian Senecki - <a href="https://tsh.io/blog/react-state-management-react-hooks-vs-redux/">React State Management: React Hooks vs Redux (April 2, 2020)</a></p>

@@ -1,0 +1,197 @@
+<p>Despite the large variety of 3rd party state management solutions, the React Core library has state management already built in. Before hooks, which we’ll discuss in part 2, only class components were able to store state.</p>
+<p>In this series of posts we’ll look at different ways to manage state in a todo list app.</p>
+<p><em>Note: There’s are many ways to make a todo app. This is not meant to be the ultimate example, but simply an exercise to demonstrate different approaches to storing state in a React app.</em></p>
+<p>For this and any other example React apps on this newsletter I recommend using create-react-app to get a boilerplate project set up. The full example app can be found <a href="https://github.com/ajcwebdev/react-state-management/tree/master/class-components">on my Github</a>.</p>
+<p>Our app will contain:</p>
+<h3>Three components:</h3>
+<ul>
+<li>TodoItem</li>
+<li>TodoList</li>
+<li>TodoForm</li>
+</ul>
+<h3>Three helper functions:</h3>
+<ul>
+<li>addTodo</li>
+<li>toggleComplete</li>
+<li>clearComplete</li>
+</ul>
+<h3>Two event handlers:</h3>
+<ul>
+<li>inputChange</li>
+<li>submitForm</li>
+</ul>
+<p>First let’s declare a variable with a JSON like syntax containing an array of objects. This will give us a couple tasks rendered when we open the app. Each object is a todo task with 3 properties: task, id, and a boolean value for toggling the todo complete.</p>
+<pre><code class="language-javascript">const initialState = [
+  {
+    task: &quot;Organize Garage&quot;,
+    id: 1528817077286,
+    complete: false
+  },
+  {
+    task: &quot;Bake Cookies&quot;,
+    id: 1528817084358,
+    complete: false
+  }
+];
+</code></pre>
+<p>Our App component takes in this.state with the initialState array set to the variable todo.</p>
+<pre><code class="language-javascript">class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todo: initialState
+    };
+  } 
+</code></pre>
+<h2>Helper Functions</h2>
+<h3>addTodo</h3>
+<p>addTodo takes in a parameter for a task and sets each property accordingly. this.setState sets the todo state to a new array with newTask added to the end. Date.now() generates a new id for every task.</p>
+<pre><code class="language-javascript">addTodo = task =&gt; {
+  const newTask = {
+    task: task,
+    id: Date.now(),
+    complete: false
+  }
+  this.setState(
+    {todo:
+      [...this.state.todo, newTask]
+    }
+  )
+}
+</code></pre>
+<h3>toggleComplete</h3>
+<p>toggleComplete takes in an event target and grabs a todo’s id. The spread operator gives us the list of todos in an array and sets it to newTodo. The splice method is then used for toggling completed todos by grabbing the todo that is clicked on and giving it a CSS class called complete. We will see the necessary CSS at the very end of this tutorial.</p>
+<pre><code class="language-javascript">toggleComplete = e =&gt; {
+    const id = e.target.id
+    const newTodo = [...this.state.todo]
+    newTodo.splice(id, 1, {
+      ...this.state.todo[id],
+      complete: !this.state.todo[id].complete
+    })
+    this.setState({todo: newTodo})
+  }
+</code></pre>
+<h3>clearComplete</h3>
+<p>clearComplete uses the filter method to remove completed todos by looping over all todos and returning an array of todos that have the complete property set to false.</p>
+<pre><code class="language-javascript">clearComplete = e =&gt; {
+  this.setState(
+    {todo:
+      [...this.state.todo.filter(
+        todo =&gt; todo.complete === false)
+      ]
+    }
+  )
+}
+</code></pre>
+<p>The render method contains two components, one for our list of todo items (TodoList) and another with a form that accepts input to add a task and a button to clear completed todos (TodoForm).</p>
+<pre><code class="language-javascript">render() {
+    return (
+      &lt;div className=&quot;container&quot;&gt;
+
+        &lt;h2&gt;React Todo&lt;/h2&gt;
+
+        &lt;TodoList
+          todo={this.state.todo}
+          toggleComplete={this.toggleComplete}
+        /&gt;
+
+        &lt;TodoForm
+          addTodo={this.addTodo}
+          clearComplete={this.clearComplete}
+        /&gt;
+
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h2>Components</h2>
+<h3>TodoItem</h3>
+<p>Our TodoItem component returns an html list item with the tasks id. The className checks the complete property, if the complete property is true then the className will be set to complete. If false it will set the className to null.</p>
+<pre><code class="language-javascript">class TodoItem extends React.Component {
+  render() {
+    return (
+      &lt;li
+        id={this.props.id}
+        className={this.props.todo.complete ? &quot;complete&quot; : null}
+        onClick={this.props.toggleComplete}
+      &gt;
+        {this.props.todo.task}
+      &lt;/li&gt;
+    )
+  }
+}
+</code></pre>
+<h3>TodoList</h3>
+<p>The TodoList component uses the map array method to render all the todos inside an unordered list tag.</p>
+<pre><code class="language-javascript">class TodoList extends React.Component {
+  render() {
+    return (
+      &lt;ul&gt;
+        {this.props.todo.map((todo, id) =&gt; (
+          &lt;TodoItem
+            key={todo.id}
+            id={id}
+            todo={todo}
+            toggleComplete={this.props.toggleComplete}
+          /&gt;
+        ))}
+      &lt;/ul&gt;
+    )
+  }
+}
+</code></pre>
+<h3>TodoForm</h3>
+<p>The TodoForm component has an input value so the user can input new todo tasks. inputChange and submitForm use the event object to grab the information entered into the form and set it to TodoForm’s state.</p>
+<pre><code class="language-javascript">class TodoForm extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      input: &quot;&quot;
+    }
+  }
+
+  inputChange = e =&gt; {
+    this.setState({
+      input: e.target.value
+    })
+  }
+
+  submitForm = e =&gt; {
+    e.preventDefault()
+    this.props.addTodo(
+      this.state.input
+    )
+    this.setState({
+      input: &quot;&quot;
+    })
+  }
+</code></pre>
+<h3>Event Handlers</h3>
+<p>The form uses React’s <a href="https://reactjs.org/docs/handling-events.html">event handlers</a> including onSubmit, onChange, and onClick. These are similar to the native HTML event handlers with the exception of writing camelCase instead of all lowercase.</p>
+<pre><code class="language-javascript">render() {
+    return (
+      &lt;form onSubmit={this.submitForm}&gt;
+        &lt;input
+          type=&quot;text&quot;
+          onChange={this.inputChange}
+          value={this.state.input}
+        /&gt;
+        &lt;button&gt;Add Todo&lt;/button&gt;
+        &lt;button
+          type=&quot;button&quot;
+          onClick={this.props.clearComplete}
+        &gt;
+          Clear Complete
+        &lt;/button&gt;
+      &lt;/form&gt;
+    )
+  }
+}
+</code></pre>
+<p>The last thing we need to make our todo list functional is a complete class in our index.css file. This will draw a line through our todos when we click them to toggle them complete.</p>
+<pre><code class="language-javascript">.complete {
+  text-decoration: line-through;
+}
+</code></pre>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/z4qhaqogigdi3ihi4zk4.jpg" alt="Alt Text"></p>

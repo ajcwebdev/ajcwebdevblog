@@ -1,0 +1,39 @@
+<p>Nexus provides declarative, code-first GraphQL schemas for JavaScript/TypeScript with robust, composable type definitions. It has an ambiguous relation to Prisma and was announced on their blog in 2019 by Tim Griesser, an engineer at Cypress.io. <a href="https://www.prisma.io/docs/guides/upgrade-from-prisma-1/upgrading-nexus-prisma-to-nexus">There is a very, very long post in the Prisma docs called Old to new Nexus</a>. The Nexus framework is built on top of the <a href="https://github.com/graphql-nexus/schema">Nexus Schema library built by Tim Griesser</a>.</p>
+<h2>Schema Definition Language</h2>
+<p>Its SDL converter can turn an existing schema into Nexus code. It aims to combine the simplicity and ease of development of SDL development approaches like <a href="https://www.graphql-tools.com/docs/introduction/">graphql-tools</a> with the long-term maintainability of programmatic construction as seen in:</p>
+<ul>
+<li><a href="https://docs.graphene-python.org/en/latest/">graphene-python</a></li>
+<li><a href="https://github.com/rmosolgo/graphql-ruby">graphql-ruby</a></li>
+<li><a href="https://github.com/graphql/graphql-js">graphql-js</a></li>
+</ul>
+<p>The project seems to have two separate websites with different documentation containing different styling and content:</p>
+<ul>
+<li><a href="https://nexus.js.org/docs/getting-started">nexus.js.org</a></li>
+<li><a href="https://www.nexusjs.org/#/README">nexusjs.org</a></li>
+</ul>
+<p>Since the primary purpose of documentation is to provide clarification and a source of truth to developers it would probably be in the project's best interest to consolidate to a single domain. Until told otherwise I'll be taking info from both. If that doesn't sounds like a good idea then you understand why there should be one site.</p>
+<h3>Type-Safe by Default</h3>
+<p>GraphQL Nexus' APIs were designed with type-safety in mind. Type-definitions are auto-generated as you develop, and inferred in your code.</p>
+<ul>
+<li>IDE completion</li>
+<li>Type error catching</li>
+<li>Automatic Type Inference</li>
+<li>Autocompletion on Type Names</li>
+</ul>
+<h3>Works With The Ecosystem</h3>
+<p>Works with existing graphql-js types when constructing its schema. Generated schema works with:</p>
+<ul>
+<li>Apollo Server</li>
+<li>GraphQL middleware</li>
+</ul>
+<h3>Data-Agnostic</h3>
+<p>Declarative syntax layered on the graphql-js library. Whatever can be done with graphql-js or apollo-tools can be done with Nexus.</p>
+<h2>References</h2>
+<h4><a href="https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3">The Problems of &quot;Schema-First&quot; GraphQL Server Development</a></h4>
+<h5>Nikolas Burk - January 31, 2019</h5>
+<h4><a href="https://www.prisma.io/blog/introducing-graphql-nexus-code-first-graphql-server-development-ll6s1yy5cxl5">Introducing GraphQL Nexus: Code-First GraphQL Server Development</a></h4>
+<h5>Tim Griesser - February 7, 2019</h5>
+<h4><a href="https://www.prisma.io/blog/using-graphql-nexus-with-a-database-pmyl3660ncst">Using GraphQL Nexus with a Database</a></h4>
+<h5>Nikolas Burk - February 12, 2019</h5>
+<h4><a href="https://www.youtube.com/watch?v=DlF226AEYSM">SDL as an Artifact: Code First Schemas in TS:JS</a></h4>
+<h5>Tim Griesser - November 6, 2019</h5>

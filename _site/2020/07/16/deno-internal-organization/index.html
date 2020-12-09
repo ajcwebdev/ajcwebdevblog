@@ -1,0 +1,62 @@
+<p>These are notes I took while watching Ryan Dahl's Deno Israel talk which can be <a href="https://www.youtube.com/watch?v=1b7FoBwxc7E">found online here</a>. He explains the internal organization of the Deno project. All mentions of JavaScript are abbreviated as JS. I've included relevant links for terms that I think may be unfamiliar to most developers or that I was unfamiliar with myself.</p>
+<h1>Origins</h1>
+<p>Even though it wasn't announced until 2018, Deno originated back in 2015 with a project called V8 worker which was a binding to V8 and Go. The basic idea was to disallow Go programmers from using V8's APIs to create random JS objects. Instead they would be forced into a message passing system that would pass messages between Go and V8.</p>
+<h1>Rust Crates</h1>
+<p>Unlike Node, which is a monolithic project, Deno is organized into a collection of <a href="https://crates.io/">Rust crates</a>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/y226hs3vzuvtt62whtrb.jpg" alt="01-deno-rust-crates"></p>
+<p>The Deno executable is what most people are referencing when talking about Deno. Not every project wants to use Node or Deno as a top level executable. There's many system where you might want to embed a JS runtime. Deno itself is a system with an embedded JS runtime.</p>
+<h3>Why Avoid Monolithic Design?</h3>
+<p>Better separation of concerns inside the CLI</p>
+<ul>
+<li>Sub-systems can be tested independently</li>
+<li>Provides principled binding layer for CLI</li>
+</ul>
+<p>There are many use cases for embedding a JS virtual machine including:</p>
+<ul>
+<li>Web servers customizable with JS (serverless)</li>
+<li>Databases using JS for map-reduce</li>
+<li>GUI applications like Electron</li>
+</ul>
+<h2>rusty_v8</h2>
+<p>V8 is a C++ library with 800,000 lines of code. rusty_v8 is a framework for adding bindings to V8 C++. It includes:</p>
+<ul>
+<li>
+<p>Zero cost Rust interface to V8</p>
+<ul>
+<li>Objects manipulated in rusty_v8 are exactly the objects in C++.</li>
+</ul>
+</li>
+<li>
+<p>Safe bindings to V8</p>
+<ul>
+<li>The type system forces <a href="https://stackoverflow.com/questions/9510822/what-is-the-design-rationale-behind-handlescope">Local handles</a> to be created in a <a href="https://v8docs.nodesource.com/node-0.8/d3/d95/classv8_1_1_handle_scope.html">HandleScope</a>.</li>
+<li><a href="https://stackoverflow.com/questions/9131902/what-were-node-js-isolates-and-why-are-they-now-dead">Isolates</a> are pegged to a thread for optimal usage.</li>
+</ul>
+</li>
+<li>
+<p>Ability to recompile V8 with different compilation settings</p>
+<ul>
+<li>Prebuilt binaries created through github actions are provided for most users.</li>
+<li>V8 source code is distributed inside a crate file. It does not depend on <a href="https://dev.chromium.org/developers/how-tos/depottools">depot_tools</a>.</li>
+</ul>
+</li>
+</ul>
+<h2>deno_core</h2>
+<p>C++ code that manipulates JS objects is often slower than the equivalent code in JS because boundary crossing from one language to the other is slow.</p>
+<h4>Node Problems</h4>
+<ul>
+<li>Since there is no centralized <a href="https://en.wikipedia.org/wiki/Language_binding">binding interface</a> in Node there is no way to monitor metrics or perform security checks.</li>
+<li>In Node, many callbacks are issued from C++ without being requested from the JS side such as push events instead of pull events. This gives users the opportunity to create code without <a href="https://medium.com/@jayphelps/backpressure-explained-the-flow-of-data-through-software-2350b3e77ce7">back pressure</a>.</li>
+</ul>
+<h4>Deno Solutions</h4>
+<p>Native bindings are done through the &quot;Op&quot; interface provided by deno_core. An op is a native function called from JS. Everything in the deno executable is built on top of ops. This provides superior performance to Node.</p>
+<ul>
+<li><strong>Binary data</strong>: Parameters and return value are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffers</a></li>
+<li><strong>Zero-copy</strong>: ArrayBuffers pass pointers back and forth between JS and Rust</li>
+<li><strong>Integrated with event loop</strong>: An op either completes synchronously with a result or returns a promise corresponding to a <a href="https://docs.rs/futures/0.3.5/futures/">Rust Future</a></li>
+</ul>
+<h4>Resources</h4>
+<p>A resource is similar to a <a href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html">file descriptor in POSIX</a>. It is an integer identifier given to JS to reference some object allocated in Rust such as an open socket or file. Resources are stored in the resource table and are removed from the table by <code>Deno.close()</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/10jgpntop6yyj9pxlx5h.jpg" alt="02-deno-bindings"></p>
+<h2>deno_typescript</h2>
+<p>deno_core is JS-only, so deno_typescript is where the TypeScript compiler is incorporated. This is currently a work in progress and should not be used in production.</p>

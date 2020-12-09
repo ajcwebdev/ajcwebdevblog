@@ -1,0 +1,64 @@
+<p><img src="https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Ff6ec9dfd-916e-49b6-8add-a65c2fa6ae7e_1200x627.jpeg" alt="yugabyte-logo"></p>
+<p>YugabyteDB is the open source, high-performance, distributed SQL database for global, internet-scale apps. It's design goals include:</p>
+<h2>Consistency</h2>
+<p>YugabyteDB offers strong consistency guarantees in the face of a variety of failures. It supports distributed transactions.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_0751087199757039.png" alt="Image"></p>
+<h3>CAP theorem</h3>
+<h5>YugabyteDB is a CP database (consistent and partition tolerant), but achieves very high availability.</h5>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_46449082061705016.png" alt="Image"></p>
+<h5>The architectural is similar to Spanner, also a CP system.</h5>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_31791606398132966.jpg" alt="Image"></p>
+<h5>The description about Spanner is just as valid for YugabyteDB.</h5>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_16166467451607391.jpg" alt="Image"></p>
+<p>No system provides 100% availability, so the pragmatic question is whether or not the system delivers availability that is so high that most users no longer have to be concerned about outages. Given there are many sources of outages if YugabyteDB is an insignificant contributor to downtime users are correct to not worry about it.</p>
+<h3>Multi-row ACID transactions</h3>
+<p>Supports multi-row transactions with both Serializable and Snapshot isolation.</p>
+<h2>Query APIs</h2>
+<ul>
+<li>Does not reinvent data client APIs</li>
+<li>Wire-compatible with existing APIs</li>
+<li>Extends functionality</li>
+</ul>
+<h3>YSQL</h3>
+<p><a href="https://docs.yugabyte.com/latest/api/ysql/">YSQL</a> is a fully-relational SQL API that is wire compatible with the SQL language in PostgreSQL. It is best fit for RDBMS workloads that need horizontal write scalability and global data distribution while also using relational modeling features such as:</p>
+<ul>
+<li>JOINs</li>
+<li>Distributed transactions</li>
+<li>Referential integrity such as foreign keys</li>
+</ul>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_6846242403809615.png" alt="Image"></p>
+<h3>YCQL</h3>
+<p><a href="https://docs.yugabyte.com/latest/api/ycql/">YCQL</a> has its roots in the <a href="https://cassandra.apache.org/doc/latest/cql/">Cassandra Query Language</a> and is a SQL-based flexible-schema API fit for internet-scale OLTP apps needing:</p>
+<ul>
+<li>A semi-relational API highly</li>
+<li>Optimization for write-intensive applications</li>
+<li>Blazing-fast queries</li>
+</ul>
+<h2>Performance</h2>
+<p>Written in C++ to ensure high performance and the ability to leverage large memory heaps (RAM) as an internal database cache. It is optimized primarily to run on SSDs and NVMe drives. Designed for high write throughput, high client concurrency, high data density, and ever growing event data.</p>
+<h2>Geo-distributed deployments</h2>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_12975404508546284.png" alt="Image"></p>
+<h3>Multi-region configurations</h3>
+<p>YugabyteDB should work well in deployments where the nodes of the cluster span:</p>
+<ul>
+<li>Single zone</li>
+<li>Multiple zones</li>
+<li>Multiple regions that are geographically replicated</li>
+<li>Multiple clouds (both public and private clouds)</li>
+</ul>
+<p>To achieve this client drivers across the various languages should be:</p>
+<ul>
+<li>Cluster-aware - handle node failures seamlessly</li>
+<li>Topology-aware - route traffic seamlessly</li>
+</ul>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_9991572357087302.png" alt="Image"></p>
+<h2>Cloud native architecture</h2>
+<h3>Run on commodity hardware</h3>
+<ul>
+<li>Run on any public cloud or on-premises data center including commodity hardware on bare metal machines, VMs or containers.</li>
+<li>No external dependencies such as atomic clocks but can utilize one if available.</li>
+</ul>
+<h3>Kubernetes ready</h3>
+<p>Should work natively in Kubernetes and other containerized environments as a stateful application.</p>
+<h3>Open source</h3>
+<p>YugabyteDB is open source under the very permissive Apache 2.0 license.</p>

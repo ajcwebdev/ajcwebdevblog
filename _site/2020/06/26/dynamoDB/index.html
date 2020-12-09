@@ -1,0 +1,94 @@
+<p>These are the notes I'm taking as I'm going through <a href="https://www.dynamodbguide.com/">Alex DeBrie's DynamoDB guide</a> and all credit should go to him. If you find this valuable you can buy <a href="https://www.dynamodbbook.com">The DynamoDB Book</a>.</p>
+<h2>DynamoDB is a hosted NoSQL database by Amazon Web Services</h2>
+<ul>
+<li>Reliable performance as it scales</li>
+<li>Managed experience, no SSH-ing into servers to upgrade crypto libraries</li>
+<li>Small, simple API for simple key-value access as well as more advanced query patterns</li>
+</ul>
+<h3>Good fit for:</h3>
+<h4>Apps with large data and strict latency requirements</h4>
+<ul>
+<li>As your amount of data scales, JOINs and advanced SQL operations can slow down your queries</li>
+<li>Dynamo's queries have predictable latency up to any size, including over 100 TBs</li>
+</ul>
+<h4>Serverless applications on AWS Lambda</h4>
+<ul>
+<li>AWS Lambda provides auto-scaling, stateless, ephemeral compute in response to event triggers.</li>
+<li>DynamoDB is accessible via an HTTP API and performs authentication &amp; authorization via IAM roles, good for building Serverless applications.</li>
+</ul>
+<h4>Data sets with simple, known access patterns</h4>
+<ul>
+<li>For generating recommendations and serving them to users DynamoDB's key-value access patterns are fast and reliable.</li>
+</ul>
+<h1>Tables, Items, and Attributes</h1>
+<h2>Table</h2>
+<h3>A <em>table</em> is a grouping of data records.</h3>
+<ul>
+<li>You might have a Users table to store data about your users, and an Orders table to store data about your users' orders.</li>
+<li>This concept is similar to a table in a relational database or a collection in MongoDB.</li>
+</ul>
+<h2>Item</h2>
+<h3>An <em>item</em> is a single data record in a table.</h3>
+<ul>
+<li>Each item in a table is uniquely identified by the stated primary key of the table.</li>
+<li>In your Users table, an item would be a particular User.</li>
+<li>An item is similar to a row in a relational database or a document in MongoDB.</li>
+</ul>
+<h2>Attributes</h2>
+<h3><em>Attributes</em> are pieces of data attached to a single item.</h3>
+<p>Could be a simple Age attribute that stores the age of a user.</p>
+<ul>
+<li>Comparable to a column in a relational database or a field in MongoDB.</li>
+<li>Does not require attributes on items except for attributes that make up your primary key.</li>
+</ul>
+<h2>Primary Key</h2>
+<p>Each item in a table is uniquely identified by a primary key.</p>
+<ul>
+<li>The primary key definition must be defined at the creation of the table.</li>
+<li>The primary key must be provided when inserting a new item.</li>
+</ul>
+<p>Two types of primary key:</p>
+<ul>
+<li><em>Simple primary key</em> - just a partition key</li>
+<li><em>Composite primary key</em> - a partition key and a sort key</li>
+</ul>
+<h3>Simple primary key</h3>
+<p>Similar to key-value stores (Memcached) or accessing rows in a SQL table by a primary key.</p>
+<ul>
+<li>Example: a Users table with a Username primary key.</li>
+</ul>
+<h3>Composite primary key</h3>
+<p>More complex, you specify both a partition key and a sort key to (wait for it) sort items with the same partition.</p>
+<ul>
+<li>Example: an Orders table for recording customer orders on an e-commerce site. The partition key would be the CustomerId, and the sort key would be the OrderId.</li>
+</ul>
+<p><em>Each item in a table is uniquely identified by a primary key</em>, even with the composite key. When using a table with a composite primary key, you may have multiple items with the same partition key but different sort keys. You can only have one item with a particular combination of partition key and sort key.</p>
+<p>The composite primary key enables sophisticated query patterns, including:</p>
+<ul>
+<li>Grabbing all items with the given partition key</li>
+<li>Using the sort key to narrow the relevant items for a particular query.</li>
+</ul>
+<h2>Secondary Indexes</h2>
+<p>Primary key uniquely identifies an item in a table. You can make queries against the table using the primary key. Sometimes you have additional access patterns that would be inefficient with your primary key. <em>Secondary indexes</em> enable these additional access patterns.</p>
+<h3>Local secondary index</h3>
+<p>A local secondary index uses the same partition key as the underlying table but a different sort key.</p>
+<ul>
+<li>To take our Order table example from the previous section, imagine you wanted to quickly access a customer's orders in descending order of the amount they spent on the order.</li>
+<li>You could add a local secondary index with a partition key of CustomerId and a sort key of Amount, allowing for efficient queries on a customer's orders by amount.</li>
+</ul>
+<h3>Global secondary index</h3>
+<p>A global secondary index can define an entirely different primary key for a table. This could mean:</p>
+<ul>
+<li>Setting an index with just a partition key for a table with a composite primary key.</li>
+<li>Using completely different attributes to populate a partition key and sort key.</li>
+</ul>
+<p>With the Order example above, we could have a global secondary index with a partition key of OrderId so we could retrieve a particular order without knowing the CustomerId that placed the order.</p>
+<h2>Read and Write Capacity</h2>
+<p>With MySQL, Postgres, or MongoDB you provision a particular server to run your database. You'll need to choose your instance size:</p>
+<ul>
+<li>how many CPUs do you need</li>
+<li>how much RAM</li>
+<li>how many GBs of storage</li>
+</ul>
+<p>With DynamoDB you provision read and write capacity units. These units allow a given number of operations per second. This is a different pricing paradigm than the instance-based world. Pricing more closely reflects actual usage.</p>
+<p>DynamoDB has autoscaling of read and write capacity units making it easier to scale during peak times while saving money by scaling down when your users are asleep.</p>

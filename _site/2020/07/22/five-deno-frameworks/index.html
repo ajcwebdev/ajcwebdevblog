@@ -1,0 +1,42 @@
+<p>When building a web server with NodeJS, most developers use a framework such as Express, Koa, or (the newly resurrected) Hapi. There are many frameworks currently being built for Deno that take inspiration from Node frameworks and frameworks from other languages like Flask or Sinatra.</p>
+<p>I'm going to do a series of posts building a basic REST API with different Deno frameworks. To select the frameworks I consulted Craig Morten's excellent overview <a href="https://dev.to/craigmorten/what-is-the-best-deno-web-framework-2k69">What Is The Best Deno Web Framework?</a> I picked the five most popular frameworks for the sake of time and my own sanity.</p>
+<p>Popularity is not always the best metric, but when it comes to open source projects it signals a greater level of developers are working with a framework which means more bug fixes, more feature requests, and more resources online to learn that framework. The five frameworks will be:</p>
+<ol>
+<li><a href="https://github.com/oakserver/oak">Oak</a></li>
+<li><a href="https://github.com/keroxp/servest">Servest</a></li>
+<li><a href="https://github.com/drashland/deno-drash">Drash</a></li>
+<li><a href="https://github.com/sholladay/pogo">Pogo</a></li>
+<li><a href="https://github.com/zhmushan/abc">abc</a></li>
+</ol>
+<p>Craig's own framework, <a href="https://github.com/asos-craigmorten/opine">Opine</a>, would be next on the list, and I'll probably do a bonus post about it at the end of the series as a thanks for all the excellent Deno content he's been writing. Make sure to follow him if you want to stay current with Denoland.</p>
+<h2>Deno HTTP</h2>
+<p>Before diving into the frameworks it's useful to see the underlying server code they are building upon. The <a href="https://deno.land/std">Deno Standard Library</a> has an <a href="https://deno.land/std/http">http</a> module with a basic hello world application. First make sure you have <a href="https://deno.land/#installation">Deno installed</a>.</p>
+<p>Save the following code in a file called <code>hello.ts</code>:</p>
+<pre><code class="language-javascript">import { serve } from &quot;https://deno.land/std/http/server.ts&quot;;
+const server = serve({ port: 8000 });
+console.log(&quot;http://localhost:8000/&quot;);
+for await (const req of server) {
+  req.respond({ body: &quot;Hello World\n&quot; });
+}
+</code></pre>
+<p>Open your terminal in the directory containing <code>hello.ts</code> and enter the following command:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/2fgze5mvdyj4vb5e2b51.jpg" alt="01-deno-run"></p>
+<p>Open your browser to <code>localhost:8000</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xkg2si9pcysed5z5tc32.jpg" alt="02-deno-hello-world"></p>
+<p>We can contrast this with a similar example in Node. Save the following code in a file called <code>hello.js</code>:</p>
+<pre><code class="language-javascript">const http = require('http');
+
+const server = http.createServer((req, res) =&gt; {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World');
+});
+
+server.listen(3000, '127.0.0.1', () =&gt; {
+  console.log(`Server running at http://127.0.0.1:3000/`);
+});
+</code></pre>
+<p>Open your terminal in the directory containing <code>hello.js</code> and enter the following command:</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/22wtzt5dc6u9eo4ff95m.jpg" alt="03-node-run"></p>
+<p>Open your browser to <code>http://127.0.0.1:3000</code></p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/grpylovf1ijrjlk7ohl8.jpg" alt="04-node-hello-world"></p>

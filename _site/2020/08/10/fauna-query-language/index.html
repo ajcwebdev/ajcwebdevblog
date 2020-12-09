@@ -1,0 +1,428 @@
+<p>The Fauna Query Language (FQL) is the native API for querying FaunaDB. While not a general-purpose programming language, it provides much of the functionality expected from one. It allows for complex, precise manipulation and retrieval of data stored within FaunaDB.</p>
+<p>A query is executed by submitting it to a FaunaDB cluster, which computes and returns the result. Query execution is transactional: No changes are committed if something goes wrong. If a query fails, an error response is returned instead of a result.</p>
+<p>FQL operates primarily on the schema types provided by FaunaDB, which include:</p>
+<ul>
+<li>Documents</li>
+<li>Collections</li>
+<li>Indexes</li>
+<li>Sets</li>
+<li>Databases</li>
+</ul>
+<p>For a quick reference to all FQL functions see the <a href="https://docs.fauna.com/fauna/current/api/fql/cheat_sheet">FQL cheat sheet</a>.</p>
+<h1>Data types</h1>
+<p>FQL uses an enhanced Javascript Object Notation (JSON) format for storing and communicating data. All of JSON’s basic types are supported, including Number, String, Boolean, Array, and Object.</p>
+<p>In addition to the basic types, FQL supports the following types beyond those native to JSON:</p>
+<ul>
+<li><em><strong>Byte</strong></em>: Denotes a Base64-encoded string representing a byte array.</li>
+<li><em><strong>Date</strong></em>: Denotes a date, with no associated time zone.</li>
+<li><em><strong>Page</strong></em>: Contains an array of results and other decorated elements.</li>
+<li><em><strong>Query</strong></em>: Denotes a query expression object.</li>
+<li><em><strong>Ref</strong></em>: Denotes a resource reference. Refs may be extracted from documents, or constructed using the <code>Collection</code>, <code>Database</code>, <code>Function</code>, <code>Index</code>, or <code>Role</code> functions, or the general-purpose <code>Ref</code> function.</li>
+<li><em><strong>Set</strong></em>: Denotes a set identifier. A set is a group of tuples, typically representing resources or index <code>terms</code>, that are in a specific order.</li>
+<li><em><strong>Timestamp</strong></em>: Stores an instant in time expressed as a calendar date and time of day in UTC (usually written as <code>ts</code>).</li>
+</ul>
+<h1>Databases</h1>
+<p>Databases are defined as documents of type <em><strong>database</strong></em>. Databases exist within the system-global root database context. Aside from keys, all other documents exist within the context of a specific database. All queries are limited to a single database as well, and cannot span across databases.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Definition and Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Cannot be <code>events</code>, <code>sets</code>, <code>self</code>, <code>documents</code>, or <code>_</code>.</td>
+</tr>
+<tr>
+<td><code>api_version</code></td>
+<td>String</td>
+<td>The default API version for requests made to this database. Defaults to 2.7.</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>Number</td>
+<td>A priority between 1 and 500, inclusive. Defaults to 1.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>Object</td>
+<td>A JSON object. Optional.</td>
+</tr>
+</tbody>
+</table>
+<h1>Collections</h1>
+<p>A database’s schema is defined by its collections, which are similar to tables in other databases. To create a collection, create a document of type <em><strong>collection</strong></em>. Once the collection is defined, it is possible to create documents within the collection using the query API.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Definition and Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>Cannot be <code>events</code>, <code>sets</code>, <code>self</code>, <code>documents</code>, or <code>_</code>.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>Object</td>
+<td>A JSON object. Optional.</td>
+</tr>
+<tr>
+<td><code>history_days</code></td>
+<td>Number</td>
+<td>Document history is retained for at least this many days. Defaults to 30 days.</td>
+</tr>
+<tr>
+<td><code>ttl_days</code></td>
+<td>Number</td>
+<td>Documents are deleted this many days after their last write. Optional.</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td>Object</td>
+<td>Optional.</td>
+</tr>
+</tbody>
+</table>
+<h3>Create Collection</h3>
+<p>The <code>CreateCollection</code> function is used to create a collection that groups documents. Once the collection has been created, it is possible to create documents within the collection.</p>
+<p>The following query creates a collection called &quot;boons&quot; with defaults:</p>
+<pre><code class="language-javascript">client.query(q.CreateCollection({ name: 'boons' }))
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref: Ref(id=boons, collection=Ref(id=collections)),
+  ts: 1527274777496292,
+  history_days: 30,
+  name: 'boons' }
+</code></pre>
+<h1>Documents</h1>
+<p>Every record, of any kind, in a FaunaDB database is stored as an object called a <em><strong>document</strong></em>. Documents are made up of fields and their associated value, just like a JSON object. The value for any key can itself be a document.</p>
+<ul>
+<li>Every document belongs to a specific collection, similar to a table in other database systems, which groups similar documents together. Documents within collections are not required to share the same structure.</li>
+<li>Collections belong to a specific database, which is the contents of all other schemas in FaunaDB.</li>
+</ul>
+<p>Even the definitions of Databases, Collections, Keys, Indexes, and user-defined functions, are all documents. They exist within internal FaunaDB collections of the same name.</p>
+<p>All documents have a set of common characteristics:</p>
+<ul>
+<li>Documents have an identifier called a <em><strong>ref</strong></em> that encodes its collection along with a unique id. The combination of these attributes forms a unique identifier for the document within the scope of the database in which it is stored.</li>
+<li>User-specified documents have a timestamp that identifies when the document was most recently updated. FaunaDB documents are versioned and the versions are distinguished using the timestamp.</li>
+<li>Documents can have an optional ttl field (time-to-live), which is a timestamp indicating when the document should be removed.</li>
+<li>Documents are manipulated with the same query language functions. Documents returned by queries are represented as JSON objects. Within a query, a document’s fields may be accessed using the <code>Select</code> function.</li>
+</ul>
+<p>To separate the ref and timestamp from user-defined fields, FaunaDB wraps each user-specified document in a metadata document for storage, and user-specified data appears in the <code>data</code> field.</p>
+<p>For example, when a blog post document is created, it is stored as:</p>
+<pre><code class="language-javascript">{
+  ref: Ref(Collection(&quot;posts&quot;), &quot;227576404750893579&quot;),
+  ts: 1553292644000000,
+  data: {
+    title: 'My blog post',
+    tags: [ 'post', 'popular', 'blog' ],
+    body: &quot;Lorem ipsum...&quot;
+  }
+}
+</code></pre>
+<h3>Create</h3>
+<p>The <code>Create</code> function adds a new document to a collection.</p>
+<p>The following query creates a document by providing a reference to the collection &quot;spells&quot; and a <code>param_object</code> with a <code>data</code> field. The <code>data</code> field contains the user data to be inserted for this document.</p>
+<pre><code class="language-javascript">client.query(
+  q.Create(
+    q.Collection('spells'),
+    {
+      data: {
+        name: 'Mountainous Thunder',
+        element: 'air',
+        cost: 15,
+      },
+    },
+  )
+)
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref:
+  Ref(id=181388642581742080, collection=Ref(id=spells, collection=Ref(id=collections))),
+  ts: 1527274715273882,
+  data: { name: 'Mountainous Thunder', element: 'air', cost: 15 } }
+</code></pre>
+<h3>Read</h3>
+<p>The <code>Get</code> function retrieves a single document identified by <code>ref</code>.</p>
+<p>The following query retrieves an document by providing a reference to the collection named &quot;spells&quot; at a specific id:</p>
+<pre><code class="language-javascript">client.query(
+  q.Get(q.Ref(q.Collection('spells'), '181388642046968320'))
+)
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref: Ref(id=181388642046968320, collection=Ref(id=spells, collection=Ref(id=collections))),
+  ts: 1526677786695156,
+  data:
+   { name: &quot;Fire Beak&quot;,
+     element: [ &quot;air&quot;, &quot;fire&quot; ],
+     spellbook: Ref(id=181388642139243008, collection=Ref(id=spellbooks, collection=Ref(id=collections))) } }
+</code></pre>
+<h3>Update</h3>
+<p>The <code>Update</code> operation only modifies the specified fields in the documents pointed to by <code>ref</code>. Updates are partial, and only modify values that are specified in the param_object.</p>
+<p>The following query updates the document by changing the <code>name</code> field to the value &quot;Mountains’s Thunder&quot; and removing the <code>cost</code> field from the document.</p>
+<pre><code class="language-javascript">client.query(
+  q.Update(
+    q.Ref(q.Collection('spells'), '181388642581742080'),
+    {
+      data: {
+        name: 'Mountain\'s Thunder',
+        cost: null,
+      },
+    },
+  )
+)
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref:
+   Ref(id=181388642581742080, collection=Ref(id=spells, collection=Ref(id=collections))),
+  ts: 1527276015058883,
+  data: { name: 'Mountain\'s Thunder', element: [ 'air' ] } }
+</code></pre>
+<h3>Delete</h3>
+<p>The <code>Delete</code> function removes a document. This includes user-created documents, plus system documents for Collections, Indexes, Databases, etc.</p>
+<p>The query below removes the document pointed at by the reference.</p>
+<pre><code class="language-javascript">client.query(q.Delete(q.Ref(q.Collection('spells'), '181388642581742080')))
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref:
+   Ref(id=181388642581742080, collection=Ref(id=spells, collection=Ref(id=collections))),
+  ts: 1527275280180078,
+  data:
+   { name: 'Mountain\'s Thunder',
+     element: [ 'air', 'earth' ],
+     cost: 10 } }
+</code></pre>
+<h1>Indexes</h1>
+<p>Indexes allow for the organization and retrieval of documents by attributes other than their References. They are defined as documents within the system <em><strong>indexes</strong></em> collection. An index is a database entity that facilitates efficient data lookups.</p>
+<ul>
+<li>A Set is a sorted group of immutable data from a collection.</li>
+<li>An Index is a group of sets within a collection.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Definition and Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>The logical name of the index. Cannot be <code>events</code>, <code>sets</code>, <code>self</code>, <code>documents</code>, or <code>_</code>.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Reference or Array</td>
+<td>A Collection reference, or an array of one or more source objects describing source collections and (optional) binding fields.</td>
+</tr>
+<tr>
+<td><code>terms</code></td>
+<td>Array</td>
+<td>Optional - An array of Term objects describing the fields that should be searchable. Indexed terms can be used to search for field values, via the Match function.</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td>Array</td>
+<td>Optional - An array of Value objects describing the fields that should be reported in search results.</td>
+</tr>
+<tr>
+<td><code>unique</code></td>
+<td>Boolean</td>
+<td>Optional - If <code>true</code>, maintains a unique constraint on combined terms and values.</td>
+</tr>
+<tr>
+<td><code>serialized</code></td>
+<td>Boolean</td>
+<td>Optional - If <code>true</code>, writes to this index are serialized with concurrent reads and writes.</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td>Object</td>
+<td>Optional - Indicates who is allowed to read the index.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>Object</td>
+<td>Optional - This is user-defined metadata for the index. It is provided for the developer to store information at the index level.</td>
+</tr>
+</tbody>
+</table>
+<h3>Example Index</h3>
+<p>The simplest index is called a &quot;collection&quot; index; it has no <code>terms</code> or <code>values</code> defined. This means that the index includes all documents with no search terms, and that the index returns the references to each indexed document.</p>
+<p>Such an index can be created with just a <code>name</code> and a <code>source</code> collection:</p>
+<pre><code class="language-javascript">client.query(
+  q.CreateIndex({
+    name: 'new-index',
+    source: q.Collection('spells'),
+  })
+)
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ ref: Ref(id=new-index, collection=Ref(id=indexes)),
+  ts: 1527275052756370,
+  active: false,
+  partitions: 8,
+  name: 'new-index',
+  source: Ref(id=spells, collection=Ref(id=collections)) }
+</code></pre>
+<h3>Source Objects</h3>
+<p>Source objects describe the source collection of index entries and, optionally, bindings.</p>
+<p>The following example demonstrates the structure of a source object, which includes an example binding object:</p>
+<pre><code class="language-javascript">client.query({
+  source: {
+    collection: q.Collection('collection'),
+    fields: {
+      binding1: q.Query(
+        q.Lambda(
+          'document',
+          q.Select(['data', 'field'], q.Var('document'))
+        )
+      ),
+    },
+  },
+})
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ source:
+   { collection: Collection(&quot;collection&quot;),
+     fields:
+      { binding1:
+         Query(Lambda(&quot;document&quot;, Select([&quot;data&quot;, &quot;field&quot;], Var(&quot;document&quot;)))) } } }
+</code></pre>
+<h3>Binding Objects</h3>
+<p>A binding object contains field names bound to pure, single-argument Lambda functions. The function must take the document to be indexed and emit either a single scalar value or an array of scalar values.</p>
+<pre><code class="language-javascript">client.query({
+  binding1: q.Query(
+    q.Lambda('document', q.Select(['data', 'field'], q.Var('document')))
+  ),
+})
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ binding1:
+   Query(Lambda(&quot;document&quot;, Select([&quot;data&quot;, &quot;field&quot;], Var(&quot;document&quot;)))) }
+</code></pre>
+<h3>Term Objects</h3>
+<p>Term objects describe the fields whose values are used to search for entries in the index.</p>
+<p>The following example demonstrates an index’s <code>terms</code> field definition with two term objects, the first specifies a binding, the second specifies a document field:</p>
+<pre><code class="language-javascript">client.query({
+  terms: [
+    { binding: 'binding1' },
+    { field: ['data', 'field'] },
+  ],
+})
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ terms: [ { binding: 'binding1' }, { field: [Array] } ] }
+</code></pre>
+<h3>Value Objects</h3>
+<p>Value objects describe the fields whose values should be used to sort the index, and whose values should be reported in query results.</p>
+<p>The following example demonstrates an index’s <code>values</code> field definition with two term objects, the first specifies a binding, the second specifies a document field that should be sorted in reverse:</p>
+<pre><code class="language-javascript">client.query({
+  values: [
+    { binding: 'binding1' },
+    { field: ['data', 'field'], reverse: true },
+  ],
+})
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>{ values:
+   [ { binding: 'binding1' }, { field: [Array], reverse: true } ] }
+</code></pre>
+<h1>Functions</h1>
+<p>FQL provides many built-in functions that can be used to query and modify a database. Functions, also known as user-defined functions (UDFs), provide a mechanism to store and run commonly used FaunaDB queries. FaunaDB supports two different types of functions:</p>
+<ul>
+<li><em><strong>Built-in functions</strong></em>: Building blocks to query or mutate FaunaDB databases.</li>
+<li><em><strong>User-defined functions</strong></em>: Combines functions, built-in or user-defined, into queries that can be executed repeatedly.</li>
+</ul>
+<p>UDFs can be anonymous, when declared with the <code>Lambda</code> function, or can be named by using <code>CreateFunction</code>. A simple query that uses a built-in function could be:</p>
+<pre><code class="language-shell">Add(1, 1)
+</code></pre>
+<p>Suppose that we want to add 1 to several numbers. We could use an anonymous function:</p>
+<pre><code class="language-shell">Map(
+  [ 1, 2, 3, 4, 5 ],
+  Lambda(
+    &quot;number&quot;,
+    Add(1, Var(&quot;number&quot;))
+  )
+)
+</code></pre>
+<p>That query executes the anonymous Lambda function once per entry in the array that <code>Map</code> processes. For more complex functions, where it might be unwieldy to include the function itself in each query that needs to use it, we can create a named function:</p>
+<pre><code class="language-shell">CreateFunction({
+  name: &quot;increment&quot;,
+  body: Query(Lambda(&quot;number&quot;, Add(1, Var(&quot;number&quot;))))
+})
+</code></pre>
+<p>Now that the function has been stored and has a name, we can run a query that executes our function like this:</p>
+<pre><code class="language-shell">Call(Function(&quot;increment&quot;), 50)
+</code></pre>
+<h3>Schema for Named Functions</h3>
+<p>UDFs are documents that exist within internal &quot;functions&quot; collection of FaunaDB, which can be referred to by name using the built-in <code>Function</code> function. Each function document is stored within the context of the enclosing database: peer, parent, and child databases store functions independently.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Definition and Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>String</td>
+<td>The name of the function. Cannot be <code>events</code>, <code>sets</code>, <code>self</code>, <code>documents</code>, or <code>_</code>.</td>
+</tr>
+<tr>
+<td><code>body</code></td>
+<td>Query</td>
+<td>The query to be run when the function is executed. Must be wrapped in a <code>Query</code> function.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>String</td>
+<td>Optional- When the function is executed, it should be granted the privileges of the specified <code>role</code>. Can be one of <code>admin</code>, <code>server</code>, <code>server-readonly</code>, or <code>client</code>.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>Object</td>
+<td>Optional - A JSON object that can be used to store metadata about a function.</td>
+</tr>
+</tbody>
+</table>
+<h3>Signature</h3>
+<p>The signature of a UDF takes two parameters:</p>
+<ul>
+<li>The <em><strong>parameter list</strong></em> specifies the name(s) of the parameters passed to the function upon execution. The parameter list could be a single String name, or an array of string names.</li>
+<li>The <em><strong>query expression</strong></em> is any valid FQL query. To use named parameters within the query expression, use the <code>Var</code> function.</li>
+</ul>
+<h3>Permissions</h3>
+<p>By default, UDFs are executed with the privileges of the current query session. For example, if your client code connects to FaunaDB using a &quot;client&quot; key, any called UDFs would, by default, execute with &quot;client&quot; privileges. You can specify a <code>role</code> for named UDFs, which grants the functions of the named role while the UDF executes.</p>
+<h1>Sets</h1>
+<p>Sets are sorted groups of tuples. An index derives sets from documents within the collections in its source. As documents are created, modified, and deleted, sets are updated to reflect their documents' current state.</p>
+<p>Indexes are groups of sets, each of which has a natural key; a tuple of zero or more <em><strong>terms</strong></em>. The <code>Match</code> query function constructs a set ref to identify a set for a given tuple of terms within an index:</p>
+<pre><code class="language-javascript">client.query(q.Match(q.Index('spells_by_element'), 'water'))
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>SetRef({&quot;match&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;spells_by_element&quot;,&quot;class&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;indexes&quot;}}}},&quot;terms&quot;:&quot;water&quot;})
+</code></pre>
+<p>Set refs are unique according to their structure: Two set refs with the same structure refer to the same set within a database. Query functions such as <code>Union</code>, <code>Intersection</code>, and <code>Join</code> allow the construction of more complex logical set identifiers:</p>
+<pre><code class="language-javascript">client.query(
+  q.Intersection(
+    q.Match(q.Index('spells_by_element'), 'water'),
+    q.Match(q.Index('spells_by_element'), 'fire'),
+  )
+)
+.then((ret) =&gt; console.log(ret))
+</code></pre>
+<pre><code>SetRef({&quot;intersection&quot;:[{&quot;@set&quot;:{&quot;match&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;spells_by_element&quot;,&quot;class&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;indexes&quot;}}}},&quot;terms&quot;:&quot;water&quot;}},{&quot;@set&quot;:{&quot;match&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;spells_by_element&quot;,&quot;class&quot;:{&quot;@ref&quot;:{&quot;id&quot;:&quot;indexes&quot;}}}},&quot;terms&quot;:&quot;fire&quot;}}]})
+</code></pre>

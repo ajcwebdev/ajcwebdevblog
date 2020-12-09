@@ -1,0 +1,48 @@
+<p>I stumbled upon the most incredible thing the other day on MDN. On the page for <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content">Making content editable</a> which is part of the <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Editable_content">HTML developer guide</a> they give an example of a simple but complete rich text editor</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kna0891ybslqbmgsmhwy.jpg" alt="00"></p>
+<p>I was intrigued, so I copy-pasted the whole block of code into a blank document in TextEdit and saved it as <code>index.html</code> and opened it up.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/awn0arv0q16liuo4541o.jpg" alt="01"></p>
+<p>I clicked and entered some text.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/c7pi2jnmymi8c5w2uxrl.jpg" alt="02"></p>
+<p>I entered some more text.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/z2del75qo2xwdq67q8cx.jpg" alt="03"></p>
+<p>I clicked the mysteriously named &quot;Show HTML&quot; checkbox wondering what it could possibly do.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/wszp96jzmju45nwln7g1.jpg" alt="04"></p>
+<p>I don't know about you, but this absolutely BLEW MY MIND. I started digging into the code.</p>
+<h1>pure html</h1>
+<p>First of all the title of this article is actually a bald faced lie so I apologize for that. This is definitely not pure html and requires a decent amount of JavaScript and CSS to work.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/6jak0hskmnqcm6o1p57e.jpg" alt="05"></p>
+<p>I titled it &quot;pure html&quot; because it keeps everything in a single index.html file that cleanly separates the script, styling, and html body. Vue and Svelte developers should recognize the format immediately.</p>
+<h1><code>script</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1cmocynedh9uj80zt49b.jpg" alt="06-script"></p>
+<p>The script tag starts by declaring two variables (<code>var</code>!!) and contains five functions for (I'm assuming based on the names):</p>
+<ul>
+<li>initializing the document</li>
+<li>formatting the document</li>
+<li>validating the input</li>
+<li>setting document mode (switching between html or output)</li>
+<li>printing the document</li>
+</ul>
+<h1><code>style</code></h1>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/nfdb7635e4thqixfb5lq.jpg" alt="07-style"></p>
+<p>The styling provides just a little CSS to format the editor and give a few resets.</p>
+<h1><code>body</code></h1>
+<p>The body contains one giant html form</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kuowyq05jienmpfdmj24.jpg" alt="08-form"></p>
+<p>Nested inside the form:</p>
+<ul>
+<li>input tag</li>
+<li>div for first toolbar</li>
+<li>div for second toolbar</li>
+<li>div for text box</li>
+<li>paragraph tag containing an input tag for Show HTML button</li>
+<li>paragraph tag containing an input tag for send button</li>
+</ul>
+<h1><code>toolBar1</code></h1>
+<p>The first toolbar is a series of five select tags for formatting, font, size, color, and background color.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/iqzg55m32101b9kp5bum.jpg" alt="09-toolbar1"></p>
+<p>Each select has an <code>onchange</code> handler and a series of <code>option</code> tags for the different choices.</p>
+<h1><code>toolBar2</code></h1>
+<p>The second toolbar contains a fair bit of code since it has a lot going on.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dqzblm33hkrspwt4axbf.jpg" alt="10-toolbar2"></p>
+<p>The links inside the src attributes where originally much longer but I deleted most of it just for the sake of getting a more readable screenshot of the whole toolbar. Refer to the code on the MDN site for implementation</p>

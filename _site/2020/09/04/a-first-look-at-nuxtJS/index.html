@@ -1,0 +1,42 @@
+<p>NuxtJS is an intuitive Vue framework created by <a href="https://github.com/nuxt/nuxt.js/commit/0072ed31da6ce39d21046e05898f956cff190390">Sébastien Chopin in October 2016</a>. It is a progressive framework designed for creating modern web applications. It is based on official Vue libraries including Vue Core, Vue Router, and Vuex.</p>
+<p>It was inspired by NextJS and much like that React framework it started as a solution for server-side rendering. In recent years though it has expanded to include <a href="https://nuxtjs.org/blog/nuxt-static-improvements/">static site generation</a> inspired by projects like Gatsby and Gridsome.</p>
+<p>Nuxt.js automatically generates the vue-router configuration based on your file tree of Vue files inside the pages directory. When you create a .vue file in your pages directory you will have basic routing working with no extra configuration needed.</p>
+<p>To start we will enter the following commands:</p>
+<ol>
+<li><code>mkdir ajcwebdev-nuxt</code> to create a directory</li>
+<li><code>cd ajcwebdev-nuxt</code> to change to that directory</li>
+<li><code>touch package.json</code> to create our <code>package.json</code> file</li>
+<li><code>code .</code> to open VS Code</li>
+</ol>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1hvv17ysr1fwko31rhbq.jpg" alt="00-create-project"></p>
+<p>Enter the following code into <code>package.json</code> to give our project a name and basic scripts.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/8u12kvt9f6g5ezez81n3.jpg" alt="01-package-json"></p>
+<p>To install Nuxt we will enter <code>yarn add nuxt</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/7zfqvl8eqq7qn91chklf.jpg" alt="02-yarn-add-nuxt"></p>
+<p>This will install a butt load of dependencies. Trust the dependencies. Believe in the dependencies.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/1ug0iedugcn541pzqayb.jpg" alt="03-dependencies"></p>
+<p>If we check out <code>package.json</code> file we'll see <code>nuxt</code> has been installed with version <code>2.14.4</code>.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xrc7gha1hbd3heyqkin8.jpg" alt="04-package-json-nuxt"></p>
+<p>To create our first page will enter the following commands:</p>
+<ol>
+<li><code>mkdir pages</code> to create our pages directory</li>
+<li><code>touch pages/index.vue</code> to create a file called <code>index.vue</code></li>
+</ol>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/5l35wqmeakrca6jk6pzb.jpg" alt="05-mkdir-pages"></p>
+<p>Open <code>index.vue</code> and enter the following Vue code.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/oo7jn1w72ymnnmdqzf4j.jpg" alt="06-index.vue"></p>
+<p>We'll use the <code>yarn dev</code> command to start our development server.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/dsl5ecnni6hzlnqad8yq.jpg" alt="07-yarn-dev"></p>
+<p>You'll be asked if you want to allow Nuxt to collect anonymous data about usage.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/thp2hzc3mvkd7z7fhwf2.jpg" alt="08-data"></p>
+<p>The answer to that question is between you and your God.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/gcu62bvxguz7m8veyo2f.jpg" alt="09-dev-server"></p>
+<p>Open up <code>localhost:3000</code> in a browser.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/kdwlq00745dx1xceheb9.jpg" alt="10-hello-world"></p>
+<p>If we open up our dev tools we can see the source.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/glmxa76quuef6twazd9f.jpg" alt="11-dev-tools"></p>
+<p>Here is what our current directory structure looks like.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/xe15y24zzp5yh5g4v5s0.jpg" alt="12-directory-structure"></p>
+<p>The <code>.nuxt</code> directory is where the magic is happening.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/slarecx7i09ma6plue7d.jpg" alt="13-nuxt-directory"></p>
+<p>In the next part we will explore all this code. We will also create another page and link between them.</p>

@@ -1,0 +1,59 @@
+<blockquote>
+<p><em>Transactions are hard. Distributed transactions are harder. Distributed transactions over the WAN are final boss hardness.</em></p>
+<p><em><strong>Andy Pavlo</strong></em>
+<em><strong><a href="https://twitter.com/andy_pavlo/status/1051974710710407176">October 15, 2018</a></strong></em></p>
+</blockquote>
+<p>FaunaDB is a global serverless database for ubiquitous, low latency access to app data. It prioritizes data correctness and scale. Fauna is heavily integrated with GraphQL making it a natural extension for JAMstack projects wishing to incorporate a database while retaining many of the benefits gained from a JAMstack architecture.</p>
+<p>The Fauna Query Language provides <a href="https://docs.fauna.com/fauna/current/api/fql/cheat_sheet">many built-in functions</a> that can be used to query and modify a database. Functions, also known as user-defined functions (or UDFs), provide a mechanism to store and run commonly used FaunaDB queries.</p>
+<blockquote>
+<p><em>FaunaDB is a transactional, temporal, geographically distributed, strongly consistent, secure, multi-tenant, QoS-managed operational database. It’s implemented on the JVM for portability, and it’s relational, but not SQL. Instead, it’s queried via type-safe embedded DSLs, like LINQ.</em></p>
+<p><em><strong>Evan Weaver</strong></em>
+<em><strong><a href="https://fauna.com/blog/welcome-to-the-jungle">Welcome to the Jungle</a> (September 26, 2016)</strong></em></p>
+</blockquote>
+<h2>NoSQL</h2>
+<p>The explosion of data at companies like Google, Facebook, and Amazon in the mid 2000s pushed traditional relational database technology to its breaking limit. To address the difficulties of sharding systems like MySQL and PostgreSQL a new group of databases were created known as NoSQL.</p>
+<h3>Chubby</h3>
+<p>Google’s Bigtable was a distributed storage system implemented on top of the Paxos inspired <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf">Chubby</a>. Before talking about Bigtable it's useful to understand Chubby. The Chubby lock service provided coarse-grained locking as well as reliable (low-volume) storage for a loosely-coupled distributed system.</p>
+<p>Its interface is much like a distributed file system with advisory locks with a design emphasis on availability and reliability, instead of high performance.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_7741808122926126.jpg" alt="Image"></p>
+<h3>Bigtable</h3>
+<p><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf">Bigtable</a> was a distributed storage system for managing structured data designed to scale to petabytes of data across thousands of commodity servers. <a href="https://pdfs.semanticscholar.org/38e2/6a2682f14663a54a75c8af9a6cd350d4c1c1.pdf">HBase and Hypertable</a> were created as open source alternatives to Bigtable.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_5723903717260923.jpg" alt="Image"></p>
+<p>Bigtable depended on a cluster management system for scheduling jobs, managing resources on shared machines, dealing with machine failures, and monitoring machine status. The Google SSTable file format stored Bigtable data.</p>
+<p><img src="https://sedaily-topics.s3.amazonaws.com/topic_images/0_0070389502551797545.jpg" alt="Image"></p>
+<p>An SSTable provided a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.</p>
+<h3>Dynamo</h3>
+<p>Amazon’s <a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo</a> was a distributed key-value store replicated within their data centers. Cassandra was an open source alternative to Dynamo. In AWS, clients and services engage in a Service Level Agreement (SLA), a formally negotiated contract where a client and a service agree on several system-related characteristics including:</p>
+<ol>
+<li>Expected request rate distribution for a particular API</li>
+<li>Expected service latency under those conditions</li>
+</ol>
+<p>An example of a simple SLA is a service guaranteeing that it will provide a response within 300ms for 99.9% of its requests for a peak client load of 500 requests per second. In Amazon’s decentralized service oriented infrastructure, SLAs play an important role.</p>
+<p><img src="https://d2908q01vomqb2.cloudfront.net/887309d048beef83ad3eabf2a79a64a389ab1c9f/2018/12/11/DynamoDB-Key-Diagnostics-Library-Arch_121118_ultraLATEST.png" alt="DynamoDB-Key-Diagnostics-Library-Arch"></p>
+<h2>NoSQL Hangover</h2>
+<p>In the late 2000s many different experimental systems were created that attempted to meet the scaleability requirements of companies that had jumped ship to NoSQL while retaining the features developers had come to expect from traditional relational database management systems like joins and ACID transactions.</p>
+<blockquote>
+<p><em>The Paxos algorithm, when presented in plain English, is very simple.</em></p>
+<p><em><strong>Leslie Lamport</strong></em>
+<em><strong><a href="https://www.microsoft.com/en-us/research/uploads/prod/2016/12/paxos-simple-Copy.pdf">Paxos Made Simple</a> (November 1, 2001)</strong></em></p>
+</blockquote>
+<h3>MegaStore</h3>
+<p>In 2011, <a href="http://cidrdb.org/cidr2011/Papers/CIDR11_Paper32.pdf">Megastore</a> implemented it's own versions of the Paxos algorithm to show how the classic distributed consensus algorithm could be used to achieve consistency at scale.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ob6fsbnlfdr9c28j0qxb.jpg" alt="megastore"></p>
+<h3>Spinnaker</h3>
+<p><a href="https://arxiv.org/pdf/1103.2408.pdf">Spinnaker</a> was designed to run on a large cluster of commodity servers in a single datacenter. It featured key-based range partitioning, 3-way replication, and a transactional get-put API with the option to choose either strong or timeline consistency on reads. Paxos ensured that a data partition in Spinnaker was available for reads and writes as long as a majority of its replicas were alive.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/c1h8dg6dkvaq8wtde62p.jpg" alt="spinnaker"></p>
+<h2>Calvin and Spanner</h2>
+<p>In 2012, two papers were released that built on the foundational work of Bigtable, Dynamo, Megastore, and Spinnaker by showing how consensus algorithms could be used to build geographically replicated, consistent, ACID compliant, transactional database systems.</p>
+<p><a href="http://cs.yale.edu/homes/thomson/publications/calvin-sigmod12.pdf">Calvin</a> was published by SIGMOD in May by Daniel Abadi’s Yale team and was followed by Google’s <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf">Spanner</a> in October.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/ocipwlnklzfws1j6ru7a.jpg" alt="calvin-architecture"></p>
+<p>Spanner ultimately made a bigger splash on the scene at the time but both have proved to be highly influential in the design of database systems in the late 2010s.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/s4wp36mcvu6qs44j605z.jpg" alt="spanserver-stack"></p>
+<p>Before Spanner it was widely believed that to achieve “<a href="http://www.mongodb-is-web-scale.com/">web scale</a>” required giving up <a href="https://sites.fas.harvard.edu/~cs265/papers/haerder-1983.pdf">atomic, consistent, isolated, durable transactions</a>. Spanner helped dispel this assumption, ending the era of NoSQL and beginning the reign of <a href="https://db.cs.cmu.edu/papers/2016/pavlo-newsql-sigmodrec2016.pdf">NewSQL</a> projects such as CockroachDB, YugaByte, Vitess, Citus Data, and FaunaBD.</p>
+<h2>Raft</h2>
+<p>Up to this point all of these different systems were using custom implementations of Paxos as their consensus algorithm. Paxos was first described in Leslie Lamport's famous(ly complicated) 1998 paper <a href="https://lamport.azurewebsites.net/pubs/lamport-paxos.pdf">The Part-Time Parliament</a>. It described how a hypothetical parliament made up of voting state machines could use <a href="https://ecommons.cornell.edu/bitstream/handle/1813/6323/82-483.pdf">three phase commits</a> to achieve global consistency.</p>
+<p>If that last sentence doesn’t make any sense to you then you are not alone. 2013 saw the introduction of Raft in a paper titled <a href="https://raft.github.io/raft.pdf">In Search of an Understandable Consensus Algorithm</a>. Its author considered the comprehensibility of the algorithm to be a primary concern.</p>
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/i/s08ygtj02au9u4ljtqvw.jpg" alt="raft-replicated-state-machine-architecture"></p>
+<p>Raft aimed to provide the same benefits of Paxos with a simpler implementation that could be more easily adopted by practical systems.</p>
+<h2>FaunaDB Distributed Transaction Protocol</h2>
+<p>FaunaDB has taken the insights of Calvin and Raft and combined them with the real world experience of Evan Weaver's time scaling Twitter. This fusion resulted in the <a href="https://fauna.com/blog/consistency-without-clocks-faunadb-transaction-protocol">FaunaDB Distributed Transaction Protocol</a>, the base protocol for a truly unique data platform that is well positioned for the emerging world of microservices and serverless functions.</p>

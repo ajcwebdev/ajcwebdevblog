@@ -1,0 +1,179 @@
+<h1>Database Metrics</h1>
+<h2><code>db_size</code></h2>
+<ul>
+<li>Number of bytes contained in the database</li>
+<li>Includes all table and index data on disk, including database bloat</li>
+</ul>
+<p>If your Postgres database grows past the size allotted for your plan, you will receive a warning email with directions on how fix the issue. In some cases an enforcement date will be set for when you will be allowed only a single database connection and access will be restricted to READ, DELETE, and TRUNCATE access until the database is back under the plan limit.</p>
+<p>Heroku recommends setting a warning alert when your database gets to 80% of the allotted size for your plan and a critical alert when it gets to 90% of the allotted size.</p>
+<p>As you approach maximum size you can either upgrade your plan or delete data to stay within plan limits.</p>
+<h2><code>tables</code></h2>
+<ul>
+<li>Number of tables in the database</li>
+</ul>
+<h2><code>active-connections</code></h2>
+<ul>
+<li>Number of connections established on the database</li>
+</ul>
+<p>Heroku Postgres enforces a connection limit in order to optimize Postgres memory usage and scaling.</p>
+<p>For Heroku Postgres plans tier-3 and higher there is a hard limit of 500 connections. Once that limit is reached no new connections can be created.</p>
+<p>There are two strategies for setting up alerts based on database connection counts:</p>
+<ul>
+<li><strong>Set up an alert for sudden, large changes to the current connection count.</strong> Big changes from baseline connection numbers could be a sign of increased query and/or transaction run times. Alerting thresholds will be dependent on your application’s connection count range, assessed under normal operating conditions. Consider +50/+100 over your normal daily maximum.</li>
+<li><strong>Set up an alert for when the connection count approaches its hard maximum.</strong> For tier-3 plans and higher, the maximum is 500 connections, so 400 and 450 are good warning and critical numbers to start with here.</li>
+</ul>
+<p>If you are routinely approaching your connection limit, consider using connection pooling.</p>
+<h2><code>current_transaction</code></h2>
+<ul>
+<li>Current transaction ID</li>
+<li>Can be used to track writes over time</li>
+</ul>
+<h2><code>index-cache-hit-rate</code></h2>
+<ul>
+<li>Ratio of index lookups served from shared buffer cache, rounded to five decimal points</li>
+<li>Heroku recommends a value of 0.99 or greater if possible</li>
+<li>If your index hit rate is consistently less than 0.99, you should investigate your Expensive Queries or you may need to upgrade your database plan for more RAM</li>
+</ul>
+<h2><code>table-cache-hit-rate</code></h2>
+<ul>
+<li>Ratio of table lookups served from shared buffer cache, rounded to five decimal points</li>
+<li>Heroku recommends a value of 0.99 or greater if possible</li>
+<li>If your table hit rate is consistently less than 0.99, you may need to upgrade your database plan for more RAM</li>
+</ul>
+<h2><code>waiting-connections</code></h2>
+<ul>
+<li>Number of connections waiting on a lock to be acquired</li>
+<li>If many connections are waiting, this can be a sign of mishandled database concurrency</li>
+</ul>
+<p>Set up an alert for when there are any connections waiting for five consecutive minutes. You can use the pg-extras CLI plugin to help identify queries that are preventing other operations from taking place.</p>
+<p>The blocking queries can then be terminated in order to resolve lock contention. Additionally, knowing what statements cause blocks can help to identify application code that can be optimized to reduce locks.</p>
+<h2><code>memory-postgres</code></h2>
+<ul>
+<li>Approximate amount of memory used by your database’s Postgres processes in kB</li>
+<li>Includes shared buffer cache as well as memory for each connection</li>
+</ul>
+<h2><code>follower-lag-commits</code></h2>
+<ul>
+<li>Replication lag, measured as the number of commits that this follower is behind its leader</li>
+<li>Replication is asynchronous so a number greater than zero may not indicate an issue, however an increasing value deserves investigation</li>
+<li>This metric is only published for follower databases</li>
+</ul>
+<h1>Server Metrics</h1>
+<h2><code>load-avg-1m</code>, <code>load-avg-5m</code>, <code>load-avg-15m</code></h2>
+<ul>
+<li>The average system load over a period of 1 minute, 5 minutes and 15 minutes, divided by the number of available CPUs</li>
+<li>A <code>load-avg</code> of 1.0 indicates that, on average, processes were requesting CPU resources for 100% of the timespan; this number includes I/O wait</li>
+<li>For databases that have burstable performance, a baseline load average is guaranteed</li>
+</ul>
+<p>The <code>load-avg</code> metric shows average CPU load over the indicated periods. Heroku’s reported load metrics are normalized by dividing the system load by the number of CPUs.</p>
+<p>A load average of 1.0 over a given time window indicates full utilization of all CPUs, a load over 1.0 indicates that processes had to wait for CPU time in the given window (with higher values indicating more time spent by processes waiting), and values under 1.0 indicate that CPUs spent time idle during the given window. If this value is high, you will get less consistent query execution times and longer wait times.</p>
+<p>Since values over 1.0 indicate over-utilization, you will want to know before the load gets to that number. Set up alerts for when this <code>load-avg</code> reaches 0.8 (warning) and 0.9 (critical).</p>
+<p>Check current activity with the <code>pg:ps</code> command for cpu-intensive queries. Additionally check IOPS, as exceeding provisioned IOPS will cause processes to need to wait on I/O to become available before they can process. If you are consistently seeing high values for <code>load-avg</code>, then it may be time to upgrade to a larger Heroku Postgres plan. Before doing that, or if you’re already on the largest plan, look to tuning expensive queries to reduce the amount of processing work done on the database server and/or data read from disk.</p>
+<h2><code>read-iops</code>, <code>write-iops</code></h2>
+<ul>
+<li>Number of read or write operations in I/O sizes of 16KB blocks</li>
+</ul>
+<h2><code>memory-total</code></h2>
+<ul>
+<li>Total amount of server memory available</li>
+</ul>
+<h2><code>memory-free</code></h2>
+<ul>
+<li>Amount of free memory available in kB</li>
+</ul>
+<h2><code>memory-cached</code></h2>
+<ul>
+<li>Amount of memory being used the OS for page cache, in kB</li>
+</ul>
+<h2><code>wal-percentage-used</code></h2>
+<ul>
+<li>The percentage of wal used, healthy below 80%</li>
+</ul>
+<h1>Finding Slow Queries</h1>
+<h2>Logging</h2>
+<h3><code>log_min_duration_statement</code></h3>
+<p>Causes the duration of each completed statement to be logged if the statement ran for at least the specified number of milliseconds. For example, if you set it to 250ms then all SQL statements that run 250ms or longer will be logged.</p>
+<p>Enabling this parameter can be helpful in tracking down unoptimized queries in your applications. Only superusers can change this setting.</p>
+<h3><code>log_line_prefix</code></h3>
+<p><code>printf</code>-style string that is output at the beginning of each log line.</p>
+<ul>
+<li>Timestamp</li>
+<li>Process ID</li>
+<li>Session Line Number</li>
+<li>Logged in User</li>
+<li>Database logged in to</li>
+<li>Application name</li>
+<li>Remote host</li>
+</ul>
+<h3><code>log_checkpoints</code></h3>
+<p>Causes checkpoints and restartpoints to be logged in the server log. Some statistics are included in the log messages, including the number of buffers written and the time spent writing them.</p>
+<h3><code>log_connections</code></h3>
+<p>Causes each attempted connection to the server to be logged, as well as successful completion of client authentication.</p>
+<h3><code>log_disconnections</code></h3>
+<p>Causes session terminations to be logged. The log output provides information similar to <code>log_connections</code>, plus the duration of the session.</p>
+<h3><code>log_lock_waits</code></h3>
+<p>Controls whether a log message is produced when a session waits longer than <code>deadlock_timeout</code> to acquire a lock. This is useful in determining if lock waits are causing poor performance.</p>
+<h3><code>log_temp_files</code></h3>
+<p>Controls logging of temporary file names and sizes. Temporary files can be created for sorts, hashes, and temporary query results. If enabled by this setting, a log entry is emitted for each temporary file when it is deleted. A value of zero logs all temporary file information, while positive values log only files whose size is greater than or equal to the specified amount of data. If this value is specified without units, it is taken as kilobytes.</p>
+<h3><code>log_autovacuum_min_duration</code></h3>
+<p>Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds. Setting this to zero logs all autovacuum actions. Minus-one (the default) disables logging autovacuum actions. For example, if you set this to 250ms then all automatic vacuums and analyzes that run 250ms or longer will be logged. In addition, when this parameter is set to any value other than -1, a message will be logged if an autovacuum action is skipped due to the existence of a conflicting lock. Enabling this parameter can be helpful in tracking autovacuum activity.</p>
+<h2>Log Analysis</h2>
+<h3>pgBadger</h3>
+<h2>Viewing Active Queries</h2>
+<h3><code>pg_stat_statements</code></h3>
+<p>The <code>pg_stat_statements</code> module provides a means for tracking planning and execution statistics of all SQL statements executed by a server.</p>
+<p>The module must be loaded by adding <code>pg_stat_statements</code> to <code>shared_preload_libraries</code> in <code>postgresql.conf</code>, because it requires additional shared memory. This means that a server restart is needed to add or remove the module.</p>
+<p>The statistics gathered by the module are made available via a view named <code>pg_stat_statements</code>. This view contains one row for each distinct database ID, user ID and query ID (up to the maximum number of distinct statements that the module can track).</p>
+<h1>USE Method</h1>
+<p>For every resource, check utilization, saturation, and errors.
+It's intended to be used early in a performance investigation, to identify systemic bottlenecks.</p>
+<p>resource: all physical server functional components (CPUs, disks, busses, ...) [1]
+utilization: the average time that the resource was busy servicing work [2]
+saturation: the degree to which the resource has extra work which it can't service, often queued
+errors: the count of error events</p>
+<h1>pgbouncer</h1>
+<p>pgbouncer is a PostgreSQL connection pooler that aims to lower the performance impact of opening new connections to PostgreSQL. Any target application can be connected to pgbouncer as if it were a PostgreSQL server, and pgbouncer will create a connection to the actual server, or it will reuse one of its existing connections.</p>
+<p>In order not to compromise transaction semantics for connection pooling, pgbouncer supports several types of pooling when rotating connections:</p>
+<h3>Session pooling</h3>
+<ul>
+<li>Most polite method and default method</li>
+<li>When a client connects, a server connection will be assigned to it for the whole duration the client stays connected</li>
+<li>When the client disconnects, the server connection will be put back into the pool</li>
+</ul>
+<h3>Transaction pooling</h3>
+<ul>
+<li>A server connection is assigned to a client only during a transaction</li>
+<li>When PgBouncer notices that transaction is over, the server connection will be put back into the pool</li>
+</ul>
+<h3>Statement pooling</h3>
+<ul>
+<li>Most aggressive method</li>
+<li>The server connection will be put back into the pool immediately after a query completes</li>
+<li>Multi-statement transactions are disallowed in this mode as they would break</li>
+</ul>
+<h1>What Needs to be Monitored?</h1>
+<h3>Queries/SQL</h3>
+<ul>
+<li>Throughput</li>
+<li>Latency</li>
+<li>Concurrency/load</li>
+<li>Errors</li>
+</ul>
+<h3>Postgres Server</h3>
+<ul>
+<li>DML</li>
+<li>DDL</li>
+<li>Logs</li>
+<li>Wait-time</li>
+<li>Users</li>
+<li>Objects</li>
+<li>Backups</li>
+<li>Replication</li>
+</ul>
+<h3>OS and Hardware</h3>
+<ul>
+<li>I/O</li>
+<li>Memory</li>
+<li>Network</li>
+<li>CPU</li>
+</ul>
